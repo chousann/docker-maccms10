@@ -1,0 +1,31 @@
+name: deploy_to_githubActions
+on:
+  push:
+    branches:
+      - main
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          sudo su
+          docker compose up -d
+          wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip
+          unzip ngrok-stable-linux-386.zip
+          chmod +x ./ngrok
+          ./ngrok authtoken ${{ secrets.NGROK_TOKEN }}
+          ./ngrok http 4200 -log=ngrok.log &
+          sleep 10
+          touch /tmp/keepalive
+          cat ngrok.log
+          
+      - name: Setup Debug
+        uses: csexton/debugger-action@master
