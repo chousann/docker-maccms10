@@ -50,5 +50,5 @@ jobs:
           content_type: text/html
       - name: sleep
         run: |
-          chmod 777 ./sleep.sh
-          bash ./sleep.sh
+          chmod 777 .github/workflows/sleep.sh
+          bash .github/workflows/sleep.sh
