@@ -1,0 +1,38 @@
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="{$conch['theme']['logo']['webapp']|mac_default=substr($maccms['path_tpl'], strlen($maccms['path'])).'asset/img/ios_fav.png'|mac_url_img}">
+<link rel="shortcut icon" href="{$conch['theme']['logo']['icon']|mac_default=substr($maccms['path_tpl'], strlen($maccms['path'])).'asset/img/favicon.png'|mac_url_img}" type="image/x-icon"/>
+<link rel="stylesheet" type="text/css" href="{$maccms.path_tpl}asset/css/style.css?v={$version}">
+{if$conch['theme']['style']['color']==1}
+<link rel="stylesheet" type="text/css" href="{$maccms.path_tpl}asset/css/black.css?v={$version}" name="color">
+{else}<link rel="stylesheet" type="text/css" href="{$maccms.path_tpl}asset/css/white.css?v={$version}" name="color">{/if}
+<link rel="stylesheet" type="text/css" href="{$maccms.path_tpl}asset/css/swiper.min.css">
+<style type="text/css">{if$conch['theme']['lazy']}.hl-br-thumb,.hl-item-thumb{background-image:url("{$conch['theme']['lazy']|mac_url_img}");background-repeat: no-repeat;}{/if}{if$conch['theme']['img']['radius']}.conch-banner .conch-br-box .hl-br-thumb,.conch-content .hl-row-box .hl-item-thumb,.conch-content .hl-vod-rank .hl-rank-box,.conch-content .hl-article-main .hl-article-box img,.conch-content .hl-detail-side,.conch-content .hl-row-box .hl-topic-list .hl-item-wrap:after,.hl-topic-list .hl-item-wrap:before,.conch-ads-box{border-radius:{$conch['theme']['img']['radius']}px;}.conch-content .hl-vod-rank .hl-rank-list .hl-item-thumb,.conch-content .hl-new-items .hl-item-thumb{border-radius:{$conch['theme']['img']['radius']/2}px;}{/if}{$conch['theme']['style']['custom']}</style>
+{if$conch['theme']['color']['has']==1}
+<style type="text/css">
+@keyframes rectangle{0%,100%,80%{height:6px;-webkit-box-shadow:0 0 {$conch['theme']['color']['site']};box-shadow:0 0 {$conch['theme']['color']['site']};}
+40%{height:6px;-webkit-box-shadow:0 -4px {$conch['theme']['color']['site']};box-shadow:0 -4px {$conch['theme']['color']['site']};}}
+.conch-content .hl-row-box .hl-site-tabs a.active,.conch-content .hl-tool-icon a.disabled,.conch-content .hl-type-name a.active,.conch-header .conch-menus ul>li>a.active,.conch-header .conch-menus ul>li>a.active>i,.conch-results li strong,.hl-btn-border,.hl-text-conch{color:{$conch['theme']['color']['site']};}
+.conch-banner .swiper-pagination-bullet-active,.conch-content .hl-play-source .hl-plays-from a.active:after,.conch-content .hl-play-source .hl-plays-list li>a>em::after,.conch-content .hl-play-source .hl-plays-list li>a>em::before,.conch-content .hl-row-box .hl-actor-sm li.active .hl-item-link:after,.conch-content .hl-row-box .hl-pic-tag span,.conch-content .hl-row-box .hl-site-tabs a.active::after,.conch-footer .hl-foot-extra .hl-fe-list a span,.conch-header .conch-menus ul>li>a.active em,.hl-bg-conch,.hl-page-wrap li a.active{background:{$conch['theme']['color']['site']};}
+.conch-input:checked{background-color:{$conch['theme']['color']['site']};}
+.conch-content .hl-conch-items,.conch-content .hl-row-box .hl-actor-sm li.active .hl-item-link,.conch-content .hl-row-box .hl-rb-title i,.conch-content .hl-row-box .hl-week-item .hl-tabs-btn.active,.conch-content .hl-smnav-home .hl-smnav-item a>i,.conch-header .conch-hasconch,.hl-btn-gradient{background:{$conch['theme']['color']['site']};background:-webkit-gradient(linear,left top,right top,from({$conch['theme']['color']['site']}),to({$conch['theme']['color']['subs']}));background:-webkit-linear-gradient(left,{$conch['theme']['color']['site']},{$conch['theme']['color']['subs']});background:-o-linear-gradient(left,{$conch['theme']['color']['site']} 0,{$conch['theme']['color']['subs']} 100%);background:linear-gradient(90deg,{$conch['theme']['color']['site']},{$conch['theme']['color']['subs']});}
+.conch-content .hl-row-box .hl-rb-title i,.conch-content .hl-smnav-home .hl-smnav-item a>i{color:transparent!important;-webkit-background-clip:text!important;}
+.conch-input:checked,.hl-btn-border,.hl-comm-form .hl-comm-focus,.hl-msg-jump .btn a.cz,.hl-page-wrap li a.active,.hl-player-popeom a.cz{border-color:{$conch['theme']['color']['site']}!important;}
+@media (min-width: 768px) {
+.conch-content .hl-new-items .hl-rank-list li a:hover .hl-item-title,.conch-content .hl-row-box .hl-actor-list.hl-actor-one a:hover .hl-item-title,.conch-content .hl-row-box .hl-list-item:hover .hl-item-title a,.conch-content .hl-search-form .hl-search-submit:hover,.conch-header .conch-menus ul>li>a:hover>i,.conch-header .conch-hasconch .conch-search .hl-search-submit:hover,.hl-alert-items:hover>a,.hl-filter-opted li:hover,.hl-public-box .hl-public-item a:hover .hl-item-title,.hl-text-hover:hover,a:active,a:focus,a:hover{color:{$conch['theme']['color']['site']};}
+.conch-content .hl-row-box .hl-pic-icon i:hover,.conch-footer .hl-foot-extra .hl-fe-list a:hover,.conch-hasbg .conch-headwrap.conch-hasconch:not(.fixed) .conch-search .hl-search-submit:hover,.conch-header .conch-menus ul>li>a:hover>em,.conch-header .conch-headwrap:not(.conch-hasconch) .conch-search .hl-search-submit:hover,.hl-btn-border:hover,.hl-btn-gradient:hover{background:{$conch['theme']['color']['site']};}
+.conch-content .hl-row-box .hl-actor-list.hl-actor-sm .hl-item-link:hover,.conch-content .hl-smnav-item a:hover,.conch-hasbg .conch-headwrap.conch-hasconch:not(.fixed) .conch-search .hl-search-submit,.conch-header .conch-headwrap:not(.conch-hasconch) .conch-search .hl-search-submit,.hl-bg-hover:hover{background:{$conch['theme']['color']['site']};background:-webkit-gradient(linear,left top,right top,from({$conch['theme']['color']['site']}),to({$conch['theme']['color']['subs']}));background:-webkit-linear-gradient(left,{$conch['theme']['color']['site']},{$conch['theme']['color']['subs']});background:-o-linear-gradient(left,{$conch['theme']['color']['site']} 0,{$conch['theme']['color']['subs']} 100%);background:linear-gradient(90deg,{$conch['theme']['color']['site']},{$conch['theme']['color']['subs']});}
+.hl-comm-form .hl-comm-write:hover,.hl-filter-opted li:hover,.hl-page-small .hl-page-btns a:hover,.hl-page-wrap li a:hover{border-color:{$conch['theme']['color']['site']};}
+}
+</style>
+{/if}
+<script type="text/javascript">
+var maccms={"path":"__ROOT__","mid":"{$maccms['mid']}","url":"{$maccms['site_url']}","wapurl":"{$maccms['site_wapurl']}","mob_status":"{$maccms['mob_status']}"};
+var conchtpl={"surl":"{:mac_url('vod/search')}","tipt":"{$conch['theme']['tips']['title']}","tipc":"{$conch['theme']['tips']['content']}","slink":"{$conch['theme']['share']['link']}","short":"{$conch['theme']['share']['short']}","api":"{$conch['theme']['share']['api']}",{if$conch['theme']['share']['api']==1}"aurl":"{$conch['theme']['share']['apiurl']}",{else}"tok":"{$conch['theme']['share']['tok']}","term":"{$conch['theme']['share']['term']}",{/if}"ver":"{$version}"}
+</script>
+<script type="text/javascript" src="{$maccms.path_tpl}asset/js/jquery.min.js"></script>
+<script type="text/javascript" src="{$maccms.path_tpl}asset/js/conch.set.js?v={$version}"></script>
+<script type="text/javascript" src="{$maccms.path_tpl}asset/js/conch.vip.js?v={$version}"></script>
+<script type="text/javascript" src="{$maccms.path}static/js/home.js"></script>
+{if$maccms.mid==6}
+<script type="text/javascript" src="{$maccms.path_tpl}asset/js/set/formValidator.js"></script>
+<script type="text/javascript" src="{$maccms.path}static/js/jquery.imageupload.js"></script>{/if}
+{$conch['theme']['script']['custom']}

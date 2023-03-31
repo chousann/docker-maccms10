@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="public/meta"}
+	<title>个人中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="个人中心">
+	<meta name="description" content="个人中心">
+	{include file="public/include"}
+</head>
+<body id="conch-member">
+{include file="public/head"}
+<div class="conch-header">
+    <div class="conch-headwrap conch-hasone{if$conch['theme']['nav']['has']==1} conch-hasconch{/if} hl-hide-sm">
+        <div class="hl-mob-nav">
+            <a href="javascript:MAC.GoBack()" class="hl-pull-left left"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+            <a href="{$maccms.path}" class="hl-pull-right right"><i class="iconfont hl-icon-shouye"></i></a>
+            <span class="hl-mob-title hl-text-site hl-lc-1">个人中心</span>
+        </div>
+    </div>
+</div>
+<div class="conch-content conch-member">
+    <div class="conch-ctwrap">
+        <div class="hl-ctwrap-item">
+            <div class="container">
+                <div class="hl-row-box clearfix">
+                    <div class="row">               
+                        <div id="left" class="hl-left-menus hl-col-xs-12 hl-col-sm-30w hl-col-lg-3">
+                            {include file="user/leftmenu"}
+                        </div>
+                        <div id="right" class="hl-right-content hl-col-xs-12 hl-col-sm-70w hl-col-lg-9 hl-hidden-xs">
+                            <div class="hl-cont-right">
+                                <div class="hl-rb-head hl-hidden-xs clearfix">
+                                    <h2 class="hl-rb-title">我的资料</h2>
+                                </div>
+                                <div class="hl-cont-tab">
+                                    <div class="hl-rb-head hl-head-page clearfix">
+                                        <div class="hl-rb-title hl-site-tabs hl-site-tits hl-text-site">
+                                            <a class="active" href="javascript:void(0)">基本资料</a>
+                                            <a href="{:url('user/info')}">修改信息</a>
+                                            <a href="{:url('user/popedom')}">我的权限</a>
+                                        </div>
+                                    </div>
+                                    <div class="hl-cont-list">
+                                        <!-- 基本资料 -->
+                                        <div class="hl-list-wrap">
+                                            <p><span>用户名</span>{$obj.user_name}</p>
+                                            <p><span>昵称</span>{$obj.user_nick_name|mac_default='未填写'}</p>
+                                            <p><span>所属会员组</span>{if condition="$obj.group_id lt 3"}{$user.group.group_name}{else}<i class="iconfont hl-icon-zuanshi"></i>{$obj.group.group_name}{/if}</p>
+                                            <p><span>账户积分</span>{$obj.user_points}</p>
+                                            <p><span>会员期限</span>{if condition="$obj.group_id lt 3"}永久有效{else}{$obj.user_end_time|mac_day}{/if}</p>
+                                            <p><span>QQ号码</span>{$obj.user_qq|mac_default='未填写'}</p>
+                                            <p><span>Email地址</span>{$obj.user_email|mac_default='未填写'}</p>
+                                            <p><span>注册时间</span>{$obj.user_reg_time|mac_day}</p>
+                                            <p><span>上次登录</span>{$obj.user_last_login_time|mac_day=color}</p>
+                                            <p><span>登录次数</span>{$obj.user_login_num}</p>
+                                            <p><span>登陆IP</span>{$obj.user_login_ip|long2ip}</p>
+                                            <p><span>登陆时间</span>{$obj.user_login_time|mac_day}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

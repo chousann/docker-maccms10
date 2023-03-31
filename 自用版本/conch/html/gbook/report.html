@@ -1,0 +1,24 @@
+<div class="hl-row-box hl-rb-gbook clearfix">
+<div class="hl-comm-input mac_report">
+    <form class="hl-comm-form gbook_form clearfix">
+       <div class="hl-comm-write hl-comm-start clearfix">
+            <textarea class="hl-comm-content gbook_content" name="gbook_content">{$param.name}</textarea>
+            <div class="hl-comm-handle clearfix">
+                <div class="hl-comm-remaining hl-text-muted">还可以输入<span class="gbook_remaining" >200</span></div>
+                <input class="hl-comm-submit hl-bg-conch gbook_submit" type="button" value="提交留言">
+                {if condition="$gbook.verify eq 1"}
+                <img class="hl-comm-code" src="{:mac_url('verify/index')}" data-role="{:mac_url('verify/index')}" title="看不清楚? 换一张！" onClick="this.src=this.src+'?v={:time()}'"/>
+                <input class="hl-comm-verify hl-bg-subs" type="text" name="verify" placeholder="验证码">
+                {/if}
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<script>
+    $(function(){
+        MAC.Gbook.Login = {$gbook.login};
+        MAC.Gbook.Verify = {$gbook.verify};
+        MAC.Gbook.Init();
+    });
+</script>

@@ -1,0 +1,22 @@
+<form class="hl-search hl-text-site{if$conch['theme']['search']['select']==1} hl-search-selop{/if}" name="search" method="get" action="{if$maccms.mid==2}{:mac_url('art/search')}{elseif$maccms.mid==8}{:mac_url('actor/search')}{else}{:mac_url('vod/search')}{/if}" onsubmit="return qrsearch();">
+    <a href="javascript:;" class="hl-search-select hl-text-subs">
+        {if$maccms.mid==2}
+        <span class="hl-ss-text" data-mid="2">文章</span>{elseif$maccms.mid==8}
+        <span class="hl-ss-text" data-mid="8">明星</span>{else}
+        <span class="hl-ss-text" data-mid="1">视频</span>{/if}
+        <i class="iconfont hl-icon-jiantouxia"></i>
+    </a>
+    <input id="hl-search-text" class="hl-search-text hl-search-wd{if$maccms.aid!=13&&$maccms.aid!=23&&$maccms.aid!=33&&$maccms.aid!=83&&$maccms.aid!=93&&$maccms.aid!=103&&$maccms.aid!=113} hl-search-top{/if}" type="text" name="wd" value="{$param.wd}" placeholder="{$conch['theme']['search']['tips']|mac_default='请输入关键字'}">
+    <button id="hl-search-submit" class="hl-search-submit" type="submit" name="submit"><i class="iconfont hl-icon-sousuo"></i><span class="hl-hidden-xs">&nbsp;搜索</span></button>
+</form>
+{if$conch['theme']['search']['select']==1}
+<div class="hl-alert-box hl-ss-box hl-bg-site hl-fadeIn">
+   <div class="hl-ss-item">
+        {if in_array(a, explode(',',$conch['theme']['search']['filter']))}
+        <span class="hl-text-site hl-text-hover" data-mid="1" data-action="{:mac_url('vod/search')}">视频</span>{/if}
+        {if in_array(b, explode(',',$conch['theme']['search']['filter']))}
+        <span class="hl-text-site hl-text-hover" data-mid="2" data-action="{:mac_url('art/search')}">文章</span>{/if}
+        {if in_array(c, explode(',',$conch['theme']['search']['filter']))}
+        <span class="hl-text-site hl-text-hover" data-mid="8" data-action="{:mac_url('actor/search')}">明星</span>{/if}
+   </div>
+</div>{/if}

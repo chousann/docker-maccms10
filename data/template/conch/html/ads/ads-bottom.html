@@ -1,0 +1,31 @@
+{if$conch['theme']['ads']['btn']==1}
+{if$conch['theme']['ads']['vip']==1&&$user.group_id gt 2}{else/}
+{if$conch['theme']['ads']['bottom']!=''}
+<div id="ad1003" class="conch-ads-box hl-ads-bottom hl-this-box clearfix">
+    <a class="hl-close-this" href="javascript:void(0)"><i class="iconfont hl-icon-cuo"></i></a>
+    <div class="ads ads-bottom">{$conch['theme']['ads']['bottom']}</div>
+    {if$conch['theme']['ads']['tip']==1}<span class="hl-ad-tip">广告</span>{/if}
+</div>
+<script type="text/javascript">
+    $(function() {
+        var $b=$('#1003').parents().find('.conch-footwrap'),
+            $a=$('#1003').find('.hl-close-this'),
+            $e=$b.find('.hl-foot-extra'),
+            $h=$('#1003').innerHeight(),
+            $w=$(window).width();
+        if($b.hasClass('hl-footnav-show') && $h>0 && $w<768){
+            $b.css('padding-bottom',$h+80);
+            $e.css('bottom',$h+70);
+        }else{
+            $b.css('padding-bottom',$h+40);
+            $e.css('bottom',$h+20);
+        }
+        $a.click(function(){
+            $b.css('padding-bottom','');
+            $e.css('bottom','');
+        })
+    });
+</script>
+{/if}
+{/if}
+{/if}

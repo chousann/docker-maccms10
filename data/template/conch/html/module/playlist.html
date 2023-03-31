@@ -1,0 +1,44 @@
+{if condition="$obj.vod_copyright eq 1 && $GLOBALS['config']['app']['copyright_status'] eq 1 "}{else}
+{notempty name="obj.vod_play_list"}
+<div class="hl-row-box hl-rb-playlist{if$maccms.aid==15} hl-playpage-playlist{/if} hl-tabs-item clearfix" id="playlist">
+    <div class="hl-rb-head clearfix">
+        <h3 class="hl-rb-title">播放列表</h3>
+        <div class="hl-rb-tips hl-notice-box hl-text-muted">
+            <marquee scrollamount="4" behavior="scroll" onmouseover=this.stop() onmouseout=this.start()>
+            {maccms:foreach name="obj.vod_play_list" id="vo"}
+            <span class="hl-tabs-box2" style="display: {if$maccms.aid==15&&$vo.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']}block{elseif$maccms.aid!=15&&$key==1}block{else}none{/if};">
+                <i class="iconfont hl-icon-tongzhi"></i>&nbsp;当前资源来源<span class="hl-text-site">{$vo.player_info.show}</span>&nbsp;-&nbsp;{$vo.player_info.tip|mac_substring=20|mac_default='在线播放,无需安装播放器'}
+            </span>
+            {/maccms:foreach}
+            </marquee>
+            <div class="hl-nb-right-s"><i class="hl-mbg"></i></div>
+            <div class="hl-nb-left-s"><i class="hl-mbg"></i></div>
+        </div>
+        <a class="hl-sort-btn hl-rb-more hl-text-muted hl-pull-right" href="javascript:void(0)"><i class="iconfont hl-icon-daoxu"></i>&nbsp;<span>倒序</span></a>
+    </div>
+    <div class="hl-play-source hl-hidden">
+        <div class="hl-plays-wrap hl-tabs-swiper">
+            <div class="hl-plays-from hl-tabs swiper-wrapper clearfix">
+                {maccms:foreach name="obj.vod_play_list" id="vo"}
+                <a class="hl-tabs-btn hl-slide-swiper{if$maccms.aid==15&&$vo.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']} active{elseif$maccms.aid!=15&&$key==1} active{/if}" href="javascript:void(0);" alt="{$vo.player_info.show}"><i class="iconfont hl-icon-shipin"></i>&nbsp;{$vo.player_info.show}</a>{/maccms:foreach}
+            </div>
+        </div>
+        {maccms:foreach name="obj.vod_play_list" id="vo"}
+        <div class="hl-tabs-box hl-fadeIn" style="display: {if$maccms.aid==15&&$vo.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']}block{elseif$maccms.aid!=15&&$key==1}block{else}none{/if};">
+            <div class="row">
+                <div class="hl-list-wrap">
+                    {maccms:foreach name="vo.urls" id="vo2" key="key2"}{/maccms:foreach}
+                    <ul class="hl-plays-list hl-sort-list{if$key2>6} hl-list-hide-xs{/if}{if$key2>24} hl-list-sm{/if}{if$maccms.aid==15&&$key2>8} hl-list-md{/if} clearfix" id="hl-plays-list">
+                        {maccms:foreach name="vo.urls" id="vo2" key="key2"}
+                        <li class="hl-col-xs-4{if$maccms.aid==15} hl-col-sm-2  hl-col-md-6{else} hl-col-sm-2{/if}"><a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}"{if$param.sid==$vo.sid&&$param.nid==$vo2.nid} class="hl-text-conch active"{/if}>{if$param.sid==$vo.sid&&$param.nid==$vo2.nid}<em class="hl-play-active hl-bg-conch"></em>{/if}{$vo2.name}</a></li>
+                        {/maccms:foreach}
+                        {if$key2>6||$key2>24||$key2>8&&$maccms.aid==15}
+                        <div class="hl-show-div hl-col-xs-4{if$maccms.aid==15} hl-col-sm-2  hl-col-md-6{else} hl-col-sm-2{/if}"><a class="hl-show-list" href="javascript:void(0)"><i class="iconfont hl-icon-jiantoushang"></i><em>展开全部</em></a></div>{/if}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {/maccms:foreach}
+    </div>
+</div>
+{/notempty}{/if}

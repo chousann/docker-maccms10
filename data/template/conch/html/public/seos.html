@@ -1,0 +1,109 @@
+{if$maccms.aid==1}
+<title>{$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{elseif$maccms.aid==2}
+<title>最近更新-{$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{elseif$maccms.aid==4}
+<title>求片留言-{$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{elseif$maccms.aid==10}
+<title>{$maccms.seo.vod.name}-{$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.seo.vod.key}" />
+<meta name="description" content="{$maccms.seo.vod.des}" />
+{elseif$maccms.aid==11}
+<title>{$obj.type_title}-第{$param['page']}页-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.type_key}" />
+<meta name="description" content="{$obj.type_des}" />
+{elseif$maccms.aid==12}
+<title>最新{$obj.type_name}-推荐{$obj.type_name}-第{$param['page']}页-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.type_key}" />
+<meta name="description" content="{$obj.type_des}" />
+{elseif$maccms.aid==13}
+<title>搜索{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name}</title>
+<meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}在线观看,{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}迅雷下载" />
+<meta name="description" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}的搜索结果,{$maccms.site_name}" />
+{elseif$maccms.aid==14}
+{if condition="($obj['type_id']==2) OR ($obj['type_id_1']==2) OR ($obj['type_id']==3) OR ($obj['type_id_1']==3) OR ($obj['type_id']==4) OR ($obj['type_id_1']==4)"}
+<title>《{$obj.vod_name}》{if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if}全集在线观看_{$obj.vod_name}全集下载-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name}{if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if},{$obj.vod_name}全集,{$obj.vod_name}在线观看,{$obj.vod_name}迅雷下载,{$obj.vod_name}百度网盘,{$maccms.site_name}" />
+<meta name="description" content="{$obj.vod_name}剧情介绍：{$obj.vod_blurb}..." />
+{else}
+<title>《{$obj.vod_name}》{if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if}高清完整版在线观看_{$obj.vod_name}高清完整版下载-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name}{if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if},{$obj.vod_name}高清完整版,{$obj.vod_name}在线观看,{$obj.vod_name}迅雷下载,{$obj.vod_name}百度网盘,{$maccms.site_name}" />
+<meta name="description" content="{$obj.vod_name}剧情介绍：{$obj.vod_blurb}..." />
+{/if}
+{elseif$maccms.aid==15}
+<title>{if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if}《{$obj.vod_name}》{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}在线观看-{$maccms.site_name}</title>
+<meta name="keywords" content="{if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if}{$obj.vod_name},{$obj.vod_name}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']},{$obj.vod_name}在线观看,{$maccms.site_name}" />
+<meta name="description" content="{$obj.vod_name}剧情介绍：{$obj.vod_blurb}" />
+{elseif$maccms.aid==16}
+{if condition="($obj['type_id']==2) OR ($obj['type_id_1']==2) OR ($obj['type_id']==3) OR ($obj['type_id_1']==3) OR ($obj['type_id']==4) OR ($obj['type_id_1']==4)"}
+<title>{if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if}《{$obj.vod_name}》全集下载_{$obj.vod_name}迅雷下载-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name}{if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if},{$obj.vod_name}全集,{$obj.vod_name}迅雷下载,{$obj.vod_name}百度网盘,{$maccms.site_name}" />
+<meta name="description" content="{$obj.vod_name}剧情介绍：{$obj.vod_blurb}" />
+{else}
+<title>{if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if}《{$obj.vod_name}》高清完整版下载_{$obj.vod_name}迅雷下载-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name}{if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if},{$obj.vod_name}高清完整版,{$obj.vod_name}迅雷下载,{$obj.vod_name}百度网盘,{$maccms.site_name}" />
+<meta name="description" content="{$obj.vod_name}剧情介绍：{$obj.vod_blurb}" />
+{/if}
+{elseif$maccms.aid==20}
+<title>{$maccms.seo.art.name}-{$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.seo.art.key}" />
+<meta name="description" content="{$maccms.seo.art.des}" />
+{elseif$maccms.aid==21}
+<title>{$obj.type_title}-第{$param['page']}页-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.type_key}" />
+<meta name="description" content="{$obj.type_des}" />
+{elseif$maccms.aid==24}
+<title>{$obj.art_name}_{$obj.type.type_name}-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.art_tag|mac_default=$obj.type.type_name}" />
+<meta name="description" content="{$obj.art_blurb}..." />
+{elseif$maccms.aid==30}
+<title>专题首页_精品专题_最新最热的影视专题在线观看-{$maccms.site_name}</title>
+<meta name="keywords" content="影视专题,影视策划,专题汇总,电影专题,电视剧专题,综艺专题,动漫专题,视频头条,搞笑视频,热门电影,热门电视剧,热门综艺,热门动漫,专题合辑" />
+<meta name="description" content="精品专题汇聚了影视策划，专题汇总，电影专题，电视剧专题，综艺专题，动漫专题，视频头条，搞笑视频，热门电影，热门电视剧，热门综艺，热门动漫，专题合辑，丰富的资源尽在{$maccms.site_name}。" />
+{elseif$maccms.aid==34}
+<title>{$obj.topic_name}_专题详情-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.topic_name}精品专题,{$obj.topic_name}专题汇总,{$obj.topic_name}专题合辑" />
+<meta name="description" content="{$obj.topic_blurb}..." />
+{elseif$maccms.aid==80}
+<title>{$maccms.seo.actor.name} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.seo.actor.key}" />
+<meta name="description" content="{$maccms.seo.actor.des}" />
+{elseif$maccms.aid==81}
+<title>{$obj.type_title|mac_default=$obj.type_name}-第{$param['page']}页-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.type_key|mac_default=$maccms.seo.actor.key}" />
+<meta name="description" content="{$obj.type_des|mac_default=$maccms.seo.actor.des}" />
+{elseif$maccms.aid==82}
+<title>明星库-明星档案-高级搜索-第{$param['page']}页-{$maccms.site_name}</title>
+<meta name="keywords" content="明星,娱乐明星,电影明星,电视剧明星,明星大全" />
+<meta name="description" content="{$maccms.site_name}为您提供各国男女明星的详细资料、近况以及最新电影，电视剧在线观看。" />
+{elseif$maccms.aid==84}
+<title>{$obj.actor_name}个人资料_{$obj.actor_name}演过的电视剧_{$obj.actor_name}电影全集-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.actor_name}个人资料,{$obj.actor_name}演过的电视剧,{$obj.actor_name}电影全集,{$obj.actor_name}最新电影,{$obj.actor_name}最新电视剧">
+<meta name="description" content="{$maccms.site_name}为你收集了{$obj.actor_name}个人资料包括了{$obj.actor_name}最新演过的电视剧,{$obj.actor_name}电影全集,以及{$obj.actor_name}图片剧照最近动态等信息希望你能喜欢。"> 
+{elseif$maccms.aid==90}
+<title>{$maccms.seo.role.name}-第{$param['page']}页-{$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.seo.role.key}" />
+<meta name="description" content="{$maccms.seo.role.des}" />
+{elseif$maccms.aid==94}
+<title>{$obj.data.vod_name}的角色{$obj.role_name}扮演者是{$obj.role_actor}-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.data.vod_name},{$obj.role_actor}饰{$obj.role_name}" />
+<meta name="description" content="{$maccms.site_name}为你收集了{$obj.data.vod_name}的参演角色，及{$obj.data.vod_name}的角色{$obj.role_name}扮演者{$obj.role_actor}近期的电影作品，电视剧作品，综艺作品等动态信息。" />
+{elseif$maccms.aid==100}
+<title>{$maccms.seo.plot.name}-第{$param['page']}页-{$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.seo.plot.key}" />
+<meta name="description" content="{$maccms.seo.plot.des}" />
+{elseif$maccms.aid==104}
+<title>{$obj.vod_name}分集剧情-{$obj['vod_plot_list'][$param['page']]['name']}-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name},分集剧情" />
+<meta name="description" content="{$obj.vod_name}分集剧情，{$obj['vod_plot_list'][$param['page']]['name']}，{$obj['vod_plot_list'][$param['page']]['detail']|mac_substring=55|mac_filter_html}" />
+{else/}
+<title>{$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{/if}

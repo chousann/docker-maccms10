@@ -1,0 +1,85 @@
+@charset "UTF-8";
+/*----------------------------------------------------------------------------------------------------------------*/
+
+/* Template Name: Conch Theme*/
+
+/* Version: 1.0 Initial Release*/
+
+/* Build Date: 2020-08-01*/
+
+/* Author Email: 362695000@qq.com*/
+
+/* Website: http://www.conch.vip/
+
+/* Copyright: (C) 2020 */
+
+/*----------------------------------------------------------------------------------------------------------------*/
+body {background: #1a1a1a;color: #888;}
+h1,h2,h3,h4,h5,h6{color:hsla(0,0%,100%,.85);}
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#444;}
+button:disabled{color:#555;}
+.hl-bg-site{background-color:#1a1a1a;color:hsla(0,0%,100%,.85);}
+.hl-bg-subs{background-color:#252525;color:hsla(0,0%,100%,.85);}
+.hl-bg-muted{background-color:#2f2f2f;color:hsla(0,0%,100%,.85);}
+.hl-bright-0{-webkit-filter:grayscale(100%)brightness(100);filter:grayscale(100%)brightness(100);}
+
+.conch-header .conch-logo .hl-logo.hl-logo-black{display:none;}
+.conch-header .conch-logo .hl-logo.hl-logo-white{display:block;}
+.conch-content .hl-conch-items::before,.conch-header .conch-hasconch::before{background-color:#1f1f1f;}.conch-header .conch-hasconch::before{position:absolute;top:0;left:0;width:100%;height:100%;content:""}
+
+/* 主色文字 */
+.conch-content .hl-article-main .hl-article-box,.conch-content .hl-play-source .hl-plays-from a.active,.hl-text-site,.conch-member select,.conch-member .hl-cont-list p>span,input,button,textarea{color:hsla(0,0%,100%,.85);}
+/* 辅色文字 */
+.hl-text-subs{color: #888;}
+/* 浅色文字 */
+.conch-content .hl-part-nums,.conch-content .hl-player-tips h3,.conch-content .hl-player-tips.hl-filter-opted li,.conch-content .hl-vod-infos .hl-tag-item i,.conch-footer .hl-foot-extra .hl-fe-list a,.conch-header .conch-menus ul>li>a>i,.hl-page-small .hl-page-btns a.hl-disad,.hl-page-wrap li a.hl-disad,.hl-text-muted,.mac_pop .pop_close,.conch-member .hl-user-set a>i,.conch-member .hl-user-set p>i{color:#666;}
+/* 白色文字 */
+.conch-content .hl-conch-items,.conch-header .conch-hasconch,.conch-header .conch-hasconch .conch-nav .hl-nav-item a.active,.conch-header .conch-hasconch .hl-nav-more span.active,.hl-bg-conch{color:#fff;}
+/* 主色背景 */
+.conch-content .hl-article-main .hl-tool-icon ul>li>a>em,.conch-content .hl-conch-items:after,.conch-content .hl-has-item:after,.conch-header .conch-hasconch .conch-search,.conch-header .conch-headwrap:not(.conch-hasconch).fixed,.conch-content .hl-search-form .hl-alert-box{background-color:#1a1a1a;}
+/* 辅色背景 */
+.conch-content .hl-article-main .hl-article-head.hl-page-wrap li a.hl-disad,.conch-content .hl-new-items .hl-rank-list li:nth-child(odd),.conch-content .hl-play-source .hl-plays-list .hl-show-div a,.conch-content .hl-play-source .hl-plays-list li>a,.conch-content .hl-row-box .hl-actor-sm .hl-item-link,.conch-content .hl-row-box .hl-item-class,.conch-header .conch-menus ul>li>a.active,.conch-header .conch-search,.conch-content .hl-search-form .hl-search-text,.hl-comm-list .hl-comm-reply,.hl-page-small .hl-page-btns a.hl-disad,.hl-alert-box.hl-bg-site,.hl-alert-box.hl-bg-site::after,.mac_pop{background-color:#252525;}
+.conch-content .hl-has-item,.conch-content .hl-conch-items::before, .conch-header .conch-hasconch::before{background-color:#151515;}
+/* 浅色背景 */
+.conch-content .hl-from-list li.active,.conch-footer .hl-foot-extra .hl-fe-list a,.hl-filter-item a.active,.hl-alert-box .hl-bg-subs {background-color: #2f2f2f;}
+/* 描边 */
+.conch-adjust-res .conch-results,.conch-content .hl-article-main .hl-article-head,.conch-content .hl-article-paged,.conch-content .hl-article-paged a.hl-prev,.conch-content .hl-detail-side .hl-ds-qrcode,.conch-content .hl-downinfo-wrap .hl-vod-infos .hl-infos-content,.conch-content .hl-downs-box,.conch-content .hl-play-source .hl-plays-wrap,.conch-content .hl-rank-list li,.conch-content .hl-row-box .hl-actor-list .hl-row-div,.conch-content .hl-row-box .hl-art-list li .hl-item-wrap,.conch-content .hl-row-box .hl-head-page,.conch-content .hl-row-box .hl-one-list .hl-list-item:not(:last-child) .hl-item-wrap,.conch-content .hl-row-box .hl-site-tits,.conch-content .hl-score-wrap .hl-score-rating,.conch-footer .hl-foot-nav,.hl-comm-list .hl-comm-each,.hl-public-box .hl-art-list li:not(:last-child) .hl-row-div{border-color:#252525;}
+.conch-header .conch-search .hl-sh-search,.conch-content .hl-actor-conts,.conch-content .hl-article-main .hl-tool-icon ul>li>a,.hl-comm-form .hl-comm-face-box img,.hl-comm-form .hl-comm-write,.hl-filter-opted li,.hl-member .hl-reg-go a:not(:last-child)::after,.hl-msg-jump .form .item1,.hl-page-small .hl-page-btns a,.hl-page-wrap li .num,.hl-page-wrap li a,.hl-rb-gbook .mac_report .hl-comm-form .hl-comm-content,.hl-reg-wrap form .hl-reg-group,.conch-member .hl-tool-btns,.conch-member .hl-tool-btns a,.conch-member .hl-user-set a,.conch-member .hl-cont-list p,.conch-member .hl-data-list li{border-color:#2f2f2f;}
+/* 其他 */
+.conch-content .hl-downs-box .btns>a{background:#333;}
+.conch-content .hl-row-box .hl-item-watch:after,.conch-content .hl-search-form .hl-search-select::after,.conch-header .conch-search .hl-search-select::after{background:#323232;}
+.conch-content .hl-vod-rank .hl-rank-bgicon{color:#2f2f2f;}
+.conch-input{border-color:#444;}
+.conch-footer .hl-map-nav span{color:#444;}
+.hl-crumbs-list .hl-crumb-item:not(:last-child)::after,.hl-empty-wrap i{color:#333;}
+/* 半透及投影 */
+.conch-hasbg .conch-header .conch-headwrap{-webkit-box-shadow:0 0 20px hsla(0,0%,0%,.1);box-shadow:0 0 20px hsla(0,0%,0%,.1);}
+.conch-header .conch-headwrap{-webkit-box-shadow:0 0 20px hsla(0,0%,0%,.2);box-shadow:0 0 20px hsla(0,0%,0%,.2);}
+.conch-header .conch-menus.active{-webkit-box-shadow:15px 0 30px rgba(0,0,0,.4);box-shadow:15px 0 30px rgba(0,0,0,.4);}
+.conch-scrollbar .swiper-scrollbar-drag,.hl-play-scrollbar .swiper-scrollbar-drag{background:rgba(255, 255, 255, 0.05);}
+.conch-content .hl-row-box .hl-topic-list .hl-item-wrap:after,.hl-topic-list .hl-item-wrap:before{background:rgba(95, 95, 95, 0.25);}
+.hl-alert-box{-webkit-box-shadow: 0 5px 20px 0 rgba(0,0,0,.2);box-shadow: 0 5px 20px 0 rgba(0,0,0,.2);}
+.hl-page-small .hl-page-btns a.hl-disad,.hl-page-wrap li a.hl-disad{opacity:.5;}
+.hl-mbg{background:-webkit-linear-gradient(left,hsla(0,0%,7%,0),#1a1a1a);background:linear-gradient(90deg,hsla(0,0%,7%,0),#1a1a1a);}
+.hl-msg-jump,.conch-member .hl-user-info,.conch-member .hl-user-set ul{background: #252525;}
+.hl-pops-bg{background-color: rgba(0,0,0,.8);}
+
+@media (min-width: 768px) {
+    /* 主色背景 */
+    .conch-content .hl-content-hide a{background:#1a1a1a;} 
+    /* 辅色背景 */
+    .conch-content .hl-downs-box:hover,.conch-content .hl-rank-items .hl-rank-list li:hover,.conch-content .hl-row-box .hl-swiper-item .hl-ls-arrow a:hover,.conch-content .hl-vod-infos .hl-vod-data .hl-data-sm,.conch-header .conch-menus ul>li>a:hover,.conch-header .conch-list .hl-user-items>a,.conch-results li.ac_over,.hl-filter-all,.conch-member .hl-cont-left,.conch-member .hl-cont-right,.hl-member .hl-reg-wrap{background-color:#252525;}
+    /* 浅色背景 */
+    .conch-content .hl-from-list li:hover,.conch-member .hl-user-set li:hover,.conch-member .hl-data-list li:hover,.conch-member .hl-user-info{background-color:#2f2f2f;}
+    /* 描边 */
+    .conch-content .hl-new-items .hl-rank-list,.conch-content .hl-playinfo-wrap .hl-crumbs-all,.conch-content .hl-rank-items .hl-rank-list,.hl-share-box .hl-links-wrap{border-color:#252525;}
+    .conch-content .hl-playpage-playlist .hl-play-source .hl-plays-wrap,.conch-content .hl-downs-box .url-input,.conch-member .hl-user-set ul:first-child li:last-child a,.conch-content .hl-row-box .hl-cont-right .hl-head-page{border-color:#2f2f2f;}
+}
+@media (min-width: 992px) {
+    .conch-content .hl-play-side{background-color:#252525;}
+    .conch-content .hl-playpage-playlist .hl-play-source .hl-plays-list li>a,.conch-content .hl-playpage-playlist .hl-play-source .hl-plays-list .hl-show-div a{background:#2f2f2f;}
+    .conch-content .hl-playpage-playlist .hl-mbg{background:-webkit-linear-gradient(left,transparent,#252525);background:linear-gradient(90deg,transparent,#252525);}
+}
+@media (max-width: 767px) {
+    .hl-filter-reselect::after,.hl-filter-text::after,.hl-full-alert{background:#1a1a1a;}
+}

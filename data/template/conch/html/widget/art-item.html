@@ -1,0 +1,22 @@
+<div class="hl-item-wrap">
+    <div class="row">
+        <div class="hl-item-div">
+            <div class="hl-item-pic hl-col-xs-4{if$maccms.mid==1||$maccms.mid==3||$maccms.aid==1||$maccms.aid==24} hl-col-sm-12{else} hl-col-lg-30w{/if}">
+                <a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}" class="hl-item-thumb hl-lazy" data-original="{$vo.art_pic|mac_url_img}">
+                    <span class="hl-pic-icon hl-hidden-xs"><i class="iconfont hl-icon-lianjie"></i></span>
+                </a>
+            </div>
+            <div class="hl-item-content hl-col-xs-8{if$maccms.mid==1||$maccms.mid==3||$maccms.aid==1||$maccms.aid==24} hl-col-sm-12{else} hl-col-lg-70w{/if}">
+                <a class="hl-text-site" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">
+                    <div class="hl-item-title">{$vo.art_name}</div>
+                    {if$maccms.mid==1||$maccms.mid==3||$maccms.aid==1||$maccms.aid==24}{else}
+                    <p class="hl-lc-2 hl-hidden-xs hl-text-subs">{$vo.art_blurb}</p>
+                    {/if}
+                </a>
+                <div class="hl-item-blurb hl-lc-1 hl-text-muted">
+                    <span>{if!$obj.parent}<i class="hl-item-class">{$vo.type.type_name}</i>{/if}{if$vo.art_from!=''}<i class="hl-item-watch">{$vo.art_from}</i>{/if}<i>{$vo.art_time|mac_friend_date}</i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

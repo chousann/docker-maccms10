@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+{include file="public/meta"} 
+{include file="public/seos"}  
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div id="conch-content" class="conch-content">
+    <div class="conch-ctwrap">
+        <div class="hl-new-items">
+            <div class="hl-row-box">
+                <div class="container">
+                {include file="ads/ads-all"}
+                <div class="hl-rb-head clearfix">
+                    <h2 class="hl-rb-title">最近更新</h2>
+                    <span class="hl-rb-more hl-text-muted">最近100个更新</span>
+                </div>
+                </div>
+                <div class="container hl-new-cont">
+                    <div class="hl-list-wrap hl-tabs-box" style="display:block">
+                        <ul class="hl-rank-list clearfix">
+                        {maccms:vod num="100" type="all" order="desc" by="time"}
+                            <li class="hl-list-item hl-col-xs-12">
+                                {php}$id1=$conch['theme']['svideo']['id'];$id2=$conch['theme']['cover']['wide'];$id=$id1.','.$id2;$score=$conch['theme']['cover']['score'];{/php}
+                                <a class="hl-item-wrap{if in_array($vo.type_id, explode(',',$id1))} hl-wide-wrap{/if} clearfix" href="{if in_array($vo.type_id, explode(',',$id1))||$conch['theme']['vod']['url']==1}{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}{else/}{:mac_url_vod_detail($vo)}{/if}" title="{$vo.vod_name}">
+                                    <div class="hl-item-div hl-item-div1 hl-col-xs-55w hl-col-sm-45w hl-col-md-35w">
+                                        <div class="hl-item-pic"><i class="hl-item-thumb hl-lazy" data-original="{:mac_url_img($vo.vod_pic)}"></i></div>
+                                        <div class="hl-item-content hl-lc-2">
+                                            <span class="hl-item-title hl-text-site">{$vo.vod_name}</span>{if !in_array($vo.type_id, explode(',',$id1))}<span class="hl-text-subs hl-hidden-xs"> / {if condition="$vo.vod_serial gt 0"}{if condition="$vo.vod_serial eq $vo.vod_total"}全{$vo.vod_total}集{else/}更新至{$vo.vod_serial}集{/if}{elseif condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{else/}已完结{/if}</span>{/if}
+                                        </div>
+                                    </div>
+                                    <div class="hl-item-div hl-item-div2 hl-col-xs-20w hl-col-sm-15w hl-col-md-10w">
+                                        <div class="hl-item-datas hl-text-subs hl-lc-1">{$vo.type.type_name}</div>
+                                    </div>
+                                    <div class="hl-item-div hl-item-div3 hl-col-sm-20w hl-col-md-15w hl-hidden-xs">
+                                        <div class="hl-item-datas hl-text-subs hl-lc-1"><span>{$vo.vod_year|mac_default='未知'}</span><i>/</i><span>{$vo.vod_area|mac_default='未知'}</span><i>/</i>{$vo.vod_class|mac_url_create='class','vod','search','<i>/</i>'|mac_default='内详'|mac_filter_html}</div>
+                                    </div>
+                                    <div class="hl-item-div hl-item-div4 hl-col-md-25w hl-hidden-xs hl-hidden-sm">
+                                        <div class="hl-item-datas hl-text-subs hl-lc-1">{$vo.vod_blurb|mac_filter_html|mac_default='暂无简介'}</div>
+                                    </div>
+                                    <div class="hl-item-div hl-item-div5 hl-col-xs-25w hl-col-sm-20w hl-col-md-15w">
+                                        <div class="hl-item-time hl-text-subs">
+                                            <span>{$vo.vod_time|date='Y-m-d',###}</span>
+                                            <span>{$vo.vod_time|date='H:i',###}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        {/maccms:vod}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

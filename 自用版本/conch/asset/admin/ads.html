@@ -1,0 +1,92 @@
+<div class="layui-tab-item">
+    <div class="layui-col-md12">
+         <div class="layui-card">
+            <div class="layui-card-header">广告设置</div>
+            <div class="layui-card-body" pad15="">
+                <fieldset class="layui-elem-field">
+                <legend>全站广告开关</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w60">
+                              <input type="checkbox" name="theme[ads][btn]" {if condition="$conch['theme']['ads']['btn'] eq 1"}checked{/if} value="{$conch['theme']['ads']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示全站广告</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">会员隐藏</label>
+                            <div class="layui-input-inline w60">
+                              <input type="checkbox" name="theme[ads][vip]" {if condition="$conch['theme']['ads']['vip'] eq 1"}checked{/if} value="{$conch['theme']['ads']['vip']}" lay-skin="switch" lay-filter="switchConch" lay-text="启用|禁用">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">启用后VIP会员免观看广告</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">提示标签</label>
+                            <div class="layui-input-inline w60">
+                              <input type="checkbox" name="theme[ads][tip]" {if condition="$conch['theme']['ads']['tip'] eq 1"}checked{/if} value="{$conch['theme']['ads']['tip']}" lay-skin="switch" lay-filter="switchConch" lay-text="启用|禁用">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">启用后显示提示广告标签</div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="layui-elem-field">
+                <legend>全站广告设置</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">顶部广告</label>
+                        <div class="layui-input-block">
+                            <textarea name="theme[ads][top]" class="layui-textarea"  placeholder="请输入广告代码">{$conch['theme']['ads']['top']}</textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">全站通栏广告</label>
+                        <div class="layui-input-block">
+                            <textarea name="theme[ads][all]" class="layui-textarea"  placeholder="请输入广告代码">{$conch['theme']['ads']['all']}</textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">底部浮动广告</label>
+                        <div class="layui-input-block">
+                            <textarea name="theme[ads][bottom]" class="layui-textarea"  placeholder="请输入广告代码">{$conch['theme']['ads']['bottom']}</textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">侧边栏广告</label>
+                        <div class="layui-input-block">
+                            <textarea name="theme[ads][side]" class="layui-textarea"  placeholder="请输入广告代码">{$conch['theme']['ads']['side']}</textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">对联广告</label>
+                        <div class="layui-input-inline" style="width:calc(55% - 160px);">
+                            <textarea name="theme[ads][double][left]" class="layui-textarea"  placeholder="请输入广告代码（左侧）">{$conch['theme']['ads']['double']['left']}</textarea>
+                        </div>
+                        <div class="layui-input-inline" style="width:45%;margin:0;">
+                            <textarea name="theme[ads][double][right]" class="layui-textarea"  placeholder="请输入广告代码（右侧）">{$conch['theme']['ads']['double']['right']}</textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">小通栏广告</label>
+                        <div class="layui-input-block">
+                            <textarea name="theme[ads][sw]" class="layui-textarea"  placeholder="请输入广告代码（部分页面显示）">{$conch['theme']['ads']['sw']}</textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">首页幻灯广告</label>
+                        <div class="layui-input-block">
+                            <textarea name="theme[ads][banner]" class="layui-textarea"  placeholder="请输入广告代码">{$conch['theme']['ads']['banner']}</textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">推广会员广告</label>
+                        <div class="layui-input-block">
+                            <textarea name="theme[ads][users]" class="layui-textarea"  placeholder="请输入广告代码（会员中心推广位置显示）">{$conch['theme']['ads']['users']}</textarea>
+                        </div>
+                    </div>
+                </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

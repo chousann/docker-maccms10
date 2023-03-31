@@ -1,0 +1,29 @@
+{if$__PAGING__.page_total>1}
+<ul class="hl-page-wrap hl-text-center cleafix">
+	<li class="hl-hide-sm"><a href="{$__PAGING__.page_url|mac_url_page=1}"{if$__PAGING__['page_current']==1} class="hl-disad"{/if}><i class="iconfont hl-icon-jiantoushou"></i></a></li>
+	<li><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}"{if$__PAGING__['page_current']==1} class="hl-disad"{/if}><span class="hl-hide-sm"><i class="iconfont hl-icon-jiantouzuo"></i></span><span class="hl-hidden-xs">上一页</span></a></li>
+	{if$maccms.aid==24}
+	{else}
+	{if$__PAGING__.page_current>3}
+	<li class="hl-hidden-xs"><a href="{$__PAGING__.page_url|mac_url_page=1}"{if$__PAGING__['page_current']==1} class="hl-disad"{/if}>1</a></li>
+	<li class="hl-hidden-xs hl-disad"><a class="hl-page-dot" href="javascript:;"><span>...</span></a></li>
+	{/if}
+	{/if}
+	{maccms:foreach name="$__PAGING__.page_num" id="num"}
+	<li class="hl-hidden-xs"><a{if condition="$__PAGING__['page_current'] eq $num"} href="javascript:;" class="active"{else} href="{$__PAGING__.page_url|mac_url_page=$num}"{/if}>{$num}</a></li>
+	{/maccms:foreach}
+    <li class="hl-page-tips hl-hide-sm"><a href="javascript:;">{$__PAGING__.page_current}&nbsp;/&nbsp;{$__PAGING__.page_total}</a></li>
+	{if$maccms.aid==24}
+	{else}
+	{if$__PAGING__.page_current<($__PAGING__.page_total-2)}
+	<li class="hl-hidden-xs hl-disad"><a class="hl-page-dot" href="javascript:;"><span>...</span></a></li>
+	<li class="hl-hidden-xs"><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}"{if$__PAGING__['page_current']==$__PAGING__.page_total} class="hl-disad"{/if}>{$__PAGING__.page_total}</a></li>
+	{/if}
+	{/if}
+	{if$maccms.aid==24}
+	<li class="hl-hidden-xs"><span class="hl-disad num">{$__PAGING__.page_current}/{$__PAGING__.page_total}</span></li>
+	{/if}
+	<li><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}"{if$__PAGING__['page_current']==$__PAGING__.page_total} class="hl-disad"{/if}><span class="hl-hide-sm"><i class="iconfont hl-icon-jiantouyou"></i></span><span class="hl-hidden-xs">下一页</span></a></li>
+	<li class="hl-hide-sm"><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}"{if$__PAGING__['page_current']==$__PAGING__.page_total} class="hl-disad"{/if}><i class="iconfont hl-icon-jiantouwei"></i></a></li>		
+</ul>
+{/if}

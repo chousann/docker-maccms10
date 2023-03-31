@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+{include file="public/meta"} 
+{include file="public/seos"}  
+{include file="public/include"}
+</head>
+<body class="conch-hasone">
+{include file="public/head"}
+{php}$id1=$conch['theme']['svideo']['id'];{/php}
+<div id="conch-content" class="conch-content">
+    <div class="conch-ctwrap-auto">
+        <div class="container hl-paly-players">
+            <div class="hl-row-box hl-ma0 clearfix">
+                <div class="hl-col-xs-12 hl-col-md-70w hl-col-lg-9">
+                    <div class="hl-player-wrap embed-responsive embed-responsive-16by9 by-qq362695000 clearfix">
+                        {if condition="$obj.vod_copyright eq 1 && $GLOBALS['config']['app']['copyright_status'] eq 1 "}
+                        <div class="hl-player-tips">
+                            <h3>{$conch['theme']['vod']['copyright']|mac_default=$GLOBALS['config']['app']['copyright_notice']}</h3>
+                        </div>
+                        {elseif$obj.vod_lock}
+                        <div class="hl-player-tips">
+                            <h3>{$conch['theme']['vod']['lock']|mac_default='因特殊原因，该视频暂时无法观看'}</h3>
+                        </div>
+                        {else}
+                        {if$conch['play']['player']['tips']==1}
+                            {if$conch['play']['player']['n-style']==0}
+                            <div class="hl-player-notice hl-this-box hl-text-white">
+                                <a class="hl-close-this" href="javascript:void(0)"><i class="iconfont hl-icon-cuo"></i></a>
+                                <ul class="clearfix">
+                                    {maccms:foreach name=":explode(',',$conch['play']['player']['notice'])"}
+                                    <li>{$vo}</li>
+                                    {/maccms:foreach}
+                                </ul>
+                            </div>
+                            {else}
+                            <div class="hl-player-notice hl-this-box hl-text-white fix">
+                                <a class="hl-close-this" href="javascript:void(0)"><i class="iconfont hl-icon-cuo"></i></a>
+                                <span>{$conch['play']['player']['notice']}</span>
+                            </div>
+                            {/if}
+                        {/if}
+                        {$player_data}{$player_js}
+                        <div class="hl-player-setups hl-text-white hl-tran5 hl-qq-3626-95000">
+                            <div class="hl-setups-wrap">
+                                {if condition="$GLOBALS['config']['gbook']['status'] eq 1"}
+                                <a href="javascript:void(0)" onclick="MAC.Gbook.Report('ID:{$obj.vod_id} -【名称：{$obj.vod_name} - {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}】无法观看请检查修复')"><i class="iconfont hl-icon-jubao"></i><span>报错</span></a>
+                                {/if}
+                                <a href="javascript:void(0)" onclick="location.reload()"><i class="iconfont hl-icon-shuaxin"></i><span>刷新</span></a>
+                                <a href="{$obj.player_info.link_pre}" class="{if$param.nid==1}hl-disad{/if}"><i class="iconfont hl-icon-shangyiji"></i><span>上一集</span></a>
+                                <a href="{$obj.player_info.link_next}" class="{if$param.nid==$obj['vod_play_list'][$param['sid']]['url_count']}hl-disad{/if}"><i class="iconfont hl-icon-xiayiji"></i><span>下一集</span></a>
+                            </div>
+                            <div class="hl-setups-op">
+                                <a href="javascript:void(0);"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+                            </div>
+                        </div>
+                        {/if}			
+                    </div>
+                </div>
+                {include file="ads/ads-all"}
+                <div class="hl-col-xs-12 hl-playinfo-wrap">
+                    {include file="widget/vod-infos"}
+                    {include file="widget/crumbs"}
+                </div>
+                <div class="hl-col-xs-12 hl-col-md-30w hl-col-lg-3 hl-playside-wrap">
+                <div class="hl-play-scrollbar hl-play-side">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide clearfix" style="height: auto;">
+                            {include file="module/playlist"}
+                            {include file="ads/ads-sw"}
+                            {include file="module/relside"}
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="conch-ctwrap hl-pa0">
+        <div class="container">
+            <div class="hl-row-box clearfix">
+                <div class="hl-col-xs-12 hl-col-md-70w hl-col-lg-9">
+                    <div class="hl-rb-left hl-marg-right50 clearfix">
+                        {include file="module/related"}
+                        {include file="module/comment"}
+                    </div>
+                </div>
+                <div class="hl-col-xs-12 hl-col-md-30w hl-col-lg-3 hl-hidden-xs">
+                    <div class="hl-rb-side clearfix">
+                        {include file="module/vodside"}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {if condition="$GLOBALS['config']['app']['copyright_status'] eq 3"}
+    <script>
+    {if condition="$obj.vod_jumpurl neq ''"}
+        location.href='{$obj.vod_jumpurl}';
+    {/if}
+    </script>{/if}
+    {if$conch['play']['player']['tips']==1&&$conch['play']['player']['n-style']==0}
+    <script type="text/javascript">
+        var $high= $(".hl-player-notice").innerHeight();
+        function autoScroll(obj){
+            $(obj).find("ul").animate({
+                marginTop : "-"+$high+"px"
+            },500,function(){
+                $(this).css({marginTop : "0px"}).find("li:first").appendTo(this);
+            })
+        }
+        $(function(){
+            setInterval('autoScroll(".hl-player-notice")',3500);
+        })   
+	</script>{/if}
+    <script type="text/javascript">var Sw=$(window).width();if(Sw<768){$(".hl-player-wrap").addClass("embed-responsive").css("padding-bottom","{$conch['play']['player']['mob-high']|mac_default='56.25'}%");}else{$(".hl-player-wrap").addClass("embed-responsive").css("padding-bottom","{$conch['play']['player']['pc-high']|mac_default='56.25'}%");if(Sw>992){var Ph=$('.hl-player-wrap').innerHeight();$(".hl-play-side").css("height",Ph);}}</script>
+    <!--统计数据-->
+    <span style="display: none" class="mac_hits hits" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="hits"></span>
+    <span style="display: none" class="hl-vod-history" data-name="{$obj.vod_name}" data-link="{:mac_url_vod_play($obj,['sid'=>$param['sid'],'nid'=>$param['nid']])}" data-pic="{$obj.vod_pic|mac_url_img}" data-part="{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}"></span>
+    <span style="display: none" class="mac_hits hits" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}{$obj.art_id}{$obj.topic_id}" "="" data-type="hits"></span>
+	<span style="display: none" class="mac_hits hits_day" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}{$obj.art_id}{$obj.topic_id}" "="" data-type="hits_day"></span>
+	<span style="display: none" class="mac_hits hits_week" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}{$obj.art_id}{$obj.topic_id}" "="" data-type="hits_week"></span>
+	<span style="display: none" class="mac_hits hits_month" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}{$obj.art_id}{$obj.topic_id}" "="" data-type="hits_month"></span>
+    <span style="display:none" class="mac_ulog_set" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+</div>
+{include file="public/foot"}
+</body>
+</html>

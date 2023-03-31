@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="public/meta"}
+	<title>我要提现 - 个人中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="我要提现 - 个人中心">
+	<meta name="description" content="我要提现 - 个人中心">
+	{include file="public/include"}
+</head>
+<body id="conch-member">
+{include file="public/head"}
+<div class="conch-header">
+    <div class="conch-headwrap conch-hasone{if$conch['theme']['nav']['has']==1} conch-hasconch{/if} hl-hide-sm">
+        <div class="hl-mob-nav">
+            <a href="javascript:MAC.GoBack()" class="hl-pull-left left"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+            <a href="javascript:void(0)" class="hl-pull-right right"></a>
+            <span class="hl-mob-title hl-text-site hl-lc-1">我要提现</span>
+        </div>
+    </div>
+</div>
+<div class="conch-content conch-member">
+    <div class="conch-ctwrap">
+        <div class="hl-ctwrap-item">
+            <div class="container">
+                <div class="hl-row-box clearfix">
+                    <div class="row">               
+                        <div id="left" class="hl-left-menus hl-col-xs-12 hl-col-sm-30w hl-col-lg-3 hl-hidden-xs">
+                            {include file="user/leftmenu"}
+                        </div>
+                        <div id="right" class="hl-right-content hl-col-xs-12 hl-col-sm-70w hl-col-lg-9">
+                            <div class="hl-cont-right hl-tabs-item">
+                                <div class="hl-rb-head hl-hidden-xs clearfix">
+                                    <h2 class="hl-rb-title">我要提现</h2>
+                                </div>
+                                <div class="hl-rb-head hl-head-page clearfix">
+                                    <div class="hl-rb-title hl-site-tabs hl-site-tits hl-text-site hl-tabs">
+                                        <a class="hl-tabs-btn active" href="javascript:void(0)">提现申请</a>
+                                        <a class="hl-tabs-btn" href="javascript:void(0)">提现记录</a>
+                                    </div>
+                                </div>
+                                <div class="hl-cont-list  hl-tabs-box" style="display:block">
+                                    <div class="hl-list-wrap">
+                                        <form id="fm" name="fm" method="post" action="" >	
+                                        <p><span>银行名称</span><input type="text" name="cash_bank_name" placeholder="开户行名称或支付宝微信" value=""></p>
+                                        <p><span>银行账号</span><input type="text" name="cash_bank_no" placeholder="银行卡号或支付宝微信账号"  value=""></p>
+                                        <p><span>收款姓名</span><input type="text" name="cash_payee_name" placeholder="收款人姓名与上方账户对应"  value=""></p>
+                                        <p><span>提现金额</span><input type="text" name="cash_money" placeholder="提现金额"  value=""></p>
+                                        <p class="hl-text-muted tip">说明：1元等于{$GLOBALS['config']['user']['cash_ratio']}积分，最低提现金额：{$GLOBALS['config']['user']['cash_min']}元，剩余{$GLOBALS['user']['user_points']}积分，相当于{$GLOBALS['user']['user_points']/$GLOBALS['config']['user']['cash_ratio']}元；冻结{$GLOBALS['user']['user_points_froze']}积分，相当于{$GLOBALS['user']['user_points_froze']/$GLOBALS['config']['user']['cash_ratio']}元；</p>
+                                        <input type="button" id="btn_submit" class="hl-btn-submit hl-bg-conch" value="提交申请">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="hl-tabs-box" style="display:none">
+                                <ul class="hl-data-list hl-orders-list clearfix">
+                                {volist name="list" id="vo"}
+                                    <li class="hl-data-item">
+                                        <div class="hl-item-content">
+                                            <p class="hl-lc-1">
+                                            <span class="hl-item-watch">提现金额：<em class="hl-text-conch">¥{$vo.cash_money}</em></span><span><i class="iconfont hl-icon-jifen"></i>积分：<em class="hl-text-conch">-{$vo.cash_points}</em></span></p>
+                                            <p class="hl-lc-1">状态：{if condition="$vo.cash_status eq '1'"}已审核{else/}未审核{/if}</p>
+                                            <p class="hl-lc-1">时间：{$vo.cash_time|date='Y-m-d H:i',###}</p>
+                                        </div>
+                                        {if condition="$vo.order_status eq 0"}
+                                        <a class="hl-btn-del hl-btn-order hl-btn-border" href="javascript:;" onclick="delData({$vo.cash_id},0)">删除</a>
+                                        {/if}
+                                    </li>
+                                {/volist}
+                                </ul>
+                                {if $__PAGING__.record_total==0}
+                                <div class="hl-empty-wrap hl-text-center hl-col-xs-12">
+                                    <i class="iconfont hl-icon-wushuju"></i><p>暂无数据</p>
+                                </div>
+                                {/if}
+                                {include file="widget/page"}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+	function delData(ids,all){
+		var msg ='删除';
+		if(all==1){
+			msg='清空';
+		}
+		if(confirm('确定要'+msg+'记录吗')){
+			$.post("{:url('user/cash_del')}",{ids:ids,all:all},function(data) {
+				if (data.code == '1') {
+					alert('删除成功');
+					location.reload();
+				}else {
+					alert('删除失败：' + data.msg);
+				}
+			}, 'json')
+		}
+	}
+	$("#btnClear").click(function(){
+		delData('',1);
+	});
+	$("#btnDel").click(function(){
+		var ids = MAC.CheckBox.Ids('ids[]');
+		if(ids==''){
+			alert("请至少选择一个数据");
+			return;
+		}
+		delData(ids,0);
+	});
+    $("#btn_submit").click(function() {
+        var cash_bank_name = $('input[name="cash_bank_name"]').val();
+        if(cash_bank_name==''){
+            alert('请输入银行名称');
+            return;
+        }
+        var cash_bank_no = $('input[name="cash_bank_no"]').val();
+        if(cash_bank_no==''){
+            alert('请输入银行账户');
+            return;
+        }
+        var cash_payee_name = $('input[name="cash_payee_name"]').val();
+        if(cash_payee_name==''){
+            alert('请输入收款人姓名');
+            return;
+        }
+        var cash_money = $('input[name="cash_money"]').val();
+        if(cash_money==''){
+            alert('请输入提现金额');
+            return;
+        }
+
+        var data = $("#fm").serialize();
+        $.ajax({
+            url: "{:url('user/cash')}",
+            type: "post",
+            dataType: "json",
+            data: data,
+            beforeSend: function () {
+                //开启loading
+                //$(".loading_box").css("display","block");
+                $("#btn_submit").css("background","#fd6a6a").val("loading...");
+            },
+            success: function (r) {
+                alert(r.msg);
+                if(r.code==1){
+                    location.href="{:url('user/cash')}";
+                }
+            },
+            complete: function () {
+                //结束loading
+                //$(".loading_box").css("display","none");
+                $("#btn_submit").css("background","#fa4646").val("提交");
+            }
+        });
+    });
+</script>
+</div>
+{include file="public/foot"}
+</body>
+</html>

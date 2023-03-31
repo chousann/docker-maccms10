@@ -1,0 +1,51 @@
+{if$conch['home']['actor']['btn']==1}
+<div class="container">
+    <div class="hl-row-box">
+        <div class="hl-rb-actor hl-tabs-item hl-swiper-item clearfix">
+            <div class="hl-rb-head clearfix">
+                <h2 class="hl-rb-title">
+                    <i class="iconfont hl-icon-mingxing"></i>{$conch['home']['actor']['title']|mac_default='荧幕热星'}
+                </h2>
+                <a class="hl-rb-more hl-text-muted" href="{:mac_url('actor/index')}">更多<i class="iconfont hl-icon-jiantouyou"></i></a>
+            </div>
+            <div class="row">
+                <div class="hl-list-wrap hl-tabs-swiper">
+                <ul class="hl-actor-list hl-actor-sm hl-tabs swiper-wrapper clearfix">
+                    {maccms:actor num="6" level="'.($conch['home']['actor']['level']).'" order="'.($conch['home']['actor']['order']).'" by="'.($conch['home']['actor']['by']).'"}
+                    <li class="hl-col-xs-5 hl-col-sm-3 hl-col-md-20w hl-col-lg-2 hl-tabs-btn{if$key==1} active{/if} hl-slide-swiper">
+                        {include file="widget/actor-item-sm"}
+                    </li>
+                    {/maccms:actor}
+                </ul>
+                </div>
+            </div>
+            <div class="row">
+                {maccms:actor num="6" level="'.($conch['home']['actor']['level']).'" order="'.($conch['home']['actor']['order']).'" by="'.($conch['home']['actor']['by']).'" id="vo1" key="key1"}
+                <div class="hl-list-wrap hl-list-swiper hl-tabs-box" style="display: {if condition="$key1 eq 1"}block{else}none{/if};">
+                    <ul class="hl-vod-list hl-fadeIn swiper-wrapper clearfix">
+                    {maccms:vod num="'.($conch['home']['actor']['vod_num']).'" type="all" actor="'.$vo1['actor_name'].'" order="'.($conch['home']['actor']['vod_order']).'" by="'.($conch['home']['actor']['vod_by']).'"}
+                        <li class="hl-list-item hl-col-lg-2 hl-col-xs-4 hl-slide-swiper">
+                        {include file="widget/vod-item"}
+                        </li>
+                    {/maccms:vod}
+                    {if$key lt 1}
+                        <li class="hl-empty-wrap hl-text-center hl-col-xs-12">
+                            <i class="iconfont hl-icon-wushuju"></i><p>暂无{$vo1.actor_name}作品数据</p>
+                        </li>
+                    {/if}
+                    </ul>
+                    <div class="hl-goto-box hl-hide-sm">
+                        <a class="hl-bg-subs hl-text-muted" href="{:mac_url('actor/index')}">更多{$conch['home']['actor']['title']|mac_default='荧幕热星'}<i class="iconfont hl-icon-jiantouyou"></i></a>
+                    </div>
+                    <div class="hl-ls-arrow hl-hidden-xs">
+                        <a class="swiper-button-prev" href="javascript:;"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+                        <div class="swiper-pagination"></div>
+                        <a class="swiper-button-next" href="javascript:;"><i class="iconfont hl-icon-jiantouyou"></i></a>
+                    </div>
+                </div>
+                {/maccms:actor}
+            </div>
+        </div>
+    </div>
+</div>  
+{/if}

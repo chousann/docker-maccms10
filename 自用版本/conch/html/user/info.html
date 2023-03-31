@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="public/meta"}
+	<title>修改信息 - 个人中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="修改信息 - 个人中心">
+	<meta name="description" content="修改信息 - 个人中心">
+	{include file="public/include"}
+</head>
+<body id="conch-member">
+{include file="public/head"}
+<div class="conch-header">
+    <div class="conch-headwrap conch-hasone{if$conch['theme']['nav']['has']==1} conch-hasconch{/if} hl-hide-sm">
+        <div class="hl-mob-nav">
+            <a href="javascript:MAC.GoBack()" class="hl-pull-left left"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+            <a href="javascript:void(0)" class="hl-pull-right right"></a>
+            <span class="hl-mob-title hl-text-site hl-lc-1">修改信息</span>
+        </div>
+    </div>
+</div>
+<div class="conch-content conch-member">
+    <div class="conch-ctwrap">
+        <div class="hl-ctwrap-item">
+            <div class="container">
+                <div class="hl-row-box clearfix">
+                    <div class="row">               
+                        <div id="left" class="hl-left-menus hl-col-xs-12 hl-col-sm-30w hl-col-lg-3 hl-hidden-xs">
+                            {include file="user/leftmenu"}
+                        </div>
+                        <div id="right" class="hl-right-content hl-col-xs-12 hl-col-sm-70w hl-col-lg-9">
+                            <div class="hl-cont-right">
+                                <div class="hl-rb-head hl-hidden-xs clearfix">
+                                    <h2 class="hl-rb-title">我的资料</h2>
+                                </div>
+                                <div class="hl-cont-tab">
+                                    <div class="hl-rb-head hl-head-page clearfix">
+                                        <div class="hl-rb-title hl-site-tabs hl-site-tits hl-text-site">
+                                            <a href="{:url('user/ajax_info')}">基本资料</a>
+                                            <a class="active" href="javascript:void(0)">修改信息</a>
+                                            <a href="{:url('user/popedom')}">我的权限</a>
+                                        </div>
+                                    </div>
+                                    <div class="hl-cont-list">
+                                        <div class="hl-list-wrap">
+                                            <form id="fm" name="fm" method="post" action="" >
+                                                <p><span>用户名</span>{$obj.user_name}</p>
+                                                <p><span>昵称</span><input type="text" name="user_nick_name" value="{$obj.user_nick_name}" placeholder="请输入昵称"></p>
+                                                <p><span>原始密码</span><input type="password" name="user_pwd" placeholder="请输入原始密码"></p>
+                                                <p><span>新密码</span><input type="password" name="user_pwd1" placeholder="请输入新密码"></p>
+                                                <p><span>重复密码</span><input type="password" name="user_pwd2" placeholder="请重复新密码"></p>
+                                                <p><span>QQ号码</span><input type="text" name="user_qq" value="{$obj.user_qq}" placeholder="请输入QQ号"></p>
+                                                {if condition="$obj.user_email neq ''"}
+                                                <p><span>邮箱</span><input type="text" name="user_email" class="hl-input-w3"  readonly="readonly" value="{$obj.user_email}"><a class="hl-text-conch btn_unbind" ac="email" href="javascript:;" title="解绑邮箱">解绑</a></p>
+                                                {else/}
+                                                <p><span>邮箱</span><input type="text" name="user_email" class="hl-input-w3" value="" placeholder="请输入邮箱"><a class="hl-text-conch" href="{:url('user/bind')}?ac=email" title="绑定邮箱">绑定</a></p>
+                                                {/if}
+                                                {if condition="$obj.user_phone neq ''"}
+                                                <p><span>手机</span><input type="text" name="user_phone" class="hl-input-w3" readonly="readonly" value="{$obj.user_phone}"><a class="hl-text-conch btn_unbind" ac="phone" href="javascript:;" title="解绑手机">解绑</a></p>
+                                                {else/}
+                                                <p><span>手机</span><input type="text" name="user_phone" class="hl-input-w3" value="" placeholder="请输入手机号"><a class="hl-text-conch" href="{:url('user/bind')}?ac=phone" title="绑定手机">绑定</a></p>
+                                                {/if}
+                                                <p><span>密保问题</span><input type="text" name="user_question" value="{$obj.user_question}" placeholder="请输入找回密码问题"></p>
+                                                <p><span>密保答案</span><input type="text" name="user_answer" value="{$obj.user_answer}" placeholder="请输入找回密码答案"></p>
+                                                <input type="button" id="btn_submit" class="hl-btn-submit hl-bg-conch" value="保存">
+                                                <div class="hl-tip-text"><a href="{:url('user/findpass')}">忘记密码了？找回密码</a></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+
+	$('.btn_unbind').click(function(){
+		var ac = $(this).attr('ac');
+		if(ac!='email' && ac!='phone'){
+			alert('参数错误');
+		}
+		if(confirm('确认解除绑定吗？此操作不可恢复？')) {
+			$.ajax({
+				url: "{:url('user/unbind')}",
+				type: "post",
+				dataType: "json",
+				data: {ac: ac},
+				beforeSend: function () {
+					//开启loading
+				},
+				success: function (r) {
+					alert(r.msg);
+					if(r.code==1){
+						location.href="{:url('user/info')}";
+					}
+				},
+				complete: function () {
+					//结束loading
+				}
+			});
+		}
+	});
+
+	$("#btn_submit").click(function() {
+		var data = $("#fm").serialize();
+		$.ajax({
+			url: "{:url('user/info')}",
+			type: "post",
+			dataType: "json",
+			data: data,
+			beforeSend: function () {
+				//开启loading
+				//$(".loading_box").css("display","block");
+				$("#btn_submit").css("background","#fd6a6a").val("loading...");
+			},
+			success: function (r) {
+				alert(r.msg);
+				if(r.code==1){
+					location.href="{:url('user/info')}";
+				}
+			},
+			complete: function () {
+				//结束loading
+				//$(".loading_box").css("display","none");
+				$("#btn_submit").css("background","#fa4646").val("提交");
+			}
+		});
+	});
+
+</script>    
+</div>
+{include file="public/foot"}
+</body>
+</html>

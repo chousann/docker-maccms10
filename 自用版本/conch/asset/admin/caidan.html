@@ -1,0 +1,486 @@
+<div class="layui-tab-item">
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">导航菜单</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">友情提示</label>
+                    <div class="layui-input-block"><blockquote class="layui-elem-quote layui-quote-nm" style="padding: 8px;margin: 0;">顶部指网页顶部标签式导航，底部指手机端底部标签式导航，选择对应显现即可。</blockquote>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">顶部菜单</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="nav[all][btn]" {if condition="$conch['nav']['all']['btn'] eq 1"}checked{/if} value="{$conch['nav']['all']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">二级分类</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="nav[child][btn]" {if condition="$conch['nav']['child']['btn'] eq 1"}checked{/if} value="{$conch['nav']['child']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容（侧滑菜单中的二级分类）</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">底部菜单</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="nav[bottom][btn]" {if condition="$conch['nav']['bottom']['btn'] eq 1"}checked{/if} value="{$conch['nav']['bottom']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容（手机端底部导航）</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">网站首页</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[home][PC]" value="1" title="顶部" {if$conch['nav']['home']['PC']==1}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" lay-filter="navs"  name="nav[home][mobile]" value="1" title="底部" {if$conch['nav']['home']['mobile']==1}checked {/if} class="conch-navs">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[home][title]" value="{$conch['nav']['home']['title']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav[home][link]" value="{$conch['nav']['home']['link']|mac_default=$maccms.path}" placeholder="链接地址" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">特别推荐</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[level][PC]" value="1" title="顶部" {if$conch['nav']['level']['PC']==1}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" lay-filter="navs"  name="nav[level][mobile]" value="1" title="底部" {if$conch['nav']['level']['mobile']==1}checked {/if} class="conch-navs" disabled>
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[level][title]" value="{$conch['nav']['level']['title']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav[level][link]" value="{$conch['nav']['level']['link']}" placeholder="链接地址" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[level][pic]" value="{$conch['nav']['level']['pic']}" placeholder="图片路径" class="layui-input upload-input">
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <button type="button" class="layui-btn layui-btn-primary layui-upload" lay-data="{data:{thumb:0,thumb_class:'nav[level][pic]'}}" id="upload1">
+                            上传图片
+                        </button>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">自定义菜单</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[custom][PC-1]" value="1" title="顶部" {if$conch['nav']['custom']['PC-1']==1}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" lay-filter="navs" name="nav[custom][mobile-1]" value="1" title="底部" {if$conch['nav']['custom']['mobile-1']==1}checked {/if} class="conch-navs">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[custom][title-1]" value="{$conch['nav']['custom']['title-1']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w150">
+                        <input type="text" name="nav[custom][link-1]" value="{$conch['nav']['custom']['link-1']}" placeholder="链接地址" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w80">
+                         <select name="nav[custom][code-1]" lay-filter="">
+                            <option value="">类型</option>
+                            <option value="hl-icon-shexiangji"{if$conch['nav']['custom']['code-1']=='hl-icon-shexiangji'} selected{/if}>视频</option>
+                            <option value="hl-icon-yinyue"{if$conch['nav']['custom']['code-1']=='hl-icon-yinyue'} selected{/if}>音乐</option>
+                            <option value="hl-icon-gouwu"{if$conch['nav']['custom']['code-1']=='hl-icon-gouwu'} selected{/if}>购物</option>
+                            <option value="hl-icon-shu"{if$conch['nav']['custom']['code-1']=='hl-icon-shu'} selected{/if}>小说</option>
+                            <option value="hl-icon-hua"{if$conch['nav']['custom']['code-1']=='hl-icon-hua'} selected{/if}>漫画</option>
+                            <option value="hl-icon-qq"{if$conch['nav']['custom']['code-1']=='hl-icon-qq'} selected{/if}>QQ</option>
+                            <option value="hl-icon-weixin"{if$conch['nav']['custom']['code-1']=='hl-icon-weixin'} selected{/if}>微信</option>
+                            <option value="hl-icon-appxz"{if$conch['nav']['custom']['code-1']=='hl-icon-appxz'} selected{/if}>APP</option>
+                            <option value="hl-icon-lianjie" {if$conch['nav']['custom']['code-1']=='hl-icon-lianjie'} selected{/if}>其他</option>
+                        </select>
+                    </div>
+                </div>
+                {maccms:type order="asc" by="sort" id="vo" ids="parent"}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{$vo.type_name}分类</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[type][PC][]" value="{$vo.type_id}" title="顶部" {if in_array($vo.type_id, explode(',',$conch['nav']['type']['PC']))}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" lay-filter="navs" name="nav[type][mobile][]" value="{$vo.type_id}" title="底部" {if in_array($vo.type_id, explode(',',$conch['nav']['type']['mobile']))}checked {/if} class="conch-navs">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <div class="layui-input" style="line-height: 36px;cursor: not-allowed;">{$vo.type_name}</div>
+                    </div>
+                    <div class="layui-input-inline w240">
+                    {if$vo.type_mid==2}
+                        <input type="text" name="nav[type][link-{$vo.type_id}]" value="{$conch['nav']['type']['link-'.$vo.type_id.'']|mac_default=mac_url('art/index')}" placeholder="链接地址" class="layui-input">
+                    {elseif$vo.type_mid==8}
+                        <input type="text" name="nav[type][link-{$vo.type_id}]" value="{$conch['nav']['type']['link-'.$vo.type_id.'']|mac_default=mac_url('actor/index')}" placeholder="链接地址" class="layui-input">
+                    {else}
+                        <input type="text" name="nav_type_link-{$vo.type_id}" value="{:mac_url_type($vo)}" placeholder="链接地址" class="layui-input layui-disabled" disabled>
+                    {/if}
+                    </div>
+                </div>
+                {/maccms:type}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">自定义菜单</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[custom][PC-2]" value="1" title="顶部" {if$conch['nav']['custom']['PC-2']==1}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" lay-filter="navs" name="nav[custom][mobile-2]" value="1" title="底部" {if$conch['nav']['custom']['mobile-2']==1}checked {/if} class="conch-navs">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[custom][title-2]" value="{$conch['nav']['custom']['title-2']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w150">
+                        <input type="text" name="nav[custom][link-2]" value="{$conch['nav']['custom']['link-2']}" placeholder="链接地址" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w80">
+                         <select name="nav[custom][code-2]" lay-filter="">
+                            <option value="">类型</option>
+                            <option value="hl-icon-shexiangji"{if$conch['nav']['custom']['code-2']=='hl-icon-shexiangji'} selected{/if}>视频</option>
+                            <option value="hl-icon-yinyue"{if$conch['nav']['custom']['code-2']=='hl-icon-yinyue'} selected{/if}>音乐</option>
+                            <option value="hl-icon-gouwu"{if$conch['nav']['custom']['code-2']=='hl-icon-gouwu'} selected{/if}>购物</option>
+                            <option value="hl-icon-shu"{if$conch['nav']['custom']['code-2']=='hl-icon-shu'} selected{/if}>小说</option>
+                            <option value="hl-icon-hua"{if$conch['nav']['custom']['code-2']=='hl-icon-hua'} selected{/if}>漫画</option>
+                            <option value="hl-icon-qq"{if$conch['nav']['custom']['code-2']=='hl-icon-qq'} selected{/if}>QQ</option>
+                            <option value="hl-icon-weixin"{if$conch['nav']['custom']['code-2']=='hl-icon-weixin'} selected{/if}>微信</option>
+                            <option value="hl-icon-appxz"{if$conch['nav']['custom']['code-2']=='hl-icon-appxz'} selected{/if}>APP</option>
+                            <option value="hl-icon-lianjie" {if$conch['nav']['custom']['code-2']=='hl-icon-lianjie'} selected{/if}>其他</option>
+                        </select>
+                    </div>
+                </div>
+                {maccms:foreach name=":explode(',','9,10,3,5')"}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{$vo|mac_get_mid_text}页面</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[mid][PC][]" value="{$vo}" title="顶部" {if in_array($vo, explode(',',$conch['nav']['mid']['PC']))}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" lay-filter="navs" name="nav[mid][mobile][]" value="{$vo}" title="底部" {if in_array($vo, explode(',',$conch['nav']['mid']['mobile']))}checked {/if} class="conch-navs">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[mid][title-{$vo}]" value="{$conch['nav']['mid']['title-'.$vo.'']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav[mid][link-{$vo}]" value="{$conch['nav']['mid']['link-'.$vo.'']|mac_default=mac_url(mac_get_mid_code($vo).'/index')}" placeholder="链接地址" class="layui-input">
+                    </div>
+                </div>
+                {/maccms:foreach}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">最新页面</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[aid][PC][]" value="2" title="顶部" {if in_array(2, explode(',',$conch['nav']['aid']['PC']))}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" lay-filter="navs" name="nav[aid][mobile][]" value="2" title="底部" {if in_array(2, explode(',',$conch['nav']['aid']['mobile']))}checked {/if} class="conch-navs">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[aid][title-2]" value="{$conch['nav']['aid']['title-2']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav[aid][link-2]" value="{$conch['nav']['aid']['link-2']|mac_default=mac_url('map/index')}" placeholder="链接地址" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排行页面</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[aid][PC][]" value="7" title="顶部" {if in_array(7, explode(',',$conch['nav']['aid']['PC']))}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" lay-filter="navs" name="nav[aid][mobile][]" value="7" title="底部" {if in_array(7, explode(',',$conch['nav']['aid']['mobile']))}checked {/if} class="conch-navs">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[aid][title-7]" value="{$conch['nav']['aid']['title-7']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav[aid][link-7]" value="{$conch['nav']['aid']['link-7']|mac_default=mac_url('label/rank')}" placeholder="链接地址" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">自定义菜单</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[custom][PC-3]" value="1" title="顶部" {if$conch['nav']['custom']['PC-3']==1}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" lay-filter="navs" name="nav[custom][mobile-3]" value="1" title="底部" {if$conch['nav']['custom']['mobile-3']==1}checked {/if} class="conch-navs">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[custom][title-3]" value="{$conch['nav']['custom']['title-3']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w150">
+                        <input type="text" name="nav[custom][link-3]" value="{$conch['nav']['custom']['link-3']}" placeholder="链接地址" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w80">
+                         <select name="nav[custom][code-3]" lay-filter="">
+                            <option value="">类型</option>
+                            <option value="hl-icon-shexiangji"{if$conch['nav']['custom']['code-3']=='hl-icon-shexiangji'} selected{/if}>视频</option>
+                            <option value="hl-icon-yinyue"{if$conch['nav']['custom']['code-3']=='hl-icon-yinyue'} selected{/if}>音乐</option>
+                            <option value="hl-icon-gouwu"{if$conch['nav']['custom']['code-3']=='hl-icon-gouwu'} selected{/if}>购物</option>
+                            <option value="hl-icon-shu"{if$conch['nav']['custom']['code-3']=='hl-icon-shu'} selected{/if}>小说</option>
+                            <option value="hl-icon-hua"{if$conch['nav']['custom']['code-3']=='hl-icon-hua'} selected{/if}>漫画</option>
+                            <option value="hl-icon-qq"{if$conch['nav']['custom']['code-3']=='hl-icon-qq'} selected{/if}>QQ</option>
+                            <option value="hl-icon-weixin"{if$conch['nav']['custom']['code-3']=='hl-icon-weixin'} selected{/if}>微信</option>
+                            <option value="hl-icon-appxz"{if$conch['nav']['custom']['code-3']=='hl-icon-appxz'} selected{/if}>APP</option>
+                            <option value="hl-icon-lianjie" {if$conch['nav']['custom']['code-3']=='hl-icon-lianjie'} selected{/if}>其他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户中心</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[aid][PC][]" value="6" title="顶部" {if in_array(6, explode(',',$conch['nav']['aid']['PC']))}checked {/if} disabled>
+                        <input type="checkbox" lay-skin="primary" lay-filter="navs" name="nav[aid][mobile][]" value="6" title="底部" {if in_array(6, explode(',',$conch['nav']['aid']['mobile']))}checked {/if} class="conch-navs">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[aid][title-6]" value="{$conch['nav']['aid']['title-6']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav[aid][link-6]" value="{$conch['nav']['aid']['link-6']|mac_default=mac_url('user/index')}" placeholder="链接地址" class="layui-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">右上角菜单</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">历史模块</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-pc" name="nav[top][PC][]" value="a" title="PC端" {if in_array(a, explode(',',$conch['nav']['top']['PC']))}checked {/if} class="conch-navtop-pc">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-mob" name="nav[top][mobile][]" value="a" title="移动端" {if in_array(a, explode(',',$conch['nav']['top']['mobile']))}checked {/if} class="conch-navtop-mob">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[top][history][title]" value="{$conch['nav']['top']['history']['title']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav_icon_history_link" value="javascript:void(0)" placeholder="链接地址" class="layui-input layui-disabled" disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">二维码模块</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-pc" name="nav[top][PC][]" value="b" title="PC端" {if in_array(b, explode(',',$conch['nav']['top']['PC']))}checked {/if} class="conch-navtop-pc">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-mob" name="nav[top][mobile][]" value="b" title="移动端" {if in_array(b, explode(',',$conch['nav']['top']['mobile']))}checked {/if} class="conch-navtop-mob">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[top][qrcode][title]" value="{$conch['nav']['top']['qrcode']['title']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w150">
+                        <input type="text" name="nav[top][qrcode][tips]" value="{$conch['nav']['top']['qrcode']['tips']}" placeholder="描述文字" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w80">
+                         <select name="nav[top][qrcode][code]" lay-filter="">
+                            <option value="">类型</option>
+                            <option value="hl-icon-qq"{if$conch['nav']['top']['qrcode']['code']=='hl-icon-qq'} selected{/if}>QQ</option>
+                            <option value="hl-icon-weixin"{if$conch['nav']['top']['qrcode']['code']=='hl-icon-weixin'} selected{/if}>微信</option>
+                            <option value="hl-icon-appxz"{if$conch['nav']['top']['qrcode']['code']=='hl-icon-appxz'} selected{/if}>APP</option>
+                            <option value="hl-icon-erweima" {if$conch['nav']['top']['qrcode']['code']=='hl-icon-erweima'} selected{/if}>其他</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[top][qrcode][pic]" value="{$conch['nav']['top']['qrcode']['pic']}" placeholder="图片路径" class="layui-input upload-input">
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <button type="button" class="layui-btn layui-btn-primary layui-upload" lay-data="{data:{thumb:0,thumb_class:'nav[top][qrcode][pic]'}}" id="upload1">
+                            上传图片
+                        </button>
+                    </div>
+                </div>
+                {maccms:foreach name=":explode(',','3')"}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{$vo|mac_get_mid_text}页面</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-pc" name="nav[top][PC][]" value="c" title="PC端" {if in_array(c, explode(',',$conch['nav']['top']['PC']))}checked {/if} class="conch-navtop-pc">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-mob" name="nav[top][mobile][]" value="c" title="移动端" {if in_array(c, explode(',',$conch['nav']['top']['mobile']))}checked {/if} class="conch-navtop-mob">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[mid][title-{$vo}]" value="{$conch['nav']['mid']['title-'.$vo.'']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav[mid][link-{$vo}]" value="{$conch['nav']['mid']['link-'.$vo.'']|mac_default=mac_url(mac_get_mid_code($vo).'/index')}" placeholder="链接地址" class="layui-input">
+                    </div>
+                </div>
+                {/maccms:foreach}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">最新页面</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-pc" name="nav[top][PC][]" value="d" title="PC端" {if in_array(d, explode(',',$conch['nav']['top']['PC']))}checked {/if} class="conch-navtop-pc">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-mob" name="nav[top][mobile][]" value="d" title="移动端" {if in_array(d, explode(',',$conch['nav']['top']['mobile']))}checked {/if} class="conch-navtop-mob">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[aid][title-2]" value="{$conch['nav']['aid']['title-2']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav[aid][link-2]" value="{$conch['nav']['aid']['link-2']|mac_default=mac_url('map/index')}" placeholder="链接地址" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排行页面</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-pc" name="nav[top][PC][]" value="e" title="PC端" {if in_array(e, explode(',',$conch['nav']['top']['PC']))}checked {/if} class="conch-navtop-pc">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-mob" name="nav[top][mobile][]" value="e" title="移动端" {if in_array(e, explode(',',$conch['nav']['top']['mobile']))}checked {/if} class="conch-navtop-mob">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[aid][title-7]" value="{$conch['nav']['aid']['title-7']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav[aid][link-7]" value="{$conch['nav']['aid']['link-7']|mac_default=mac_url('label/rank')}" placeholder="链接地址" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">自定义菜单</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-pc" name="nav[top][PC][]" value="f" title="PC端" {if in_array(f, explode(',',$conch['nav']['top']['PC']))}checked {/if} class="conch-navtop-pc">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-mob" name="nav[top][mobile][]" value="f" title="移动端" {if in_array(f, explode(',',$conch['nav']['top']['mobile']))}checked {/if} class="conch-navtop-mob">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[top][custom][title]" value="{$conch['nav']['top']['custom']['title']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w150">
+                        <input type="text" name="nav[top][custom][link]" value="{$conch['nav']['top']['custom']['link']}" placeholder="链接地址" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w80">
+                         <select name="nav[top][custom][code]" lay-filter="">
+                            <option value="">类型</option>
+                            <option value="hl-icon-shexiangji"{if$conch['nav']['top']['custom']['code']=='hl-icon-shexiangji'} selected{/if}>视频</option>
+                            <option value="hl-icon-yinyue"{if$conch['nav']['top']['custom']['code']=='hl-icon-yinyue'} selected{/if}>音乐</option>
+                            <option value="hl-icon-gouwu"{if$conch['nav']['top']['custom']['code']=='hl-icon-gouwu'} selected{/if}>购物</option>
+                            <option value="hl-icon-shu"{if$conch['nav']['top']['custom']['code']=='hl-icon-shu'} selected{/if}>小说</option>
+                            <option value="hl-icon-hua"{if$conch['nav']['top']['custom']['code']=='hl-icon-hua'} selected{/if}>漫画</option>
+                            <option value="hl-icon-qq"{if$conch['nav']['top']['custom']['code']=='hl-icon-qq'} selected{/if}>QQ</option>
+                            <option value="hl-icon-weixin"{if$conch['nav']['top']['custom']['code']=='hl-icon-weixin'} selected{/if}>微信</option>
+                            <option value="hl-icon-appxz"{if$conch['nav']['top']['custom']['code']=='hl-icon-appxz'} selected{/if}>APP</option>
+                            <option value="hl-icon-lianjie" {if$conch['nav']['top']['custom']['code']=='hl-icon-lianjie'} selected{/if}>其他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">登陆模块</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-pc" name="nav[top][PC][]" value="h" title="PC端" {if in_array(h, explode(',',$conch['nav']['top']['PC']))}checked {/if} class="conch-navtop-pc">
+                        <input type="checkbox" lay-skin="primary" lay-filter="navtop-mob" name="nav[top][mobile][]" value="h" title="移动端" {if in_array(h, explode(',',$conch['nav']['top']['mobile']))}checked {/if} class="conch-navtop-mob">
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[top][user][title]" value="{$conch['nav']['top']['user']['title']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav_icon_user_link" value="javascript:void(0)" placeholder="链接地址" class="layui-input layui-disabled" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">右下角菜单</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">页面二维码</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[bottom][PC][]" value="a" title="PC端" {if in_array(a, explode(',',$conch['nav']['bottom']['PC']))}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" name="nav[bottom][mobile][]" value="a" title="移动端" {if in_array(a, explode(',',$conch['nav']['bottom']['mobile']))}checked {/if} disabled>
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="" value="页面二维码" class="layui-input layui-disabled" disabled>
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="" value="{$conch['theme']['qrcode']['tips']}" placeholder="描述文字" class="layui-input layui-disabled" disabled>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">二维码为系统自动生成</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">外观切换</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[bottom][PC][]" value="b" title="PC端" {if in_array(b, explode(',',$conch['nav']['bottom']['PC']))}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" name="nav[bottom][mobile][]" value="b" title="移动端" {if in_array(b, explode(',',$conch['nav']['bottom']['mobile']))}checked {/if}>
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="" {if condition="$conch['theme']['style']['color'] eq 1"}value="深色模式"{else}value="浅色模式"{/if} class="layui-input layui-disabled" disabled>
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="" value="javascript:void(0)" placeholder="链接地址" class="layui-input layui-disabled" disabled>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">不勾选不影响外观显示</div>
+                </div>
+                {maccms:foreach name=":explode(',','5')"}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{$vo|mac_get_mid_text}页面</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[bottom][PC][]" value="c" title="PC端" {if in_array(c, explode(',',$conch['nav']['bottom']['PC']))}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" name="nav[bottom][mobile][]" value="c" title="移动端" {if in_array(c, explode(',',$conch['nav']['bottom']['mobile']))}checked {/if}>
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[bottom][mid][title-{$vo}]" value="{$conch['nav']['bottom']['mid']['title-'.$vo.'']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav[mid][link-{$vo}]" value="{$conch['nav']['mid']['link-'.$vo.'']|mac_default=mac_url(mac_get_mid_code($vo).'/index')}" placeholder="链接地址" class="layui-input">
+                    </div>
+                </div>
+                {/maccms:foreach}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">自定义菜单</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[bottom][PC][]" value="d" title="PC端" {if in_array(d, explode(',',$conch['nav']['bottom']['PC']))}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" name="nav[bottom][mobile][]" value="d" title="移动端" {if in_array(d, explode(',',$conch['nav']['bottom']['mobile']))}checked {/if}>
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[bottom][custom][title]" value="{$conch['nav']['bottom']['custom']['title']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w150">
+                        <input type="text" name="nav[bottom][custom][link]" value="{$conch['nav']['bottom']['custom']['link']}" placeholder="链接地址" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w80">
+                         <select name="nav[bottom][custom][code]" lay-filter="">
+                            <option value="">类型</option>
+                            <option value="hl-icon-shexiangji"{if$conch['nav']['bottom']['custom']['code']=='hl-icon-shexiangji'} selected{/if}>视频</option>
+                            <option value="hl-icon-yinyue"{if$conch['nav']['bottom']['custom']['code']=='hl-icon-yinyue'} selected{/if}>音乐</option>
+                            <option value="hl-icon-gouwu"{if$conch['nav']['bottom']['custom']['code']=='hl-icon-gouwu'} selected{/if}>购物</option>
+                            <option value="hl-icon-shu"{if$conch['nav']['bottom']['custom']['code']=='hl-icon-shu'} selected{/if}>小说</option>
+                            <option value="hl-icon-hua"{if$conch['nav']['bottom']['custom']['code']=='hl-icon-hua'} selected{/if}>漫画</option>
+                            <option value="hl-icon-qq"{if$conch['nav']['bottom']['custom']['code']=='hl-icon-qq'} selected{/if}>QQ</option>
+                            <option value="hl-icon-weixin"{if$conch['nav']['bottom']['custom']['code']=='hl-icon-weixin'} selected{/if}>微信</option>
+                            <option value="hl-icon-appxz"{if$conch['nav']['bottom']['custom']['code']=='hl-icon-appxz'} selected{/if}>APP</option>
+                            <option value="hl-icon-lianjie" {if$conch['nav']['bottom']['custom']['code']=='hl-icon-lianjie'} selected{/if}>其他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">返回顶部</label>
+                    <div class="layui-input-inline" style="width: 180px;">
+                        <div class="layui-input">
+                        <input type="checkbox" lay-skin="primary" name="nav[bottom][PC][]" value="e" title="PC端" {if in_array(e, explode(',',$conch['nav']['bottom']['PC']))}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" name="nav[bottom][mobile][]" value="e" title="移动端" {if in_array(e, explode(',',$conch['nav']['bottom']['mobile']))}checked {/if}>
+                        </div>
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <input type="text" name="nav[bottom][back][title]" value="{$conch['nav']['bottom']['back']['title']}" placeholder="名称" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w240">
+                        <input type="text" name="nav_bottom_back_link" value="javascript:void(0)" placeholder="链接地址" class="layui-input layui-disabled" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

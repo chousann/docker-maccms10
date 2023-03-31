@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="public/meta"}
+	<title>充值中心 - 个人中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="充值中心 - 个人中心">
+	<meta name="description" content="充值中心 - 个人中心">
+	{include file="public/include"}
+</head>
+<body id="conch-member">
+{include file="public/head"}
+<div class="conch-header">
+    <div class="conch-headwrap conch-hasone{if$conch['theme']['nav']['has']==1} conch-hasconch{/if} hl-hide-sm">
+        <div class="hl-mob-nav">
+            <a href="javascript:MAC.GoBack()" class="hl-pull-left left"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+            <a href="javascript:void(0)" class="hl-pull-right right"></a>
+            <span class="hl-mob-title hl-text-site hl-lc-1">充值中心</span>
+        </div>
+    </div>
+</div>
+<div class="conch-content conch-member">
+    <div class="conch-ctwrap">
+        <div class="hl-ctwrap-item">
+            <div class="container">
+                <div class="hl-row-box clearfix">
+                    <div class="row">               
+                        <div id="left" class="hl-left-menus hl-col-xs-12 hl-col-sm-30w hl-col-lg-3 hl-hidden-xs">
+                            {include file="user/leftmenu"}
+                        </div>
+                        <div id="right" class="hl-right-content hl-col-xs-12 hl-col-sm-70w hl-col-lg-9">
+                            <div class="hl-cont-right hl-tabs-item">
+                                <div class="hl-rb-head hl-hidden-xs clearfix">
+                                    <h2 class="hl-rb-title">充值中心</h2>
+                                </div>
+                                <div class="hl-rb-head hl-head-page clearfix">
+                                    <div class="hl-rb-title hl-site-tabs hl-site-tits hl-text-site hl-tabs">
+                                        <a class="hl-tabs-btn active" href="javascript:void(0)">在线充值</a>
+                                        <a class="hl-tabs-btn" href="javascript:void(0)">充值卡充值</a>
+                                    </div>
+                                </div>
+                                <div class="hl-cont-list hl-tabs-box" style="display:block">
+                                    <div class="hl-list-wrap">
+                                        <form id="fm2" name="fm" method="post" action="" >	
+                                        <p><span>剩余积分</span>{$obj.user_points}</p>
+                                        <p><span>充值的金额</span><input type="text" name="price" value="{$config.min}"></p>
+                                        <p class="hl-text-muted tip">友情提示：最小充值金额为{$config.min}元，1元可以兑换{$config.scale}个积分</p>
+                                        <input type="button" id="btn_submit_pay" class="hl-btn-submit hl-bg-conch" value="确认">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="hl-cont-list hl-tabs-box" style="display:none">
+                                    <div class="hl-list-wrap">
+                                        <form id="fm2" name="fm" method="post" action="" >	
+                                        <p><span>充值卡号</span><input type="text" name="card_no" value="" placeholder="请输入充值卡号" class="hl-input-w3">
+                                        {if condition="$GLOBALS['config']['pay']['card']['url'] neq ''"}
+                                        <a class="hl-text-conch" target="_blank" href="{$GLOBALS['config']['pay']['card']['url']}">购买卡密</a>
+                                        {/if}</p>
+                                        <p><span>充值密码</span><input type="text" name="card_pwd" value="" placeholder="请输入充值卡密码"></p>
+                                        <p class="hl-text-muted tip">友情提示：请到卡密平台购买充值卡</p>
+                                        <input type="button" id="btn_submit_card" class="hl-btn-submit hl-bg-conch" value="确认">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+$(".go-back").click(function () {
+		var ref = document.referrer;
+		location.href=ref;
+	});
+	$('#btn_submit_pay').click(function(){
+		var that=$(this);
+		var price = $("input[name='price']").val();
+		if(Number(price)<1){
+			return;
+		}
+		if(confirm('确定要在线充值吗')) {
+			$.ajax({
+				url: "{:url('user/buy')}",
+				type: "post",
+				dataType: "json",
+				data: {price: price,flag:'pay'},
+				beforeSend: function () {
+					$("#btn_submit_pay").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					if (r.code == 1) {
+						location.href="{:url('user/pay')}?order_code=" + r.data.order_code;
+					}
+					else{
+						alert(r.msg);
+					}
+				},
+				complete: function () {
+					$("#btn_submit_pay").css("background","#fa4646").val("提交");
+				}
+			});
+		}
+	});
+
+	$('#btn_submit_card').click(function(){
+		var that=$(this);
+		var no = $('input[name="card_no"]').val();
+		var pwd = $('input[name="card_pwd"]').val();
+		if(no=='' || pwd==''){
+			alert('请输入充值卡号和密码');
+			return;
+		}
+		if(confirm('确定要使用充值卡充值吗')) {
+			$.ajax({
+				url: "{:url('user/buy')}",
+				type: "post",
+				dataType: "json",
+				data: {card_no: no,card_pwd:pwd,flag:'card'},
+				beforeSend: function () {
+					$("#btn_submit_card").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					alert(r.msg);
+				},
+				complete: function () {
+					$("#btn_submit_card").css("background","#fa4646").val("提交");
+				}
+			});
+		}
+	});
+</script>
+</div>
+{include file="public/foot"}
+</body>
+</html>

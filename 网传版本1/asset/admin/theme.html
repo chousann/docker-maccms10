@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="../../../template/conch/asset/admin/head"}
+<body>
+<?php $conchtheme = parse_ini_file(substr('/template/conch/', strlen('/')).'info.ini'); ?>
+<div class="conch-top-box">
+    <div class="hl-text">
+        <span class="hl-version">当前版本：M {$conchtheme['version']}</span>
+        <span class="hl-name">{$conchtheme['name']}</span>{$conchtheme['number']} - 原创多功能{$conchtheme['cms']}自适应主题
+    </div>
+</div>
+<div class="conch-content-box">
+    <div class="conch-showpic" style="display:none;"><img class="conch-showpic-img" width="auto" height="100"></div>
+    <form class="layui-form" action="">
+        <div class="layui-tab"> 
+            <ul class="layui-tab-title">
+                <li class="layui-this">海螺主题</li>
+                <li>站点配置</li>
+                <li>导航菜单</li>
+                <li>首页配置</li>
+                <li>页面配置</li>
+                <li>其他设置</li>
+                <li>广告设置</li>       
+            </ul>
+            <div class="layui-tab-content">
+            {include file="../../../template/conch/asset/admin/hailuo"}
+            {include file="../../../template/conch/asset/admin/jiben"}
+            {include file="../../../template/conch/asset/admin/caidan"}
+            {include file="../../../template/conch/asset/admin/shouye"}
+            {include file="../../../template/conch/asset/admin/yemian"}
+            {include file="../../../template/conch/asset/admin/qita"}
+            {include file="../../../template/conch/asset/admin/ads"}
+                <div class="layui-form-item layui-layout-admin" style="margin: 30px 0;">
+                    <div class="layui-input-block">
+                        <div class="layui-footer" style="left:0;height:38px;">
+                             <button type="submit" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formSubmit">保存主题设置</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{include file="../../../template/conch/asset/admin/foot"}
+</body>
+</html>

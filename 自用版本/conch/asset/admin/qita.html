@@ -1,0 +1,127 @@
+<div class="layui-tab-item">
+    <div class="layui-col-md12">
+         <div class="layui-card">
+            <div class="layui-card-header">公告设置</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">首页公告</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[notice][btn]" {if condition="$conch['home']['notice']['btn'] eq 1"}checked{/if} value="{$conch['home']['notice']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">公告内容</label>
+                    <div class="layui-input-block">
+                        <textarea name="home[notice][text]" class="layui-textarea"  placeholder="滚动公告内容，支持html代码">{$conch['home']['notice']['text']}</textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">弹窗公告</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="theme[tips][btn]" {if condition="$conch['theme']['tips']['btn'] eq 1"}checked{/if} value="{$conch['theme']['tips']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">公告标题</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="theme[tips][title]" value="{$conch['theme']['tips']['title']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">弹窗公告显示的标题</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">公告内容</label>
+                    <div class="layui-input-block">
+                        <textarea name="theme[tips][content]" class="layui-textarea"  placeholder="弹窗公告内容，支持html代码">{$conch['theme']['tips']['content']}</textarea>
+                    </div>
+                </div>   
+            </div>
+        </div>
+         <div class="layui-card">
+            <div class="layui-card-header">分享链接设置</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">自定义域名</label>
+                    <div class="layui-input-inline w300">
+                        <input type="text" name="theme[share][link]" placeholder="例如：http://www.conch.vip" value="{$conch['theme']['share']['link']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">自定义分享域名，留空不启用</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">短链接</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="theme[share][short]" {if condition="$conch['theme']['share']['short'] eq 1"}checked{/if} value="{$conch['theme']['share']['short']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">开启后，可设置短链接生成方式</div>
+                </div>
+                <div class="switchConch-filer" {if$conch['home']['share']['short']==0}style="display:none;"{/if}>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">短链接来源</label>
+                    <div class="layui-input-inline w100">
+                        <select name="theme[share][api]" lay-filter="share-api">
+                            <option value="0" {if condition="$conch['theme']['share']['api'] eq '0'"}selected {/if}>百度</option>
+                            <option value="1" {if condition="$conch['theme']['share']['api'] eq '1'"}selected {/if}>新浪</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">选择短链接生成方式</div>
+                </div>
+                <div class="layui-form-item sina-filer" {if condition="$conch['theme']['share']['api'] eq 0"}style="display:none;"{/if}>
+                    <label class="layui-form-label">新浪接口</label>
+                    <div class="layui-input-inline w300">
+                        <input type="text" name="theme[share][apiurl]" placeholder="输入新浪接口链接，留空不启用" value="{$conch['theme']['share']['apiurl']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">请输入新浪接口连接，<a target="_blank" title="申请新浪接口" href="https://open.weibo.com/wiki/2/short_url/shorten">新浪接口申请</a></div>
+                </div>
+                <div class="layui-form-item baidu-filer" {if condition="$conch['theme']['share']['api'] eq 1"}style="display:none;"{/if}>
+                    <label class="layui-form-label">百度接口</label>
+                    <div class="layui-input-inline" style="width:190px;">
+                        <input type="text" name="theme[share][tok]" placeholder="输入百度Token" value="{$conch['theme']['share']['tok']}" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <select name="theme[share][term]">
+                            <option value="long-term" {if condition="$conch['theme']['share']['term'] eq 'long-term'"}selected {/if}>永久有效</option>
+                            <option value="1-year" {if condition="$conch['theme']['share']['term'] eq '1-year'"}selected {/if}>一年有效</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">可选择短链接有效期，<a target="_blank" title="申请百度Token" href="https://dwz.cn/console/userinfo">百度Token申请</a></div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">页面二维码设置</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">提示文字</label>
+                    <div class="layui-input-inline w300">
+                        <input type="text" name="theme[qrcode][tips]" value="{$conch['theme']['qrcode']['tips']}" placeholder="描述文字" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">页面二维码提示文字</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">微信设置</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">二维码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="theme[wxqc][pic]" value="{$conch['theme']['wxqc']['pic']}" class="layui-input upload-input">
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <button type="button" class="layui-btn layui-btn-primary layui-upload w100" lay-data="{data:{thumb:0,thumb_class:'theme[wxqc][pic]'}}" id="upload1">选择文件</button>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">微信二维码地址或路径</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">提示文字</label>
+                    <div class="layui-input-inline w300">
+                        <input type="text" name="theme[wxqc][tips]" value="{$conch['theme']['wxqc']['tips']}" placeholder="描述文字" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">微信二维码提示文字</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

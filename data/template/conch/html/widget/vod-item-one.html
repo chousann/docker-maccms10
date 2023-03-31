@@ -1,0 +1,47 @@
+{php}$id1=$conch['theme']['svideo']['id'];$id2=$conch['theme']['cover']['wide'];$id=$id1.','.$id2;$score=$conch['theme']['cover']['score'];{/php}
+<div class="hl-item-wrap clearfix">
+    <div class="hl-item-div">
+        <div class="hl-item-pic">
+            <a class="hl-item-thumb hl-lazy" {if in_array($vo.type_id, explode(',',$id1))||$conch['theme']['vod']['url']==1}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}" data-original="{:mac_url_img($vo.vod_pic)}">
+                <div class="hl-pic-icon hl-hidden-xs"><i class="iconfont hl-icon-bofang-fill"></i></div>
+                {if$conch['theme']['cover']['tag']==1}
+                <div class="hl-pic-tag">
+                    {if condition="$vo.vod_douban_score gt 7.6"}<span class="douban">豆瓣高分</span>{/if}
+                    {if condition="($vo.vod_state neq '') OR ($vo.vod_version neq '')"}<span class="{if condition="$vo.vod_state neq ''"}state{else/}version{/if}">{if condition="$vo.vod_state neq ''"}{$vo.vod_state}{else/}{$vo.vod_version}{/if}</span>{/if}
+                </div>
+                {/if}
+                {if in_array($vo.type_id, explode(',',$id1))}
+                {if condition="$vo.vod_duration neq ''||$vo.vod_remarks neq ''"}
+                <div class="hl-pic-text">
+                    <span class="hl-lc-1 remarks">{$vo.vod_duration|mac_default=$vo.vod_remarks}</span>
+                </div>
+                {/if}
+                {else/}
+                <div class="hl-pic-text">
+                    <span class="hl-lc-1 remarks">{if condition="$vo.vod_serial gt 0"}{if condition="$vo.vod_serial eq $vo.vod_total"}全{$vo.vod_total}集{else/}更新至{$vo.vod_serial}集{/if}{elseif condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{else/}已完结{/if}</span>
+                </div>
+                {/if}
+            </a>
+        </div>
+        {if in_array($vo.type_id, explode(',',$id1))}
+        <div class="hl-item-content hl-text-muted">
+            <div class="hl-item-title hl-text-site hl-lc-2"><a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" title="{$vo.vod_name}">{$vo.vod_name}</a></div>
+            <p class="hl-item-sub hl-lc-1"><em>{if condition="$vo.type_1.type_id neq '' "}{$vo.type_1.type_name}{else/}{$vo.type.type_name}{/if}</em>{if condition="$vo.vod_year neq ''"}&nbsp;·&nbsp;{$vo.vod_year}{/if}{if condition="$vo.vod_area neq ''"}&nbsp;·&nbsp;{$vo.vod_area}{/if}{if condition="$vo.vod_class neq ''"}&nbsp;·&nbsp;{$vo.vod_class|mac_url_create='class'|mac_filter_html}{/if}</p>
+        </div>
+        {else/}
+        <div class="hl-item-content">
+            <div class="hl-item-title hl-text-site hl-lc-2"><a {if$conch['theme']['vod']['url']==1}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}">{$vo.vod_name}</a></div>
+            <p class="hl-item-sub hl-lc-1">
+            {if in_array($vo.type_id, explode(',',$conch['theme']['cover']['score']))||in_array($vo.type_id_1, explode(',',$conch['theme']['cover']['score']))}
+            {if condition="$vo.vod_score gt 0"}<span class="hl-text-conch score">{$vo.vod_score}</span>{/if}
+            {/if}
+            <em>{if condition="$vo.type_1.type_id neq '' "}{$vo.type_1.type_name}{else/}{$vo.type.type_name}{/if}</em>{if condition="$vo.vod_year neq ''"}&nbsp;·&nbsp;{$vo.vod_year}{/if}{if condition="$vo.vod_area neq ''"}&nbsp;·&nbsp;{$vo.vod_area}{/if}{if condition="$vo.vod_class neq ''"}&nbsp;·&nbsp;{$vo.vod_class|mac_url_create='class'|mac_filter_html}{/if}</p>
+            <p class="hl-item-sub hl-text-muted hl-lc-1 hl-hidden-xs">{if condition="$vo.vod_director neq ''"}{$vo.vod_director|mac_url_create='director','vod','search','&nbsp;/&nbsp;'|mac_filter_html}{/if}{if condition="$vo.vod_actor neq ''"}{$vo.vod_actor|mac_url_create='actor','vod','search','&nbsp;/&nbsp;'|mac_filter_html}{/if}</p>
+            <p class="hl-item-sub hl-text-muted hl-lc-2">{$vo.vod_blurb|mac_filter_html|mac_default='暂无相关简介'}</p>
+            <div class="hl-item-btn">
+                {if condition="$conch['theme']['vod']['url'] eq 1"}<a class="hl-btn-border" href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}">立即播放</a>{else/}<a class="hl-btn-border" href="{:mac_url_vod_detail($vo)}">查看详情</a>{/if}
+            </div>
+        </div>
+        {/if}
+    </div>
+</div>

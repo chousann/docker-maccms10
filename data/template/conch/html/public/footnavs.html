@@ -1,0 +1,96 @@
+{if$conch['nav']['bottom']['btn']==1}
+<div class="hl-foot-nav hl-bg-site hl-hide-sm">
+	<ul class="hl-fn-list">
+	    {if$conch['nav']['home']['mobile']==1}
+		<li class="hl-fn-item">
+			<a {if condition="$maccms.aid eq 1" }class="hl-text-conch active" {/if}href="{$conch['nav']['home']['link']|mac_default=$maccms.path}">
+				{if condition="$maccms.aid eq 1" }<i class="iconfont hl-icon-shouye-fill"></i>{else}<i class="iconfont hl-icon-shouye"></i>{/if}
+				<span class="hl-fn-font">{$conch['nav']['home']['title']|mac_default='首页'}</span>
+			</a>
+		</li>
+		{/if}
+        {if$conch['nav']['custom']['mobile-1']==1}
+        <li class="hl-fn-item">
+            <a href="{$conch['nav']['custom']['link-1']}">
+                <i class="iconfont {$conch['nav']['custom']['code-1']}"></i>
+                <span class="hl-fn-font">{$conch['nav']['custom']['title-1']}</span>
+            </a>
+        </li>
+        {/if}
+        {if$conch['nav']['type']['mobile']!==''}
+		{maccms:type ids="'.$conch['nav']['type']['mobile'].'" order="asc" by="sort" id="vo1" key="key1"}
+		<li class="hl-fn-item">
+			<a {if condition="($vo1.type_id eq $GLOBALS['type_id'] || $vo1.type_id eq $GLOBALS['type_pid'] || $vo1.type_mid eq $maccms.mid&&$vo1.type_mid neq 1)"}class="hl-text-conch active"{/if} href="{$conch['nav']['type']['link-'.$vo1.type_id.'']|mac_default=mac_url_type($vo1)}">	
+				{if condition="($vo1.type_id eq $GLOBALS['type_id'] || $vo1.type_id eq $GLOBALS['type_pid'] || $vo1.type_mid eq $maccms.mid&&$vo1.type_mid neq 1)" }{include file="widget/iconfill"}{else}{include file="widget/icon"}{/if}
+				<span class="hl-fn-font">{$vo1.type_name}</span>
+			</a>
+		</li>
+		{/maccms:type}
+        {/if}
+        {if$conch['nav']['custom']['mobile-2']==1}
+        <li class="hl-fn-item">
+            <a href="{$conch['nav']['custom']['link-2']}">
+                <i class="iconfont {$conch['nav']['custom']['code-2']}"></i>
+                <span class="hl-fn-font">{$conch['nav']['custom']['title-2']}</span>
+            </a>
+        </li>
+        {/if}
+        {if in_array(9, explode(',',$conch['nav']['mid']['mobile']))}
+		<li class="hl-fn-item">
+			<a {if condition="$maccms.mid eq 9" }class="hl-text-conch active" {/if}href="{$conch['nav']['mid']['link-9']|mac_default=mac_url('role/index')}">		
+				{if condition="$maccms.mid eq 9" }<i class="iconfont hl-icon-jiaose-fill"></i>{else}<i class="iconfont hl-icon-jiaose"></i>{/if}
+				<span class="hl-fn-font">{$conch['nav']['mid']['title-9']|mac_default='角色'}</span>
+			</a>
+		</li>
+		{/if}
+		{if in_array(10, explode(',',$conch['nav']['mid']['mobile']))}
+		<li class="hl-fn-item">
+			<a {if condition="$maccms.mid eq 10" }class="hl-text-conch active" {/if}href="{$conch['nav']['mid']['link-10']|mac_default=mac_url('plot/index')}">		
+				{if condition="$maccms.mid eq 10" }<i class="iconfont hl-icon-shu-fill"></i>{else}<i class="iconfont hl-icon-shu"></i>{/if}
+				<span class="hl-fn-font">{$conch['nav']['mid']['title-10']|mac_default='剧情'}</span>
+			</a>
+		</li>
+		{/if}
+		{if in_array(3, explode(',',$conch['nav']['mid']['mobile']))}
+		<li class="hl-fn-item">
+			<a {if condition="$maccms.mid eq 3" }class="hl-text-conch active" {/if}href="{$conch['nav']['mid']['link-3']|mac_default=mac_url('topic/index')}">		
+				{if condition="$maccms.mid eq 3" }<i class="iconfont hl-icon-zhuanti-fill"></i>{else}<i class="iconfont hl-icon-zhuanti"></i>{/if}
+				<span class="hl-fn-font">{$conch['nav']['mid']['title-3']|mac_default='专题'}</span>
+			</a>
+		</li>
+		{/if}
+		{if in_array(5, explode(',',$conch['nav']['mid']['mobile']))&&$GLOBALS['config']['gbook']['status']==1}
+		<li class="hl-fn-item">
+			<a {if condition="$maccms.mid eq 5" }class="hl-text-conch active" {/if}href="{$conch['nav']['mid']['link-5']|mac_default=mac_url('gbook/index')}">		
+				{if condition="$maccms.mid eq 5" }<i class="iconfont hl-icon-liuyan-fill"></i>{else}<i class="iconfont hl-icon-liuyan"></i>{/if}
+				<span class="hl-fn-font">{$conch['nav']['mid']['title-5']|mac_default='留言'}</span>
+			</a>
+		</li>
+		{/if}
+		{if in_array(2, explode(',',$conch['nav']['aid']['mobile']))}
+		<li class="hl-fn-item">
+			<a {if condition="$maccms.aid eq 2" }class="hl-text-conch active" {/if}href="{$conch['nav']['aid']['link-2']|mac_default=mac_url('map/index')}">		
+				{if condition="$maccms.aid eq 2" }<i class="iconfont hl-icon-zuixin-fill"></i>{else}<i class="iconfont hl-icon-zuixin"></i>{/if}
+				<span class="hl-fn-font">{$conch['nav']['aid']['title-2']|mac_default='最新'}</span>
+			</a>
+		</li>
+		{/if}
+		{if in_array(7, explode(',',$conch['nav']['aid']['mobile']))}
+		<li class="hl-fn-item">
+			<a {if condition="$maccms.aid eq 7" }class="hl-text-conch active" {/if}href="{$conch['nav']['aid']['link-7']|mac_default=mac_url('label/rank')}">		
+				{if condition="$maccms.aid eq 7" }<i class="iconfont hl-icon-paihang-fill"></i>{else}<i class="iconfont hl-icon-paihang"></i>{/if}
+				<span class="hl-fn-font">{$conch['nav']['aid']['title-7']|mac_default='排行'}</span>
+			</a>
+		</li>
+		{/if}
+		{if in_array(6, explode(',',$conch['nav']['aid']['mobile']))&&$GLOBALS['config']['user']['status']==1}
+		<li class="hl-fn-item">
+			<a {if condition="$maccms.aid eq 6" }class="hl-text-conch active"{/if} href="{if$user.user_id}{$conch['nav']['aid']['link-6']|mac_default=mac_url('user/index')}{else}{:mac_url('user/login')}{/if}">	
+				{if condition="$maccms.aid eq 6" }<i class="iconfont hl-icon-huiyuan-fill"></i>{else}<i class="iconfont hl-icon-huiyuan"></i>{/if}
+				<span class="hl-fn-font">{$conch['nav']['aid']['title-6']|mac_default='会员'}</span>
+			</a>
+		</li>
+		{/if}
+	</ul>
+</div>
+{/if}

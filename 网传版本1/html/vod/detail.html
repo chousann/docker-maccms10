@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+{include file="public/meta"} 
+{include file="public/seos"}  
+{include file="public/include"}
+</head>
+<body class="{if$conch['detail']['bg']['btn']==1}conch-hasbg {/if}conch-hasone">
+{include file="public/head"}
+{php}$id1=$conch['theme']['svideo']['id'];{/php}
+<div id="conch-content" class="conch-content">
+    <div class="conch-ctwrap-auto">
+        <div class="hl-has-item">
+            {if$conch['detail']['bg']['btn']==1}
+            <div class="hl-topbg">
+                <span class="hl-topbg-pic" style="background-image:url({:mac_url_img($obj.vod_pic)}"></span>
+                <span class="hl-topbg-mask"></span>
+            </div>{/if}
+            <div class="container">
+                {include file="ads/ads-all"}
+                <div class="hl-row-box clearfix">
+                    <div class="hl-col-xs-12 hl-col-md-70w hl-col-lg-9">
+                        <div class="hl-detail-content{if in_array($obj.type_id, explode(',',$id1))} hl-wide-items{/if} hl-marg-right50 clearfix">
+                            <div class="hl-dc-pic">
+                            	<span class="hl-item-thumb hl-lazy" title="{$obj.vod_name}" data-original="{:mac_url_img($obj.vod_pic)}">
+                                    {if$conch['theme']['cover']['tag']==1}
+                                    <div class="hl-pic-tag">
+                                        {if condition="$obj.vod_douban_score gt 7.6"}<span class="douban">豆瓣高分</span>{elseif condition="$obj.vod_state neq ''"}<span class="state">{$obj.vod_state}</span>{elseif condition="$obj.vod_version neq ''"}<span class="version">{$obj.vod_version}</span>{/if}
+                                    </div>
+                                    {/if}
+                            	</span>
+                            </div>
+                            <div class="hl-dc-content">
+                                <div class="hl-dc-headwrap">
+                                    <h2 class="hl-dc-title hl-data-menu">{$obj.vod_name}</h2>
+                                    {if$obj.vod_sub!=''}<div class="hl-dc-sub">{$obj.vod_sub}</div>{/if}
+                                </div>
+                                {include file="widget/vod-data"}
+                                {include file="widget/tool-icon"}
+                                <div class="hl-dc-btns hl-from-buttons">
+                                    {if condition="$obj.vod_copyright eq 1 && $GLOBALS['config']['app']['copyright_status'] eq 1 "}
+                                    <span class="hl-copyright-tips hl-text-muted"><i class="iconfont hl-icon-tixing"></i>&nbsp;{$GLOBALS['config']['app']['copyright_notice']|mac_default='应版权方要求！本片相关资源已关闭！'}</span>
+                                    {else}
+                                    {maccms:foreach name="obj.vod_play_list"}
+                                    {eq name='$key' value='1'}
+                                    <span class="hl-play-wb">				    
+                                        <a class="hl-play-btn hl-btn-gradient" href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>1])}"><i class="iconfont hl-icon-shipin"></i>&nbsp;立即播放</a>
+                                    </span>{/eq}
+                                    {/maccms:foreach}
+                                    {if condition="$obj.vod_play_list eq 0 && $obj.vod_down_list neq 0"}
+                                    {maccms:foreach name="obj.vod_down_list"}
+                                    {eq name='$key' value='1'}
+                                    <span class="hl-play-wb">				    
+                                        <a class="hl-play-btn hl-btn-gradient" href="{:mac_url_vod_down($obj,['sid'=>$vo.sid,'nid'=>1])}"><i class="iconfont hl-icon-xiazai"></i>&nbsp;下载观看</a>
+                                    </span>{/eq}
+                                    {/maccms:foreach}
+                                    {/if}
+                                    <span class="hl-form-wb">
+                                        {maccms:foreach name="obj.vod_play_list" id="vo"}
+                                        <a class="hl-from-btn hl-text-muted" style="display:{eq name='$key' value='1'}block{else/}none{/eq}" href="javascript:void(0);">
+                                            <i class="iconfont hl-jiantou hl-icon-jiantouxia hl-pull-right"></i>
+                                            <span class="hl-lc-1"><i class="iconfont hl-icon-laiyuan"></i>&nbsp;{$vo.player_info.show}</span>
+                                        </a>
+                                        {/maccms:foreach}
+                                        <div class="hl-from-wrap hl-alert-box hl-bg-site hl-fadeIn-sm hl-half-alert hl-half-y100">
+                                            <div class="hl-from-title"><h4>选择来源</h4></div>
+                                            <ul class="hl-from-list">
+                                                {maccms:foreach name="obj.vod_play_list"}
+                                                <li {eq name='$key' value='1'}class="active" {/eq}data-href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>1])}"><i class="iconfont hl-icon-dui hl-pull-right hl-text-muted"></i><span class="hl-from-{$vo.player_info.from} hl-lc-1">{$vo.player_info.show}</span></li>
+                                                {/maccms:foreach}	
+                                            </ul>
+                                        </div>
+                                    </span>
+                                    {/if}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hl-col-xs-12 hl-col-md-30w hl-col-lg-3{if in_array($obj.type_id, explode(',',$id1))} hl-hidden-xs hl-hidden-sm{/if}">
+                        <div class="hl-detail-side hl-bg-site{if in_array($obj.type_id, explode(',',$id1))} hl-wide-items{/if} clearfix">
+                            {if !in_array($obj.type_id, explode(',',$id1))}
+                            {include file="widget/scores"}
+                            {/if}
+                            <div class="hl-ds-qrcode hl-hidden-xs hl-hidden-sm clearfix">
+                                <div class="hl-mqr-wrap">
+                                    <div class="hl-cans hl-hide"></div>
+                                    <p class="hl-qrcode"></p>
+                                    <p class="hl-text-muted">{$conch['theme']['qrcode']['tips']}</p>
+                                </div>
+                            </div>                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="conch-ctwrap hl-pa0">
+        <div class="container">
+            <div class="hl-row-box clearfix">
+                {include file="widget/crumbs"}
+                <div class="hl-col-xs-12 hl-col-md-70w hl-col-lg-9">
+                    <div class="hl-rb-left hl-marg-right50 clearfix">
+                        {if$conch['detail']['play']['btn']==1}
+                        {include file="module/playlist"}{/if}
+                        {include file="ads/ads-sw"}
+                        {if$conch['detail']['down']['btn']==1}
+                        {include file="module/downlist"}{/if}
+                        {if$conch['detail']['content']['btn']==1}
+                        {include file="module/content"}{/if}
+                        {include file="module/related"}
+                        {include file="module/comment"}
+                    </div>
+                </div>
+                <div class="hl-col-xs-12 hl-col-md-30w hl-col-lg-3 hl-hidden-xs">
+                    <div class="hl-rb-side clearfix">
+                        {include file="module/vodside"}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {if condition="$GLOBALS['config']['app']['copyright_status'] eq 2"}
+    <script>
+    {if condition="$obj.vod_jumpurl neq ''"}
+        location.href='{$obj.vod_jumpurl}';
+    {/if}
+    </script>{/if}
+    <script type="text/javascript">var Sw=$(window).width();if(Sw>992){var Ph=$('.hl-dc-pic').innerHeight();$(".hl-detail-side").css("height",Ph);}window.addEventListener('resize', function() {var Sw=$(window).width();if(Sw>992){var Ph=$('.hl-dc-pic').innerHeight();$(".hl-detail-side").css("height",Ph);}});
+    </script>
+    <!--统计数据-->
+    <span style="display:none" class="mac_ulog_set" data-type="1" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+</div>
+{include file="public/foot"}
+</body>
+</html>

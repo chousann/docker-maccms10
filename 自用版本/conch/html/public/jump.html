@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+{include file="public/meta"}
+<title>系统提示......</title>
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div id="conch-content" class="conch-content conch-msg">
+    <div class="container">      
+        <div class="hl-msg-jump">
+            <h2 class="hl-msg-jump-tit">系统提示</h2>
+            <div class="title">亲爱的用户：</div>
+            <div class="text hl-text-site">{$msg}</div>
+            <div class="jump">
+                页面自动 <a id="href" class="hl-text-conch" href="<?php echo($url);?>">跳转</a> 等待时间： <b id="wait" class="hl-text-conch"><?php echo($wait);?></b>
+            </div>
+            <!-- 可自定义该页面的显示方式，可加入广告 -->
+        </div>         
+    </div>
+</div>
+<script type="text/javascript">
+    (function(){
+        var wait = document.getElementById('wait'),
+            href = document.getElementById('href').href;
+        var interval = setInterval(function(){
+            var time = --wait.innerHTML;
+            if(time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            };
+        }, 1000);
+    })();
+</script>
+{include file="public/foot"}
+</body>
+</html>

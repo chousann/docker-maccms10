@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+{include file="public/meta"} 
+{include file="public/seos"} 
+{include file="public/include"}
+</head>
+<body class="conch-conchs conch-hasone">     	
+{include file="public/head"}
+<div id="conch-content" class="conch-content">
+    <div class="conch-ctwrap hl-pa0">
+        <div class="hl-ctwrap-item hl-conch-items hl-search-items">
+            <div class="container">
+                <div class="hl-search-form clearfix">
+                    {include file="widget/search-form"}
+                </div>
+                <div class="hl-search-hot clearfix">
+                    <span>推荐搜索</span>
+                    {maccms:foreach name=":explode(',',$maccms.search_hot)"}
+                    <a href="{:mac_url('vod/search',['wd'=>$vo])}">{$vo}{if$key lt 1}<i>热</i>{/if}</a>
+                    {/maccms:foreach}
+                </div>
+            </div>
+        </div>
+        <div class="hl-ctwrap-item">
+            <div class="container">
+                {include file="ads/ads-all"}
+                <div class="hl-col-xs-12 hl-col-md-70w hl-col-lg-9">
+                    <div class="hl-row-box clearfix">
+                        <div class="hl-rb-search hl-marg-right50 clearfix">
+                            {maccms:art num="12" paging="yes" half="3" pageurl="art/search" type="current" order="desc" by="time"}{/maccms:art}
+                            <div class="hl-rb-head hl-head-page clearfix">
+                                {if$conch['theme']['search']['select']==1}
+                                <div class="hl-rb-title hl-site-tabs hl-site-tits hl-text-site">
+                                    {if in_array(a, explode(',',$conch['theme']['search']['filter']))}
+                                    <a href="{:mac_url('vod/search',['wd'=>$param.wd])}">视频</a>{/if}
+                                    {if in_array(b, explode(',',$conch['theme']['search']['filter']))}
+                                    <a class="active" href="javascript:void(0)">文章</a>{/if}
+                                    {if in_array(c, explode(',',$conch['theme']['search']['filter']))}
+                                    <a href="{:mac_url('actor/search',['wd'=>$param.wd])}">明星</a>{/if}
+                                </div>
+                                {else}
+                                <h3 class="hl-rb-title hl-site-tits">搜索结果</h3>
+                                {/if}
+                                {include file="widget/page-sm"}
+                                <span class="hl-rb-total hl-text-muted">与“<em class="hl-text-conch">{$param.wd}</em>”相关的共<em class="hl-total"></em>个搜索结果</span>
+                            </div>
+                            <div class="row">
+                                <div class="hl-list-wrap">
+                                    <ul class="hl-art-list clearfix">
+                                    {maccms:art num="12" paging="yes" half="3" pageurl="art/search" type="current" order="desc" by="time"}
+                                        <li class="hl-list-item hl-col-xs-12">
+                                        {include file="widget/art-item"}
+                                        </li>
+                                    {/maccms:art}
+                                    </ul>
+                                    {include file="widget/page"}
+                                    {empty name="$__PAGING__.record_total"}
+                                    <div class="hl-empty-wrap hl-text-center hl-col-xs-12">
+                                        <i class="iconfont hl-icon-wushuju"></i><p>没有找到匹配数据</p>
+                                    </div>
+                                    {/empty}
+                                </div>
+                            </div>
+                            {include file="ads/ads-sw"}
+                        </div>
+                    </div>
+                </div>
+                <div class="hl-col-xs-12 hl-col-md-30w hl-col-lg-3">
+                    <div class="hl-row-box clearfix">  
+                        <div class="hl-rb-side clearfix">
+                            {include file="module/artside"}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <script type="text/javascript">
+        $('.hl-total').html('{$__PAGING__.record_total}');
+    </script>
+</div>   
+{include file="public/foot"}
+</body>
+</html>

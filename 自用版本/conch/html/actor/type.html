@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+{include file="public/meta"} 
+{include file="public/seos"}  
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div id="conch-content" class="conch-content">
+    <div class="conch-ctwrap">
+        <div class="container">
+            {include file="ads/ads-all"}
+            <div class="hl-row-box">
+                <div class="hl-rb-actor clearfix">
+                    <div class="hl-rb-head clearfix">
+                        <h2 class="hl-rb-title">{$obj.type_name}</h2>
+                        <a class="hl-rb-more hl-text-muted" href="{:mac_url_type($obj,[],'show')}"><i class="iconfont hl-icon-shaixuan"></i>筛选</a> 
+                    </div>
+                    <div class="row">
+                        <div class="hl-list-wrap">
+                            <ul class="hl-actor-list clearfix">
+                            {maccms:actor num="60" paging="yes" half="3" pageurl="actor/type" type="current" order="desc" by="time"}
+                                <li class="hl-list-item hl-col-xs-3 hl-col-sm-2 hl-col-lg-10w">
+                                {include file="widget/actor-item-sm"}
+                                </li>
+                            {/maccms:actor}
+                            </ul>
+                            {include file="widget/page"}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

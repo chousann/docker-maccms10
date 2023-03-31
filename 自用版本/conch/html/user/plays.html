@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="public/meta"}
+	<title>观看记录 - 个人中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="观看记录 - 个人中心">
+	<meta name="description" content="观看记录 - 个人中心">
+	{include file="public/include"}
+</head>
+<body id="conch-member">
+{include file="public/head"}
+<div class="conch-header">
+    <div class="conch-headwrap conch-hasone{if$conch['theme']['nav']['has']==1} conch-hasconch{/if} hl-hide-sm">
+        <div class="hl-mob-nav">
+            <a href="javascript:MAC.GoBack()" class="hl-pull-left left"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+            <a href="javascript:;" id="btnClear" class="hl-pull-right right"><i class="iconfont hl-icon-lajitong"></i></a>
+            <span class="hl-mob-title hl-text-site hl-lc-1">观看记录</span>
+        </div>
+    </div>
+</div>
+<div class="conch-content conch-member">
+    <div class="conch-ctwrap">
+        <div class="hl-ctwrap-item">
+            <div class="container">
+                <div class="hl-row-box clearfix">
+                    <div class="row">               
+                        <div id="left" class="hl-left-menus hl-col-xs-12 hl-col-sm-30w hl-col-lg-3 hl-hidden-xs">
+                            {include file="user/leftmenu"}
+                        </div>
+                        <div id="right" class="hl-right-content hl-col-xs-12 hl-col-sm-70w hl-col-lg-9">
+                            <div class="hl-cont-right">
+                                <div class="hl-rb-head hl-hidden-xs clearfix">
+                                    <h2 class="hl-rb-title">观看记录</h2>
+                                </div>
+                                <div class="hl-tool-btns">
+                                    <a href="javascript:;" onClick="MAC.CheckBox.All('ids[]');">全选</a>
+                                    <a href="javascript:;" onClick="MAC.CheckBox.Other('ids[]');">反选</a>
+                                    <a href="javascript:;" id="btnDel">删除</a>
+                                    <a href="javascript:;" id="btnClear2">清空</a>
+                                </div>
+                                <ul class="hl-data-list clearfix">
+                                {volist name="list" id="vo"}
+                                    <li class="hl-data-item">
+                                        <input name="ids[]" type="checkbox" value="{$vo.ulog_id}" class="conch-input">
+                                        <div class="hl-item-pic">
+                                            <a class="hl-item-thumb hl-lazy" href="{$vo.data.link}" title="{$vo.data.name}" data-original="{$vo.data.pic}">
+                                                <div class="hl-pic-icon hl-hidden-xs"><i class="iconfont hl-icon-bofang-fill"></i></div>
+                                            </a>
+                                        </div>
+                                        <div class="hl-item-content">
+                                            <div class="hl-item-title hl-text-site hl-lc-2"><a href="{$vo.data.link}" title="{$vo.data.name}">{$vo.data.name}<span class="hl-text-muted">[{$vo.ulog_rid}-{$vo.ulog_sid}-{$vo.ulog_nid}]</span></a></div>
+                                            <div class="hl-item-sub hl-text-muted">
+                                                <p class="hl-lc-1">类型：{$vo.data.type.type_name}</p>
+                                                <p class="hl-lc-1">消耗：<span class="hl-text-conch">[{$vo.ulog_points}]</span>积分</p>
+                                                <p class="hl-lc-1">时间：{$vo.ulog_time|date='Y-m-d H:i',###}</p>
+                                            </div>
+                                        </div>
+                                        <a class="hl-btn-del hl-btn-border" href="javascript:void(0)" onclick="delData({$vo.ulog_id})"><i class="iconfont hl-icon-lajitong"></i><span class="hl-hidden-xs"> 删除</span></a>	
+                                    </li>
+                                {/volist}
+                                </ul>
+                                {if $__PAGING__.record_total==0}
+                                <div class="hl-empty-wrap hl-text-center hl-col-xs-12">
+                                    <i class="iconfont hl-icon-wushuju"></i><p>暂无数据</p>
+                                </div>
+                                {/if}
+                                {include file="widget/page"}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+	function delData(ids,all){
+		var msg ='删除';
+		if(all==1){
+			msg='清空';
+		}
+		if(confirm('确定要'+msg+'记录吗')){
+			$.post("{:url('user/ulog_del')}",{ids:ids,type:4,all:all},function(data) {
+				if (data.code == '1') {
+					alert('删除成功');
+					location.reload();
+				}else {
+					alert('删除失败：' + data.msg);
+				}
+			}, 'json')
+		}
+	}
+	$("#btnClear,#btnClear2").click(function(){
+		delData('',1);
+	});
+	$("#btnDel").click(function(){
+		var ids = MAC.CheckBox.Ids('ids[]');
+		if(ids==''){
+			alert("请至少选择一个数据");
+			return;
+		}
+		delData(ids,0);
+	});
+</script>
+</div>
+{include file="public/foot"}
+</body>
+</html>

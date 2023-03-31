@@ -1,0 +1,39 @@
+{php}$id1=$conch['theme']['svideo']['id'];$id2=$conch['theme']['cover']['wide'];$id=$id1.','.$id2;$score=$conch['theme']['cover']['score'];{/php}
+<div class="hl-item-wrap{if in_array($vo.type_id, explode(',',$id1))} hl-wide-wrap{/if} clearfix">
+    <div class="hl-item-div hl-item-div1 hl-col-xs-75w hl-col-sm-50w hl-col-md-40w">
+        <div class="hl-item-num">
+            <span class="hl-part-nums hl-num-{$key}">{$key}</span>
+        </div>
+        <div class="hl-item-pic">
+            <a class="hl-item-thumb hl-lazy" {if in_array($vo.type_id, explode(',',$id1))||$conch['theme']['vod']['url']==1}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}" data-original="{:mac_url_img($vo.vod_pic)}">
+                <div class="hl-pic-icon hl-hidden-xs"><i class="iconfont hl-icon-bofang-fill"></i></div>
+            </a>
+        </div>
+        <div class="hl-item-content">
+            <div class="hl-item-title hl-text-site hl-lc-2"><a {if in_array($vo.type_id, explode(',',$id1))||$conch['theme']['vod']['url']==1}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}">{$vo.vod_name}</a></div>
+            {if !in_array($vo.type_id, explode(',',$id1))}
+            <div class="hl-item-sub hl-text-muted hl-lc-1">  {$vo.vod_sub|mac_default=$vo.vod_actor|mac_url_create='actor','vod','search','/'|mac_filter_html|mac_default='未知'}
+            </div>
+            <div class="hl-item-remarks">
+            {if in_array($vo.type_id, explode(',',$score))||in_array($vo.type_id_1, explode(',',$score))}
+            {if $vo.vod_score gt 0}<span class="hl-text-conch score">{$vo.vod_score}</span>{/if}
+            {/if}
+            {if condition="$vo.vod_serial gt 0"}{if condition="$vo.vod_serial eq $vo.vod_total"}全{$vo.vod_total}集{else/}更新至{$vo.vod_serial}集{/if}{elseif condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{else/}已完结{/if}</div>
+            {/if}
+        </div>
+    </div>
+    <div class="hl-item-div hl-item-div2 hl-col-sm-15w hl-col-md-10w hl-hidden-xs">
+        <div class="hl-item-datas hl-lc-1">
+            {$vo.type.type_name}
+        </div>
+    </div>
+    <div class="hl-item-div hl-item-div3 hl-col-sm-20w hl-col-md-15w hl-hidden-xs">
+        <div class="hl-item-datas hl-lc-1">
+            <span>{$vo.vod_year|mac_default='未知'}</span><i>/</i><span>{$vo.vod_area|mac_default='未知'}</span><i>/</i>{$vo.vod_class|mac_url_create='class','vod','search','<i>/</i>'|mac_default='内详'}
+        </div>
+    </div>
+    <div class="hl-item-div hl-item-div4 hl-col-md-25w hl-hidden-xs hl-hidden-sm">
+        <div class="hl-item-datas hl-lc-1">
+            {$vo.vod_blurb|mac_filter_html|mac_default='暂无简介'}
+        </div>
+    </div>

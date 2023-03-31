@@ -1,0 +1,22 @@
+{if$conch['home']['meun']['btn']==1||$conch['home']['notice']['btn']==1}
+<div class="container hl-home-nano">
+    <div class="hl-row-nano">
+        <div class="row">
+            {if$conch['home']['meun']['btn']==1}
+            <div class="hl-smnav-box hl-smnav-home{if$conch['home']['notice']['btn']==0} col-xs-12{else/} hl-col-md-8 hl-col-xs-12{/if}">
+                <ul class="hl-smnav clearfix">
+                    {maccms:type num="'.$conch['home']['meun']['num'].'" ids="'.$conch['home']['meun']['id'].'" order="'.$conch['home']['meun']['order'].'" by="'.$conch['home']['meun']['by'].'" id="vo1" key="key1"}
+                    <li class="hl-smnav-item">
+                        <a class="hl-bg-subs" href="{$conch['nav']['type']['link-'.$vo1.type_id.'']|mac_default=mac_url_type($vo1)}">{include file="widget/icon"}<span>{$vo1.type_name}</span></a>
+                    </li>
+                    {/maccms:type}
+                </ul>
+            </div>{/if}
+            {if$conch['home']['notice']['btn']==1}
+            <div class="hl-notice-box{if$conch['home']['meun']['btn']==0} col-xs-12{else/} hl-col-md-4 hl-col-xs-12{/if} ">
+                {include file="widget/notice"}
+            </div>{/if}
+        </div>
+    </div>
+</div>  
+{/if}

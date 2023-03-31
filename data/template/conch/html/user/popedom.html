@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="public/meta"}
+	<title>我的权限 - 个人中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="我的权限 - 个人中心">
+	<meta name="description" content="我的权限 - 个人中心">
+	{include file="public/include"}
+</head>
+<body id="conch-member">
+{include file="public/head"}
+<div class="conch-header">
+    <div class="conch-headwrap conch-hasone{if$conch['theme']['nav']['has']==1} conch-hasconch{/if} hl-hide-sm">
+        <div class="hl-mob-nav">
+            <a href="javascript:MAC.GoBack()" class="hl-pull-left left"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+            <a href="javascript:void(0)" class="hl-pull-right right"></a>
+            <span class="hl-mob-title hl-text-site hl-lc-1">我的权限</span>
+        </div>
+    </div>
+</div>
+<div class="conch-content conch-member">
+    <div class="conch-ctwrap">
+        <div class="hl-ctwrap-item">
+            <div class="container">
+                <div class="hl-row-box clearfix">
+                    <div class="row">               
+                        <div id="left" class="hl-left-menus hl-col-xs-12 hl-col-sm-30w hl-col-lg-3 hl-hidden-xs">
+                            {include file="user/leftmenu"}
+                        </div>
+                        <div id="right" class="hl-right-content hl-col-xs-12 hl-col-sm-70w hl-col-lg-9">
+                            <div class="hl-cont-right">
+                                <div class="hl-rb-head hl-hidden-xs clearfix">
+                                    <h2 class="hl-rb-title">我的资料</h2>
+                                </div>
+                                <div class="hl-cont-tab">
+                                    <div class="hl-rb-head hl-head-page clearfix">
+                                        <div class="hl-rb-title hl-site-tabs hl-site-tits hl-text-site">
+                                            <a href="{:url('user/ajax_info')}">基本资料</a>
+                                            <a href="{:url('user/info')}">修改信息</a>
+                                            <a class="active" href="javascript:void(0)">我的权限</a>
+                                        </div>
+                                    </div>
+                                    <div class="hl-cont-list">
+                                        <div class="hl-list-wrap">
+                                            <p><span>用户名</span>{$obj.user_name}</p>
+                                            <p><span>用户组</span>{if condition="$obj.group_id lt 3"}{$user.group.group_name}{else}<i class="iconfont hl-icon-zuanshi"></i>{$obj.group.group_name}{/if}</p>
+                                            <p><span>期限</span><em class="hl-text-conch">{if condition="$obj.group_id lt 3"}永久有效{else}{$obj.user_end_time|mac_day}{/if}</em></p>
+                                            <p class="hl-text-muted tip"><i class="iconfont hl-icon-dui"></i>表示用户有访问权限，<i class="iconfont hl-icon-cuo"></i>表示无访问权限，若你想要提升访问权限可选择升级会员组</p>
+                                            {volist name="type_tree" id="vo"}
+                                            <p class="hl-quanxian-type">
+                                            <span>{$vo.type_name}</span>
+                                            {foreach name="$vo.popedom" id="v2"}
+                                            {if condition="$v2 eq 1"}<em class="you">{$key}<i class="iconfont hl-icon-dui"></i></em>{else}<em class="wu">{$key}<i class="iconfont hl-icon-cuo"></i></em>{/if}
+                                            {/foreach}
+                                            </p>	
+                                            {volist name="vo.child" id="child"}
+                                            <p class="hl-quanxian-type">
+                                            <span>{$child.type_name}</span>
+                                            {foreach name="$child.popedom" id="v2"}
+                                            {if condition="$v2 eq 1"}<em class="you">{$key}<i class="iconfont hl-icon-dui"></i></em>{else}<em class="wu">{$key}<i class="iconfont hl-icon-cuo"></i></em>{/if}
+                                            {/foreach}
+                                            </p>
+                                            {/volist}
+                                            {/volist}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+{include file="public/foot"}
+</body>
+</html>

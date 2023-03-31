@@ -1,0 +1,34 @@
+<div class="hl-rb-head clearfix">
+    <h3 class="hl-rb-title">{$conch['nav']['mid']['title-5']|mac_default='留言'}</h3>
+    <span class="hl-rb-more hl-text-muted">共&nbsp;<em class="hl-text-conch">{$__PAGING__.record_total}</em>&nbsp;条留言</span>
+</div>
+<div class="hl-comm-list">
+    <ul class="clearfix">
+        {maccms:gbook num="'.$gbook['pagesize'].'" paging="yes" half="3" order="desc" by="id"}
+        <li class="hl-comm-each">
+            <div class="hl-comm-avat"><img src="{$vo.user_id|mac_get_user_portrait}"/></div>
+            <div class="hl-comm-head">
+                <span class="hl-comm-name hl-text-site">{$vo.gbook_name}</span>
+                <span class="hl-comm-time hl-text-muted">{$vo.gbook_time|mac_friend_date}</span>
+            </div>
+            <div class="hl-comm-cont">
+                <div class="hl-comm-content hl-text-site">{$vo.gbook_content|mac_em_replace}</div>
+                {if$vo.gbook_reply}
+                <div class="hl-comm-reply hl-comm-ry-child">
+                    <div class="hl-comm-avat"><img src="{$conch['theme']['logo']['webapp']|mac_default=substr($maccms['path_tpl'], strlen($maccms['path'])).'asset/img/ios_fav.png'|mac_url_img}"/></div>
+                    <div class="hl-comm-cont">
+                        <div class="hl-comm-content hl-text-site"><span class="hl-comm-name">管理员</span>：{$vo.gbook_reply}&nbsp;&nbsp;<span class="hl-comm-time hl-text-muted">{$vo.gbook_reply_time|date='H:i',###}</span></div>
+                    </div>
+                </div>
+                {/if}
+            </div>
+        </li>
+        {/maccms:gbook}
+    </ul>
+    {include file="widget/page"}
+    {empty name="$__PAGING__.record_total"}
+    <div class="hl-empty-wrap hl-text-center hl-col-xs-12">
+        <i class="iconfont hl-icon-wupinglun"></i><p>还没有人留言哎！</p>
+    </div>
+    {/empty}
+</div>

@@ -1,0 +1,17 @@
+{include file="ads/ads-side"}
+<div class="hl-row-box hl-rb-actor clearfix">
+    <div class="hl-rb-head clearfix">
+        <h3 class="hl-rb-title">{$conch['actor']['side']['title']|mac_default='热门明星'}</h3>
+    </div>
+    <div class="hl-list-wrap hl-text-site">
+        <ul class="hl-actor-list hl-rank-list clearfix">
+            {maccms:actor num="'.$conch['actor']['side']['num'].'" type="current" order="'.$conch['actor']['side']['order'].'" by="'.$conch['actor']['side']['by'].'"}
+            <li>
+                <a class="hl-lc-1" title="{$vo.actor_name}" href="{:mac_url_actor_detail($vo)}">
+                    <span class="hl-part-nums hl-num-{$key}">{$key}</span><span class="hl-item-pic"><i class="hl-item-thumb hl-lazy" data-original="{:mac_url_img($vo.actor_pic)}"></i></span><span class="hl-item-data hl-pull-right hl-text-muted">{$vo.actor_hits}人气</span>{$vo.actor_name}
+                </a>
+            </li>
+            {/maccms:actor}
+        </ul>
+    </div>  
+</div>

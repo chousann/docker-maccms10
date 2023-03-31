@@ -1,0 +1,98 @@
+<div class="hl-cont-left">
+<div class="hl-user-head">
+    <div class="hl-user-avt">
+        <img class="face" src="{$obj.user_portrait|mac_default='static/images/touxiang.png'|mac_url_img}" alt="会员头像">
+    </div>
+    <div class="hl-user-name">
+        <a href="{:url('user/info')}" title="{$obj.user_nick_name|mac_default=$obj.user_name}">
+        <span class="hl-text-site main"><em class="hl-lc-1">{$obj.user_nick_name|mac_default=$obj.user_name}</em>{if condition="$obj.group_id gt 2"}<i class="iconfont hl-icon-zuanshi-fill"></i>{/if}</span>
+        {if$obj.user_nick_name!=''}<span class="hl-text-muted hl-lc-1 sub">{$obj.user_name}</span>{/if}
+        <i class="iconfont hl-icon-jiantouyou"></i>
+        </a>
+    </div>
+</div>
+<div class="hl-user-info">
+    <div class="hl-info-wrap">
+        <p class="hl-text-conch hl-lc-1 points">{$obj.user_points}</p>
+        <p class="hl-text-muted text">我的积分</p>
+    </div>
+    <div class="hl-info-wrap">
+        <a href="{:url('user/popedom')}">
+            <p class="member">{if condition="$obj.group_id gt 2"}<i class="iconfont hl-icon-zuanshi"></i>{$obj.group.group_name}{else}{$user.group.group_name}{/if}</p>
+            <p class="hl-text-muted hl-lc-1 text">{if condition="$obj.group_id gt 2"}{$obj.user_end_time|date='Y-m-d',###}到期{else}永久有效{/if}</p>
+        </a>
+    </div>
+</div>
+<div class="hl-user-set">
+<ul>
+    <li>
+        <a href="javascript:void(0)" class="hl-tui-btn">
+            <span><i class="iconfont hl-icon-lihe a"></i>推荐有礼</span><i class="iconfont hl-icon-jiantouyou hl-pull-right "></i><em class="hl-pull-right hl-text-muted tip">推荐好友赚现金</em>
+        </a>
+        <div class="hl-tui-wrap hl-cont-list" style="display:none;">
+            {if condition="$GLOBALS['config']['user']['reward_status'] eq 1"}
+            <div class="hl-tui-ad">
+            {include file="ads/ads-users"}
+            </div>
+            <p class="hl-text-muted tip">说明：推荐访问一次获得{$GLOBALS['config']['user']['invite_visit_points']}积分，推荐注册一次获得{$GLOBALS['config']['user']['invite_reg_points']}积分，{$GLOBALS['config']['user']['cash_ratio']}积分等于1元。</p>
+            {if $GLOBALS['config']['user']['invite_reg_points'] gt 0}
+            <p>
+                <em>推荐注册链接</em><i class="iconfont hl-icon-jiantouxia hl-pull-right"></i>
+            </p>
+            <p>
+                <input class="hl-user-input hl-lc-1" value="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/reg')}?uid={$obj.user_id}" size="70">
+                <a class="hl-text-conch conch-copy" data-clipboard-text="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/reg')}?uid={$obj.user_id}" href="javascript:void(0)">复制链接</a>
+            </p>
+            {/if}
+            {if $GLOBALS['config']['user']['invite_visit_points'] gt 0}
+            <p>
+                <em>推荐访问链接</em><i class="iconfont hl-icon-jiantouxia hl-pull-right"></i>
+            </p>
+            <p>
+                <input class="hl-user-input hl-lc-1" value="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/visit')}?uid={$obj.user_id}" size="70">
+                <a class="hl-text-conch conch-copy" data-clipboard-text="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/visit')}?uid={$obj.user_id}" href="javascript:void(0)">复制链接</a>
+            </p>
+            {/if}
+            {else}
+            <p class="hl-text-muted tip">抱歉！活动暂未开放</p>
+            {/if}
+        </div>
+    </li>
+    <li><a href="{:url('user/reward')}"><span><i class="iconfont hl-icon-fenxiang2 a"></i>推荐记录</span><i class="iconfont hl-icon-jiantouyou hl-pull-right"></i></a></li>
+</ul>
+<ul>
+    <!--li><a href="{:url('user/ajax_info')}"><span><i class="iconfont hl-icon-huiyuan b"></i>我的资料</span><i class="iconfont hl-icon-jiantouyou hl-pull-right"></i></a></li>
+    <li><a href="{:url('user/info')}"><span><i class="iconfont hl-icon-bianji b"></i>修改资料</span><i class="iconfont hl-icon-jiantouyou hl-pull-right"></i></a></li-->
+    <li><a href="{:url('user/favs')}"><span><i class="iconfont hl-icon-shoucang c"></i>我的收藏</span><i class="iconfont hl-icon-jiantouyou hl-pull-right"></i></a></li>
+    <li><a href="{:url('user/plays')}"><span><i class="iconfont hl-icon-shijian c"></i>观看记录</span><i class="iconfont hl-icon-jiantouyou hl-pull-right"></i></a></li>
+    <li><a href="{:url('user/downs')}"><span><i class="iconfont hl-icon-xiazai c"></i>下载记录</span><i class="iconfont hl-icon-jiantouyou hl-pull-right"></i></a></li>
+    <li><a href="{:url('user/upgrade')}"><span><i class="iconfont hl-icon-vip d"></i>升级会员</span><i class="iconfont hl-icon-jiantouyou hl-pull-right"></i></a></li>
+    <li><a href="{:url('user/buy')}"><span><i class="iconfont hl-icon-chongzhi e"></i>充值中心</span><i class="iconfont hl-icon-jiantouyou hl-pull-right"></i></a></li>
+    <li><a href="{:url('user/orders')}"><span><i class="iconfont hl-icon-chongzhijilu e"></i>充值记录</span><i class="iconfont hl-icon-jiantouyou hl-pull-right"></i></a></li>
+    <li><a href="{:url('user/cash')}"><span><i class="iconfont hl-icon-tixian e"></i>我要提现</span><i class="iconfont hl-icon-jiantouyou hl-pull-right"></i></a></li>
+    <li><a href="{:url('user/plog')}"><span><i class="iconfont hl-icon-jifen b"></i>积分记录</span><i class="iconfont hl-icon-jiantouyou hl-pull-right"></i></a></li>
+</ul>
+<ul class="hl-logout-ul hl-hide-sm">
+    <li class="hl-logout-item" ><a href="{:url('user/logout')}">退出账号</a></li>
+</ul>
+</div>
+</div>
+<script type="text/javascript">
+	$(".face").imageUpload({
+		formAction: "{:url('user/portrait')}",
+		inputFileName:'file',
+		browseButtonValue: '<i class="iconfont hl-icon-xie"></i>',
+		browseButtonClass:'hl-face-upload',
+		automaticUpload: true,
+		hideDeleteButton: true,
+		hover:true
+	})
+	$(".face").on("imageUpload.uploadFailed", function (ev, err) {
+		alert(err);
+	});
+</script>
+<script type="text/javascript">
+    $(".hl-tui-btn").click(function(){
+		$(".hl-tui-wrap").slideToggle("slow");
+    });
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+{include file="public/meta"} 
+{include file="public/seos"}   
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div id="conch-content" class="conch-content">
+    <div class="conch-ctwrap">
+        <div class="container">
+            {include file="ads/ads-all"}
+            <div class="hl-row-box">
+                <div class="hl-rb-topic clearfix">
+                    <div class="hl-rb-head clearfix">
+                        <h2 class="hl-rb-title">
+                            {$conch['topic']['index']['title']|mac_default='专题'}
+                        </h2>
+                        <span class="hl-rb-total hl-text-muted">共有<em class="hl-total hl-text-conch"></em>条数据</span>
+                        {maccms:topic num="'.$conch['topic']['index']['num'].'" paging="yes" half="3" order="'.$conch['topic']['index']['order'].'" by="'.$conch['topic']['index']['by'].'"}{/maccms:topic}
+                        {include file="widget/page-sm"}
+                    </div>
+                    <div class="row">
+                        <div class="hl-list-wrap">
+                            <ul class="hl-topic-list hl-wide-list clearfix">
+                            {maccms:topic num="'.$conch['topic']['index']['num'].'" paging="yes" half="3" order="'.$conch['topic']['index']['order'].'" by="'.$conch['topic']['index']['by'].'"}
+                                <li class="hl-list-item hl-col-xs-12 hl-col-sm-6 hl-col-md-4 hl-col-lg-3">
+                                {include file="widget/topic-item"}
+                                </li>
+                            {/maccms:topic}
+                            </ul>
+                            {include file="widget/page"}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <script type="text/javascript">
+        $('.hl-total').html('{$__PAGING__.record_total}');
+    </script>
+</div> 
+{include file="public/foot"}
+</body>
+</html>

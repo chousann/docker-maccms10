@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="public/meta"}
+	<title>推荐记录 - 个人中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="推荐记录 - 个人中心">
+	<meta name="description" content="推荐记录 - 个人中心">
+	{include file="public/include"}
+</head>
+<body id="conch-member">
+{include file="public/head"}
+<div class="conch-header">
+    <div class="conch-headwrap conch-hasone{if$conch['theme']['nav']['has']==1} conch-hasconch{/if} hl-hide-sm">
+        <div class="hl-mob-nav">
+            <a href="javascript:MAC.GoBack()" class="hl-pull-left left"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+            <a href="javascript:void(0)" class="hl-pull-right right"></a>
+            <span class="hl-mob-title hl-text-site hl-lc-1">推荐记录</span>
+        </div>
+    </div>
+</div>
+<div class="conch-content conch-member">
+    <div class="conch-ctwrap">
+        <div class="hl-ctwrap-item">
+            <div class="container">
+                <div class="hl-row-box clearfix">
+                    <div class="row">               
+                        <div id="left" class="hl-left-menus hl-col-xs-12 hl-col-sm-30w hl-col-lg-3 hl-hidden-xs">
+                            {include file="user/leftmenu"}
+                        </div>
+                        <div id="right" class="hl-right-content hl-col-xs-12 hl-col-sm-70w hl-col-lg-9">
+                            <div class="hl-cont-right">
+                                <div class="hl-rb-head hl-hidden-xs clearfix">
+                                    <h2 class="hl-rb-title">我的推荐记录</h2>
+                                </div>
+                                <div class="hl-cont-tab">
+                                    <div class="hl-rb-head hl-head-page clearfix">
+                                        <div class="hl-rb-title hl-site-tabs hl-site-tits hl-text-site">
+                                            {if condition="$param.level eq ''"}
+                                            <a class="active" href="javascript:void(0)">一级会员</a>
+                                            {else/}
+                                            <a href="{:url('user/reward')}">一级会员</a>
+                                            {/if}
+                                            {if condition="$param.level eq '2'"}
+                                            <a class="active" href="javascript:void(0)">二级会员</a>
+                                            {else/}
+                                            <a href="{:url('user/reward')}?level=2">二级会员</a>
+                                            {/if}
+                                            {if condition="$param.level eq '3'"}
+                                            <a class="active" href="javascript:void(0)">三级会员</a>
+                                            {else/}
+                                            <a href="{:url('user/reward')}?level=3">三级会员</a>
+                                            {/if}
+                                        </div>
+                                    </div>
+                                    {if $__PAGING__.record_total==0}
+                                    <div class="hl-empty-wrap hl-text-center hl-col-xs-12">
+                                        <i class="iconfont hl-icon-wushuju"></i><p>暂无数据</p>
+                                    </div>
+                                    {else}
+                                    <ul class="hl-data-list clearfix">
+                                        <li class="hl-data-item">
+                                            <span class="hl-col-xs-20w">编号</span>
+                                            <span class="hl-col-xs-30w">会员</span>
+                                            <span class="hl-col-xs-50w">时间</span>
+                                        </li>
+                                        <form id="form1" name="form1" method="post">
+                                        {volist name="list" id="vo"}
+                                        <li class="hl-data-item">
+                                            <span class="hl-col-xs-20w hl-lc-1">{$vo.user_id}</span>
+                                            <span class="hl-col-xs-30w hl-lc-1">{$vo.user_name}</span>
+                                            <span class="hl-col-xs-50w hl-lc-1">{$vo.user_reg_time|date='Y年m月d日',###}</span>
+                                        </li>
+                                        {/volist}
+                                        </form>
+                                    </ul>
+                                    {/if}
+                                    {include file="widget/page"}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+{include file="public/foot"}
+</body>
+</html>

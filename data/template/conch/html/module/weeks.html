@@ -1,0 +1,48 @@
+{if$conch['home']['weeks']['btn']==1}
+<div class="container">
+    <div class="hl-row-box">
+        <div class="hl-rb-vod hl-week-item hl-tabs-item hl-swiper-item clearfix">
+            <div class="hl-rb-head clearfix">
+                <h2 class="hl-rb-title">
+                    <i class="iconfont hl-icon-rili"></i>{$conch['home']['weeks']['title']|mac_default='每周更新'}
+                </h2>
+                <a class="hl-rb-more hl-text-muted" href="#">更多<i class="iconfont hl-icon-jiantouyou"></i></a>
+                <span class="hl-rb-type-child hl-tabs">
+                    <a class="hl-tabs-btn hl-bg-subs hl-bg-hover{if date('w')==1} active{/if}" href="javascript:;">{if date('w')==1}今<span class="hl-hidden-xs">天</span>{else}<span class="hl-hidden-xs">周</span>一{/if}</a>
+                    <a class="hl-tabs-btn hl-bg-subs hl-bg-hover{if date('w')==2} active{/if}" href="javascript:;">{if date('w')==2}今<span class="hl-hidden-xs">天</span>{else}<span class="hl-hidden-xs">周</span>二{/if}</a>
+                    <a class="hl-tabs-btn hl-bg-subs hl-bg-hover{if date('w')==3} active{/if}" href="javascript:;">{if date('w')==3}今<span class="hl-hidden-xs">天</span>{else}<span class="hl-hidden-xs">周</span>三{/if}</a>
+                    <a class="hl-tabs-btn hl-bg-subs hl-bg-hover{if date('w')==4} active{/if}" href="javascript:;">{if date('w')==4}今<span class="hl-hidden-xs">天</span>{else}<span class="hl-hidden-xs">周</span>四{/if}</a>
+                    <a class="hl-tabs-btn hl-bg-subs hl-bg-hover{if date('w')==5} active{/if}" href="javascript:;">{if date('w')==5}今<span class="hl-hidden-xs">天</span>{else}<span class="hl-hidden-xs">周</span>五{/if}</a>
+                    <a class="hl-tabs-btn hl-bg-subs hl-bg-hover{if date('w')==6} active{/if}" href="javascript:;">{if date('w')==6}今<span class="hl-hidden-xs">天</span>{else}<span class="hl-hidden-xs">周</span>六{/if}</a>
+                    <a class="hl-tabs-btn hl-bg-subs hl-bg-hover{if date('w')==0} active{/if}" href="javascript:;">{if date('w')==0}今<span class="hl-hidden-xs">天</span>{else}<span class="hl-hidden-xs">周</span>日{/if}</a>
+                </span>
+            </div>
+            <div class="row">
+                {php}
+                    $date=date("w");
+                    if($date==0){
+                        $date=7;
+                    }
+                    $week=array('一','二','三','四','五','六','日');
+                {/php}
+                {volist name="week" id="week" key="key"}
+                <div class="hl-list-wrap hl-list-swiper hl-tabs-box" style="display: {if condition="$key eq $date"}block{else}none{/if};">
+                <ul class="hl-vod-list hl-fadeIn swiper-wrapper clearfix">
+                {maccms:vod weekday="'.$week.'" num="'.($conch['home']['weeks']['num']).'" type="all" order="'.($conch['home']['weeks']['order']).'" by="'.($conch['home']['weeks']['by']).'"}
+                    <li class="hl-list-item hl-col-xs-4 hl-col-sm-3 hl-col-md-20w hl-col-lg-2 hl-slide-swiper">
+                    {include file="widget/vod-item"}
+                    </li>
+                {/maccms:vod}
+                </ul>
+                <div class="hl-ls-arrow hl-hidden-xs">
+                    <a class="swiper-button-prev" href="javascript:;"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+                    <div class="swiper-pagination"></div>
+                    <a class="swiper-button-next" href="javascript:;"><i class="iconfont hl-icon-jiantouyou"></i></a>
+                </div>   
+                </div>
+                {/volist}
+            </div>
+        </div>
+    </div>
+</div>  
+{/if}

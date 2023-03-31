@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{include file="public/meta"} 
+    <title>网站维护中......</title>
+    <link rel="stylesheet" href="/template/conch/asset/css/style.css">
+    <link rel="stylesheet" href="/template/conch/asset/css/white.css">
+    <style>
+        .hl-site-logo {text-align: center;margin-bottom: 25px;}
+        .hl-site-logo .hl-logo {display: inline-block;margin: 0 auto;width: 120px;height: 35px;background-position: 50% 50%;background-size: cover;background-repeat: no-repeat;}
+        .hl-msg-jump .wrap{background: #f8f8f8;border-radius: 8px;padding: 20px;}
+    </style>
+</head>
+
+<body>
+<div id="conch-content" class="conch-content conch-msg">
+    <div class="container">      
+        <div class="hl-msg-jump">
+            <div class="hl-site-logo">
+                <a class="hl-logo hl-logo-black" style="background-image: url({$conch['theme']['logo']['black']|mac_default=substr($maccms['path_tpl'], strlen($maccms['path'])).'asset/img/logo_black.png'|mac_url_img});" href="{$maccms.path}"></a>
+            </div>
+            <h2 class="hl-msg-jump-tit">非常抱歉，网站正在维护中</h2>
+            <div class="wrap">
+                <div class="title">亲爱的用户：</div>
+                <div class="text hl-text-site" style="margin:0;">{$close_tip}</div>
+            </div>
+            <div class="hl-text-muted hl-text-center" style="margin-top:50px;"><p>&copy;&nbsp;{:date('Y')}&nbsp;{$GLOBALS['config']['site']['site_url']}&nbsp;All rights reservd.</p></div>
+        </div>         
+    </div>
+</div>
+</body>
+</html>
+
+
+

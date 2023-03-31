@@ -1,0 +1,29 @@
+{if$conch['home']['links']['btn']==1}
+<div class="container">
+    <div class="hl-row-box">
+        <div class="hl-rb-links clearfix">
+            <ul class="hl-link-list clearfix">
+                <li class="hl-list-item hl-text-site">
+                    <span>{$conch['home']['links']['title']|mac_default='友情链接'}</span>
+                </li>
+                {maccms:link num="'.($conch['home']['links']['num']).'" type="all" order="'.($conch['home']['links']['order']).'" by="'.($conch['home']['links']['by']).'"}
+                {if condition="$vo['link_type'] eq 0"}
+                <li class="hl-list-item">
+                    <a href="{$vo.link_url}" title="{$vo.link_name}" target="_blank">{$vo.link_name}</a>
+                </li>
+                {elseif condition="$vo['link_type'] eq 1"}
+                <li class="hl-list-item">
+                    <a href="{$vo.link_url}" title="{$vo.link_name}" target="_blank"><img src="{$vo.link_logo}" class="hl-link-logo"></a>
+                </li>
+                {/if}
+                {/maccms:link}
+                {if$conch['home']['links']['apply']==1}
+                <li class="hl-list-item hl-text-site">
+                    <a href="{$conch['home']['links']['url']}" title="申请+" target="_blank">申请+</a>
+                </li>
+                {/if}
+            </ul>
+        </div>
+    </div>
+</div> 
+{/if}

@@ -1,0 +1,39 @@
+{if$obj.vod_rel_vod!=''&&$conch['theme']['relvod']['btn']==1}
+<div class="hl-row-box hl-rb-relvod hl-one-relvod clearfix">
+    <div class="hl-rb-head clearfix">
+        <h3 class="hl-rb-title">{$conch['theme']['relvod']['title']|mac_default='相关视频'}</h3>
+    </div>
+    <div class="row">
+       {maccms:vod num="10" rel="'.$obj['vod_rel_vod'].'"}{/maccms:vod}
+        <div class="hl-list-wrap{if$key gt 4} hl-list-hide{/if}">
+            <ul class="hl-vod-list hl-wide-list clearfix">
+            {maccms:vod num="10" rel="'.$obj['vod_rel_vod'].'" order="'.($conch['theme']['relvod']['order']).'" by="'.($conch['theme']['relvod']['by']).'"}
+                <li class="hl-list-item hl-col-xs-6 hl-col-sm-25w hl-col-md-12">
+                {include file="widget/vod-item"}
+                </li>
+            {/maccms:vod}
+            </ul>
+            <div class="hl-goto-box hl-hide-sm">
+                <a class="hl-bg-subs hl-text-muted hl-more-list" href="javascript:;">查看更多</a>
+            </div> 
+        </div>
+    </div> 
+</div>
+{else}
+<div class="hl-row-box hl-rb-relvod hl-one-relvod hl-hidden-xs hl-hidden-sm clearfix">
+    <div class="hl-rb-head clearfix">
+        <h3 class="hl-rb-title">猜你喜欢</h3>
+    </div>
+    <div class="row">
+        <div class="hl-list-wrap">
+            <ul class="hl-vod-list hl-wide-list clearfix">
+            {maccms:vod num="12" type="current" paging="false" order="desc" by="rnd"}
+                <li class="hl-list-item hl-col-xs-6 hl-col-sm-25w hl-col-md-12">
+                {include file="widget/vod-item"}
+                </li>
+            {/maccms:vod}
+            </ul>
+        </div>
+    </div> 
+</div>
+{/if}

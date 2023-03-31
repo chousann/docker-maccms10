@@ -1,0 +1,7 @@
+<a class="hl-item-link hl-text-site" href="{if$maccms.aid==1||$maccms.aid==15||$maccms.aid==16}javascript:;{else}{:mac_url_actor_detail($vo)}{/if}">
+    <span class="hl-item-thumb hl-lazy" data-original="{:mac_url_img($vo.actor_pic)}"><span class="hl-pic-icon hl-hidden-xs"><i class="iconfont hl-icon-lianjie"></i></span></span>
+    <div class="hl-item-text">
+        <span class="hl-item-title hl-lc-1">{$vo.actor_name}</span>
+        <span class="hl-item-sub hl-text-muted hl-lc-1">{$vo.actor_remarks|mac_default='演艺人员'}</span>
+    </div>
+</a>
