@@ -12,12 +12,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-      
+            # Runs a set of commands using the runners shell
+      - name: docker
+        run: |
+          sudo su
+          docker compose up -d
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           sudo su
-          docker compose up -d
           wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip
           unzip ngrok-stable-linux-386.zip
           chmod +x ./ngrok
