@@ -30,7 +30,7 @@ jobs:
           touch /tmp/keepalive
           cat ngrok.log
           
-      - name: Setup Debug4
+      - name: Setup Debug5
         uses: csexton/debugger-action@master
       - uses: actions/upload-artifact@v2
         with:
