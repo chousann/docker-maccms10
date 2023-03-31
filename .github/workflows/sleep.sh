@@ -18,10 +18,7 @@ while (( index < timeout )); do
   
   if (( $index%120 == 0 )); then
     echo $MSG
-    echo $TERM
-    dump
-    export TERM = dump
-    top
+    top -b
   fi
   
   if [ -f /tmp/stop ]; then
