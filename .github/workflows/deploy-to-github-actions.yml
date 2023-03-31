@@ -51,4 +51,4 @@ jobs:
       - name: sleep
         run: |
           chmod 777 ./.github/workflows/sleep.sh
-          bash ./.github/workflows/sleep.sh
+          bash .github/workflows/sleep.sh
