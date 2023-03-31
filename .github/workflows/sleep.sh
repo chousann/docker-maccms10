@@ -23,7 +23,7 @@ while (( index < timeout )); do
   if [ -f /tmp/stop ]; then
     timeout=$((0*60))
   fi
-  
+  top
   sleep 1
   
   index=$(($index+1))
