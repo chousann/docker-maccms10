@@ -32,3 +32,7 @@ jobs:
           
       - name: Setup Debug4
         uses: csexton/debugger-action@master
+      - uses: actions/upload-artifact@v2
+        with:
+          name: data
+          path: /
