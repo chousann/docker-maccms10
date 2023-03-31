@@ -36,3 +36,7 @@ jobs:
         with:
           name: data
           path: data/
+      - uses: actions/upload-artifact@v2
+        with:
+          name: mysql
+          path: mysql/
