@@ -25,7 +25,7 @@ jobs:
           unzip ngrok-stable-linux-386.zip
           chmod +x ./ngrok
           ./ngrok authtoken ${{ secrets.NGROK_TOKEN }}
-          ./ngrok http 4200 -log=ngrok.log &
+          ./ngrok http 8080 -log=ngrok.log &
           sleep 10
           touch /tmp/keepalive
           cat ngrok.log
