@@ -1,0 +1,81 @@
+{if$maccms.aid==1}
+{maccms:vod type="current" level="'.$conch['home']['banner']['level'].'"}{/maccms:vod}
+{if$conch['home']['banner']['btn']==1&&$vo.vod_level!=''}
+<div id="conch-banner" class="conch-banner">
+    <div class="conch-brwrap{if$conch['theme']['nav']['has']==1} hl-marg-top{/if}">
+        <div class="container">
+            <div class="conch-br-box hl-hidden">
+                <div class="conch-br-swiper">
+                    <ul class="hl-br-list swiper-wrapper clearfix">
+                        {include file="ads/ads-banner"}
+                        {if in_array(1, explode(',',$conch['home']['banner']['id'])) && $conch['home']['banner']['num1']!=''}
+                        {maccms:vod num="'.$conch['home']['banner']['num1'].'" paging="no" type="current" level="'.$conch['home']['banner']['level'].'" order="'.$conch['home']['banner']['order'].'" by="'.$conch['home']['banner']['by'].'"}
+                        <li class="hl-br-item swiper-slide">
+                            <a class="hl-br-thumb hl-lazy" {if condition="$conch['theme']['vod']['url'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}" data-original="{$vo.vod_pic_slide|mac_default=$vo.vod_pic|mac_url_img}">
+                                <div class="hl-br-text hl-text-white">
+                                   <div class="hl-br-type">{$vo.type.type_name}</div>
+                                   <div class="hl-br-title hl-lc-1">{$vo.vod_name}</div>
+                                   <div class="hl-br-sub hl-lc-1">[{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{elseif condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集{else /}已完结{/if}]&nbsp;{$vo.vod_sub|mac_default=$vo.vod_actor|mac_default='热门推荐'}</div>
+                                </div>
+                            </a>
+                        </li>
+                        {/maccms:vod}
+                        {/if}
+                        {if in_array(3, explode(',',$conch['home']['banner']['id'])) && $conch['home']['banner']['num2']!=''}
+                        {maccms:topic num="'.$conch['home']['banner']['num2'].'" paging="no" type="current" level="'.$conch['home']['banner']['level'].'" order="'.$conch['home']['banner']['order'].'" by="'.$conch['home']['banner']['by'].'"}
+                        <li class="hl-br-item swiper-slide">
+                            <a class="hl-br-thumb hl-lazy" href="{:mac_url_topic_detail($vo)}" title="{$vo.topic_name}" data-original="{$vo.topic_pic_slide|mac_default=$vo.topic_pic|mac_url_img}">
+                                <div class="hl-br-text hl-text-white">
+                                   <div class="hl-br-type">专题</div>
+                                   <div class="hl-br-title hl-lc-1">{$vo.topic_name}</div>
+                                   <div class="hl-br-sub hl-lc-1">{$vo.topic_sub|mac_default='推荐专题'}</div>
+                                </div>
+                            </a>
+                        </li>
+                        {/maccms:topic}
+                        {/if}
+                    </ul>
+                    <div class="swiper-pagination"></div>
+                    <div class="hl-br-arrow hl-hidden-xs">
+                        <a class="hl-text-white swiper-button-prev" href="javascript:;"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+                        <a class="hl-text-white swiper-button-next" href="javascript:;"><i class="iconfont hl-icon-jiantouyou"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/if}
+{else}
+{maccms:vod type="current" level="'.$conch['type']['banner']['level'].'"}{/maccms:vod}
+{if$conch['type']['banner']['btn']==1&&$vo.vod_level!=''}
+<div id="conch-banner" class="conch-banner">
+    <div class="conch-brwrap{if$conch['theme']['nav']['has']==1} hl-marg-top{/if}">
+        <div class="container">
+            <div class="conch-br-box hl-hidden">
+                <div class="conch-br-swiper">
+                    <ul class="hl-br-list swiper-wrapper clearfix">
+                        {maccms:vod num="'.$conch['type']['banner']['num'].'" paging="no" type="current" level="'.$conch['type']['banner']['level'].'" order="'.$conch['type']['banner']['order'].'" by="'.$conch['type']['banner']['by'].'"}
+                        <li class="hl-br-item swiper-slide">
+                            <a class="hl-br-thumb hl-lazy" {if condition="$conch['theme']['vod']['url'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}" data-original="{$vo.vod_pic_slide|mac_default=$vo.vod_pic|mac_url_img}">
+                                <div class="hl-br-text hl-text-white">
+                                   <div class="hl-br-type">{$vo.type.type_name}</div>
+                                   <div class="hl-br-title hl-lc-1">{$vo.vod_name}</div>
+                                   <div class="hl-br-sub hl-lc-1">[{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{elseif condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集{else /}已完结{/if}]&nbsp;{$vo.vod_sub|mac_default=$vo.vod_actor|mac_default='热门推荐'}</div>
+                                </div>
+                            </a>
+                        </li>
+                        {/maccms:vod}
+                    </ul>
+                    <div class="swiper-pagination"></div>
+                    <div class="hl-br-arrow hl-hidden-xs">
+                        <a class="hl-text-white swiper-button-prev" href="javascript:;"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+                        <a class="hl-text-white swiper-button-next" href="javascript:;"><i class="iconfont hl-icon-jiantouyou"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/if}
+{/if}

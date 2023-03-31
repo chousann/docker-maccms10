@@ -1,0 +1,254 @@
+<div class="layui-tab-item">
+    <div class="layui-col-md12">
+         <div class="layui-card">
+            <div class="layui-card-header">基本设置</div>
+            <div class="layui-card-body" pad15="">         
+                <div class="layui-form-item">
+                    <label class="layui-form-label">深色logo</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="theme[logo][black]" placeholder="深色logo地址或路径" value="{$conch['theme']['logo']['black']}" class="layui-input upload-input">
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <button type="button" class="layui-btn layui-btn-primary layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[logo][black]'}}" id="upload1">选择文件</button>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">深色logo应用于浅色页面</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">浅色logo</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="theme[logo][white]" placeholder="浅色logo地址或路径" value="{$conch['theme']['logo']['white']}" class="layui-input upload-input">
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <button type="button" class="layui-btn layui-btn-primary layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[logo][white]'}}" id="upload1">选择文件</button>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">浅色logo应用于深色页面</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">网页图标</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="theme[logo][icon]" placeholder="网页图标地址或路径" value="{$conch['theme']['logo']['icon']}" class="layui-input upload-input">
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <button type="button" class="layui-btn layui-btn-primary layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[logo][icon]'}}" id="upload1">选择文件</button>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">浏览器窗口小图标（支持png）</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">WebApp图标</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="theme[logo][webapp]" placeholder="webapp图标地址或路径" value="{$conch['theme']['logo']['webapp']}" class="layui-input upload-input">
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <button type="button" class="layui-btn layui-btn-primary layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[logo][webapp]'}}" id="upload1">选择文件</button>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">收藏或添加展示的图标</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">懒加载图</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="theme[lazy]" placeholder="懒加载图地址或路径" value="{$conch['theme']['lazy']}" class="layui-input upload-input">
+                    </div>
+                    <div class="layui-input-inline w100">
+                        <button type="button" class="layui-btn layui-btn-primary layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[lazy]'}}" id="upload1">选择文件</button>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">封面懒加载图</div>
+                </div>
+                <div class="layui-form-item line">
+                    <label class="layui-form-label">底部提示信息</label>
+                    <div class="layui-input-block">
+                        <textarea name="theme[text][tips]" class="layui-textarea"  placeholder="支持html代码">{$conch['theme']['text']['tips']}</textarea>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">个性配置</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">站点外观</label>
+                    <div class="layui-input-inline w200">
+                        <input type="radio" name="theme[style][color]" value="0" title="浅色" {if condition="$conch['theme']['style']['color'] eq 0"}checked {/if}>
+                        <input type="radio" name="theme[style][color]" value="1" title="深色" {if condition="$conch['theme']['style']['color'] eq 1"}checked {/if}>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">站点字体</label>
+                    <div class="layui-input-inline w200">
+                        <input type="radio" name="theme[style][font]" value="0" title="简体" {if condition="$conch['theme']['style']['font'] eq 0"}checked {/if}>
+                        <input type="radio" name="theme[style][font]" value="1" title="繁体" {if condition="$conch['theme']['style']['font'] eq 1"}checked {/if}>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">导航渐变背景</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="theme[nav][has]" {if condition="$conch['theme']['nav']['has'] eq 1"}checked{/if} value="{$conch['theme']['nav']['has']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">开启后，顶部导航背景颜色使用主题渐变色作为背景</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">自定义颜色</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="theme[color][has]" {if condition="$conch['theme']['color']['has'] eq 1"}checked{/if} value="{$conch['theme']['color']['has']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">开启后，可自定义主题颜色，默认主题颜色将被覆盖</div>
+                </div>
+                <div class="switchConch-filer" {if$conch['theme']['color']['has']==0}style="display:none;"{/if}>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">主题颜色</label>
+                    <div class="layui-input-inline w120">
+                        <input type="text" name="theme[color][site]" value="{$conch['theme']['color']['site']}" placeholder="请选择颜色" class="layui-input" id="conch-form-input">
+                    </div>
+                    <div class="layui-inline" style="float:left;margin:0;left:-11px;">
+                        <div id="conch-form"></div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">渐变辅助颜色</label>
+                    <div class="layui-input-inline w120">
+                        <input type="text" name="theme[color][subs]" value="{$conch['theme']['color']['subs']}" placeholder="请选择颜色" class="layui-input" id="conch-form2-input">
+                    </div>
+                    <div class="layui-inline" style="float:left;margin:0;left:-11px;">
+                        <div id="conch-form2"></div>
+                    </div>
+                </div>
+                </div>
+                <div class="layui-form-item line">
+                    <label class="layui-form-label">统计链接</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="theme[tj][btn]" {if condition="$conch['theme']['tj']['btn'] eq 1"}checked{/if} value="{$conch['theme']['tj']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="显示|隐藏">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">显示与隐藏都不影响统计代码的正常运行</div>
+                </div>
+                <div class="layui-form-item line">
+                    <label class="layui-form-label">跳过详情页</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="theme[vod][url]" {if condition="$conch['theme']['vod']['url'] eq 1"}checked{/if} value="{$conch['theme']['vod']['url']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">开启后，链接将跳过详情页，直接进入播放页</div>
+                </div>
+                <div class="layui-form-item line">
+                    <label class="layui-form-label">新窗口打开</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="theme[url][blank]" {if condition="$conch['theme']['url']['blank'] eq 1"}checked{/if} value="{$conch['theme']['url']['blank']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">开启后，全站跳转链接将在新窗口打开</div>
+                </div>
+                <div class="layui-form-item line">
+                    <label class="layui-form-label">图片圆角</label>
+                    <div class="layui-input-inline w60">
+                        <input type="text" name="theme[img][radius]" value="{$conch['theme']['img']['radius']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">px，留空不启用（小图自动取二分之一数值）</div>
+                </div>
+                <div class="layui-form-item line">
+                    <label class="layui-form-label">资源拓展</label>
+                    <div class="layui-input-block">
+                        <textarea name="theme[script][custom]" class="layui-textarea"  placeholder="支持html代码，可用于引入JavaScript文件或自定义JavaScript">{$conch['theme']['script']['custom']}</textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">自定义CSS</label>
+                    <div class="layui-input-block">
+                        <textarea name="theme[style][custom]" class="layui-textarea"  placeholder="设置自定义CSS，其他相同元素样式将被覆盖">{$conch['theme']['style']['custom']}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">搜索设置</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">提示文字</label>
+                    <div class="layui-input-inline w200">
+                        <input type="text" name="theme[search][tips]" placeholder="请输入提示文字" value="{$conch['theme']['search']['tips']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">视频搜索框默认的提示文字</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联想搜索</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="theme[search][suggest]" {if condition="$conch['theme']['search']['suggest'] eq 1"}checked{/if} value="{$conch['theme']['search']['suggest']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">栏目筛选</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="theme[search][select]" {if condition="$conch['theme']['search']['select'] eq 1"}checked{/if} value="{$conch['theme']['search']['select']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示栏目筛选相关菜单</div>
+                </div>
+                <div class="layui-form-item switchConch-filer" {if$conch['theme']['search']['select']==0}style="display:none;"{/if}>
+                    <label class="layui-form-label">菜单显示</label>
+                    <div class="layui-input-inline w300">
+                      <input type="checkbox" lay-skin="primary" name="theme[search][filter][]" value="a" title="视频" {if condition="strpos($conch['theme']['search']['filter'],'a') !==false"}checked {/if}>
+                      <input type="checkbox" lay-skin="primary" name="theme[search][filter][]" value="b" title="文章" {if condition="strpos($conch['theme']['search']['filter'],'b') !==false"}checked {/if}>
+                      <input type="checkbox" lay-skin="primary" name="theme[search][filter][]" value="c" title="明星" {if condition="strpos($conch['theme']['search']['filter'],'c') !==false"}checked {/if}>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">视频数据显示设置</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">封面显示评分</label>
+                    <div class="layui-input-inline conch-item">
+                        <input type="hidden" name="theme[cover][score]" value="{$conch['theme']['cover']['score']}">
+                        <select multiple="multiple" lay-filter="conch">
+                            <option value="">请选择</option>
+                            {maccms:type order="asc" by="sort" id="vo" ids="parent" flag="vod"}
+                            <option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$conch['theme']['cover']['score']))} selected{/if}>{$vo.type_name}</option>
+                            {/maccms:type}
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">选择封面显示评分的分类（不选择不显示）</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">封面横版样式</label>
+                    <div class="layui-input-inline conch-item">
+                        <input type="hidden" name="theme[cover][wide]" value="{$conch['theme']['cover']['wide']}">
+                        <select multiple="multiple" lay-filter="conch">
+                            <option value="">请选择</option>
+                            {maccms:type order="asc" by="sort" id="vo" ids="parent" flag="vod"}
+                            <option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$conch['theme']['cover']['wide']))} selected{/if}>{$vo.type_name}</option>
+                            {/maccms:type}
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">选择显示横版封面的分类（不选择不启用）</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">小标签</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="theme[cover][tag]" {if condition="$conch['theme']['cover']['tag'] eq 1"}checked{/if} value="{$conch['theme']['cover']['tag']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示封面标签/标签包含[高分]>[类别]>[版本]，按层级显示一个（无相关标签不显示）</div>
+                </div>
+                <div class="layui-form-item line">
+                    <label class="layui-form-label">短视频分类</label>
+                    <div class="layui-input-inline conch-item">
+                        <input type="hidden" name="theme[svideo][id]" value="{$conch['theme']['svideo']['id']}">
+                        <select multiple="multiple" lay-filter="conch">
+                            <option value="">请选择</option>
+                            {maccms:type order="asc" by="sort" id="vo" ids="parent" flag="vod"}
+                            <option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$conch['theme']['svideo']['id']))} selected{/if}>{$vo.type_name}</option>
+                            {/maccms:type}
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">选择短视频的分类（不选择不启用）</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">短视频封面标题</label>
+                    <div class="layui-input-inline">
+                        <select name="theme[svideo][title]">
+                            <option value="">请选择</option>
+                            <option value="1" {if$conch['theme']['svideo']['title']==1}selected {/if}>显示一行+副标</option>
+                            <option value="2" {if$conch['theme']['svideo']['title']==2}selected {/if}>显示两行(无副标)</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">选择短视频封面标题形式</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,312 @@
+<div class="layui-tab-item">
+    <div class="layui-collapse">
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">演员页通用设置</h2>
+            <div class="layui-colla-content layui-show">
+            <fieldset class="layui-elem-field">
+            <legend>侧栏列表模块</legend>
+            <div class="layui-field-box">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块标题</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="actor[side][title]" placeholder="名称" value="{$conch['actor']['side']['title']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">侧栏列表显示的标题</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline">
+                    <select name="actor[side][by]">
+                        <option value="">排序依据</option>
+                        <option value="score" {if$conch['actor']['side']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['actor']['side']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['actor']['side']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['actor']['side']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['actor']['side']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['actor']['side']['by']=='up'}selected{/if}>点赞最多</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">显示数量</label>
+                <div class="layui-input-inline w60">
+                    <input type="text" name="actor[side][num]" value="{$conch['actor']['side']['num']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                </div>
+                <div class="layui-form-mid layui-word-aux">列表数据显示数量</div>
+            </div>
+            </div>
+            </fieldset>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">演员首页设置</h2>
+            <div class="layui-colla-content">
+            <fieldset class="layui-elem-field">
+            <legend>推荐模块设置</legend>
+            <div class="layui-field-box">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块标题</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="actor[hots][title]" value="{$conch['actor']['hots']['title']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">推荐模块显示的标题</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">推荐设置</label>
+                <div class="layui-input-inline">
+                    <select name="actor[hots][level]">
+                        <option value="">选择推荐</option>
+                        <option value="9" {if$conch['actor']['hots']['level']==9}selected {/if}>推荐9</option>
+                        <option value="1" {if$conch['actor']['hots']['level']==1}selected {/if}>推荐1</option>
+                        <option value="2" {if$conch['actor']['hots']['level']==2}selected {/if}>推荐2</option>
+                        <option value="3" {if$conch['actor']['hots']['level']==3}selected {/if}>推荐3</option>
+                        <option value="4" {if$conch['actor']['hots']['level']==4}selected {/if}>推荐4</option>
+                        <option value="5" {if$conch['actor']['hots']['level']==5}selected {/if}>推荐5</option>
+                        <option value="6" {if$conch['actor']['hots']['level']==6}selected {/if}>推荐6</option>
+                        <option value="7" {if$conch['actor']['hots']['level']==7}selected {/if}>推荐7</option>
+                        <option value="8" {if$conch['actor']['hots']['level']==8}selected {/if}>推荐8</option>
+                    </select>
+                </div>
+                <div class="layui-form-mid layui-word-aux">设置推荐值</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline w100">
+                    <select name="actor[hots][by]">
+                        <option value="">排序依据</option>
+                        <option value="time" {if$conch['actor']['hots']['by']=='time'}selected{/if}>更新时间</option>
+                        <option value="time_add" {if$conch['actor']['hots']['by']=='time_add'}selected{/if}>添加时间</option>
+                        <option value="score" {if$conch['actor']['hots']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['actor']['hots']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['actor']['hots']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['actor']['hots']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['actor']['hots']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['actor']['hots']['by']=='up'}selected{/if}>点赞最多</option>
+                        <option value="id" {if$conch['actor']['hots']['by']=='id'}selected{/if}>编号排序</option>
+                        <option value="rnd" {if$conch['actor']['hots']['by']=='rnd'}selected{/if}>随机排序</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline w80">
+                    <select name="actor[hots][order]">
+                        <option value="">排列顺序</option>
+                        <option value="asc"{if$conch['actor']['hots']['order']=='asc'} selected{/if}>正序</option>
+                        <option value="desc"{if$conch['actor']['hots']['order']=='desc'} selected{/if}>倒序</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+            <legend>地区模块一设置</legend>
+            <div class="layui-field-box">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块标题</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="actor[area1][title]" value="{$conch['actor']['area1']['title']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">地区模块显示的标题</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">演员地区</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="actor[area1][area]" value="{$conch['actor']['area1']['area']}" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline w100">
+                    <select name="actor[area1][by]">
+                        <option value="">排序依据</option>
+                        <option value="time" {if$conch['actor']['area1']['by']=='time'}selected{/if}>更新时间</option>
+                        <option value="time_add" {if$conch['actor']['area1']['by']=='time_add'}selected{/if}>添加时间</option>
+                        <option value="score" {if$conch['actor']['area1']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['actor']['area1']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['actor']['area1']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['actor']['area1']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['actor']['area1']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['actor']['area1']['by']=='up'}selected{/if}>点赞最多</option>
+                        <option value="id" {if$conch['actor']['area1']['by']=='id'}selected{/if}>编号排序</option>
+                        <option value="rnd" {if$conch['actor']['area1']['by']=='rnd'}selected{/if}>随机排序</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline w80">
+                    <select name="actor[area1][order]">
+                        <option value="">排列顺序</option>
+                        <option value="asc"{if$conch['actor']['area1']['order']=='asc'} selected{/if}>正序</option>
+                        <option value="desc"{if$conch['actor']['area1']['order']=='desc'} selected{/if}>倒序</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+            <legend>地区模块二设置</legend>
+            <div class="layui-field-box">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块标题</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="actor[area2][title]" value="{$conch['actor']['area2']['title']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">地区模块显示的标题</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">演员地区</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="actor[area2][area]" value="{$conch['actor']['area2']['area']}" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline w100">
+                    <select name="actor[area2][by]">
+                        <option value="">排序依据</option>
+                        <option value="time" {if$conch['actor']['area2']['by']=='time'}selected{/if}>更新时间</option>
+                        <option value="time_add" {if$conch['actor']['area2']['by']=='time_add'}selected{/if}>添加时间</option>
+                        <option value="score" {if$conch['actor']['area2']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['actor']['area2']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['actor']['area2']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['actor']['area2']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['actor']['area2']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['actor']['area2']['by']=='up'}selected{/if}>点赞最多</option>
+                        <option value="id" {if$conch['actor']['area2']['by']=='id'}selected{/if}>编号排序</option>
+                        <option value="rnd" {if$conch['actor']['area2']['by']=='rnd'}selected{/if}>随机排序</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline w80">
+                    <select name="actor[area2][order]">
+                        <option value="">排列顺序</option>
+                        <option value="asc"{if$conch['actor']['area2']['order']=='asc'} selected{/if}>正序</option>
+                        <option value="desc"{if$conch['actor']['area2']['order']=='desc'} selected{/if}>倒序</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+            <legend>地区模块三设置</legend>
+            <div class="layui-field-box">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块标题</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="actor[area3][title]" value="{$conch['actor']['area3']['title']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">地区模块显示的标题</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">演员地区</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="actor[area3][area]" value="{$conch['actor']['area3']['area']}" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline w100">
+                    <select name="actor[area3][by]">
+                        <option value="">排序依据</option>
+                        <option value="time" {if$conch['actor']['area3']['by']=='time'}selected{/if}>更新时间</option>
+                        <option value="time_add" {if$conch['actor']['area3']['by']=='time_add'}selected{/if}>添加时间</option>
+                        <option value="score" {if$conch['actor']['area3']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['actor']['area3']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['actor']['area3']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['actor']['area3']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['actor']['area3']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['actor']['area3']['by']=='up'}selected{/if}>点赞最多</option>
+                        <option value="id" {if$conch['actor']['area3']['by']=='id'}selected{/if}>编号排序</option>
+                        <option value="rnd" {if$conch['actor']['area3']['by']=='rnd'}selected{/if}>随机排序</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline w80">
+                    <select name="actor[area3][order]">
+                        <option value="">排列顺序</option>
+                        <option value="asc"{if$conch['actor']['area3']['order']=='asc'} selected{/if}>正序</option>
+                        <option value="desc"{if$conch['actor']['area3']['order']=='desc'} selected{/if}>倒序</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+            <legend>地区模块四设置</legend>
+            <div class="layui-field-box">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块标题</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="actor[area4][title]" value="{$conch['actor']['area4']['title']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">地区模块显示的标题</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">演员地区</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="actor[area4][area]" value="{$conch['actor']['area4']['area']}" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline w100">
+                    <select name="actor[area4][by]">
+                        <option value="">排序依据</option>
+                        <option value="time" {if$conch['actor']['area4']['by']=='time'}selected{/if}>更新时间</option>
+                        <option value="time_add" {if$conch['actor']['area4']['by']=='time_add'}selected{/if}>添加时间</option>
+                        <option value="score" {if$conch['actor']['area4']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['actor']['area4']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['actor']['area4']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['actor']['area4']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['actor']['area4']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['actor']['area4']['by']=='up'}selected{/if}>点赞最多</option>
+                        <option value="id" {if$conch['actor']['area4']['by']=='id'}selected{/if}>编号排序</option>
+                        <option value="rnd" {if$conch['actor']['area4']['by']=='rnd'}selected{/if}>随机排序</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline w80">
+                    <select name="actor[area4][order]">
+                        <option value="">排列顺序</option>
+                        <option value="asc"{if$conch['actor']['area4']['order']=='asc'} selected{/if}>正序</option>
+                        <option value="desc"{if$conch['actor']['area4']['order']=='desc'} selected{/if}>倒序</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+            </fieldset>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">演员筛选页设置</h2>
+            <div class="layui-colla-content">
+                <fieldset class="layui-elem-field">
+                <legend>筛选规则设置</legend>
+                <div class="layui-field-box">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">友情提示</label>
+                    <div class="layui-input-block"><blockquote class="layui-elem-quote layui-quote-nm" style="padding: 8px;margin: 0;">如果相关参数为空，勾选后前台不会显示。</blockquote>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">演员筛选</label>
+                    <div class="layui-input-inline" style="width: 620px;">
+                        <input type="checkbox" lay-skin="primary" name="actor[show][filter][]" value="a" title="分类" {if condition="strpos($conch['actor']['show']['filter'],'a') !==false"}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" name="actor[show][filter][]" value="b" title="性别" {if condition="strpos($conch['actor']['show']['filter'],'b') !==false"}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" name="actor[show][filter][]" value="c" title="地区" {if condition="strpos($conch['actor']['show']['filter'],'c') !==false"}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" name="actor[show][filter][]" value="d" title="血型" {if condition="strpos($conch['actor']['show']['filter'],'d') !==false"}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" name="actor[show][filter][]" value="e" title="星座" {if condition="strpos($conch['actor']['show']['filter'],'e') !==false"}checked {/if}>
+                        <input type="checkbox" lay-skin="primary" name="actor[show][filter][]" value="f" title="字母" checked disabled>
+                    </div>
+                </div>
+                </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">演员详情页设置</h2>
+            <div class="layui-colla-content">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模糊背景</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="actor[detail][bg]" {if condition="$conch['actor']['detail']['bg'] eq 1"}checked{/if} value="{$conch['actor']['detail']['bg']}" lay-skin="switch" lay-filter="switchConch" lay-text="启用|禁用">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">禁用后不显示内容的模糊背景</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

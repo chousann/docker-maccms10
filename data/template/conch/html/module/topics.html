@@ -1,0 +1,28 @@
+{if$conch['home']['topic']['btn']==1}
+<div class="container">
+    <div class="hl-row-box">
+        <div class="hl-rb-topic clearfix">
+            <div class="hl-rb-head clearfix">
+                <h2 class="hl-rb-title">
+                    <i class="iconfont hl-icon-zhuanti"></i>{$conch['home']['topic']['title']|mac_default='专题'}
+                </h2>
+                <a class="hl-rb-more hl-text-muted" href="{:mac_url_topic_index()}">更多<i class="iconfont hl-icon-jiantouyou"></i></a>
+            </div>
+            <div class="row">
+                <div class="hl-list-wrap{if$conch['home']['topic']['num']==4} hl-list-v4{elseif$conch['home']['topic']['num']==8} hl-list-v8{/if}">
+                    <ul class="hl-topic-list hl-wide-list clearfix">
+                    {maccms:topic num="'.($conch['home']['topic']['num']).'" order="'.($conch['home']['topic']['order']).'" by="'.($conch['home']['topic']['by']).'"}
+                       <li class="hl-list-item hl-col-xs-12 hl-col-sm-6 hl-col-md-4 hl-col-lg-3">
+                       {include file="widget/topic-item"}
+                       </li>
+                    {/maccms:topic}
+                    </ul>
+                    <div class="hl-goto-box hl-hide-sm">
+                        <a class="hl-bg-subs hl-text-muted" href="{:mac_url_topic_index()}">更多{$conch['home']['topic']['title']|mac_default='专题'}<i class="iconfont hl-icon-jiantouyou"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+{/if}

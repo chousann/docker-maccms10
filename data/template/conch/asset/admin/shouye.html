@@ -1,0 +1,692 @@
+<div class="layui-tab-item">
+    <div class="layui-col-md12">
+         <div class="layui-card">
+            <div class="layui-card-header">幻灯片设置</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">幻灯状态</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[banner][btn]" {if condition="$conch['home']['banner']['btn'] eq 1"}checked{/if} value="{$conch['home']['banner']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">指定模块</label>
+                    <div class="layui-input-inline conch-item">
+                        <input type="hidden" name="home[banner][id]" value="{$conch['home']['banner']['id']}"/>
+                        <select multiple="multiple" lay-filter="conch">
+                            <option value="a"{if in_array(a, explode(',',$conch['home']['banner']['id']))} selected{/if}>广告</option>
+                            {maccms:foreach name=":explode(',','1,3')"}
+                            <option value="{$vo}"{if in_array($vo, explode(',',$conch['home']['banner']['id']))} selected{/if}>{$vo|mac_get_mid_text}</option>
+                            {/maccms:foreach}
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">选择显示的幻灯片内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">推荐设置</label>
+                    <div class="layui-input-inline">
+                        <select name="home[banner][level]">
+                            <option value="">选择推荐</option>
+                            <option value="9" {if$conch['home']['banner']['level']==9}selected {/if}>推荐9</option>
+                            <option value="1" {if$conch['home']['banner']['level']==1}selected {/if}>推荐1</option>
+                            <option value="2" {if$conch['home']['banner']['level']==2}selected {/if}>推荐2</option>
+                            <option value="3" {if$conch['home']['banner']['level']==3}selected {/if}>推荐3</option>
+                            <option value="4" {if$conch['home']['banner']['level']==4}selected {/if}>推荐4</option>
+                            <option value="5" {if$conch['home']['banner']['level']==5}selected {/if}>推荐5</option>
+                            <option value="6" {if$conch['home']['banner']['level']==6}selected {/if}>推荐6</option>
+                            <option value="7" {if$conch['home']['banner']['level']==7}selected {/if}>推荐7</option>
+                            <option value="8" {if$conch['home']['banner']['level']==8}selected {/if}>推荐8</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">设置推荐值</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序设置</label>
+                    <div class="layui-input-inline w100">
+                        <select name="home[banner][by]">
+                            <option value="">排序依据</option>
+                            <option value="time" {if$conch['home']['banner']['by']=='time'}selected{/if}>更新时间</option>
+                            <option value="time_add" {if$conch['home']['banner']['by']=='time_add'}selected{/if}>添加时间</option>
+                            <option value="score" {if$conch['home']['banner']['by']=='score'}selected{/if}>评分排序</option>
+                            <option value="hits" {if$conch['home']['banner']['by']=='hits'}selected{/if}>总点击量</option>
+                            <option value="hits_month" {if$conch['home']['banner']['by']=='hits_month'}selected{/if}>月点击量</option>
+                            <option value="hits_week" {if$conch['home']['banner']['by']=='hits_week'}selected{/if}>周点击量</option>
+                            <option value="hits_day" {if$conch['home']['banner']['by']=='hits_day'}selected{/if}>日点击量</option>
+                            <option value="up" {if$conch['home']['banner']['by']=='up'}selected{/if}>点赞最多</option>
+                            <option value="id" {if$conch['home']['banner']['by']=='id'}selected{/if}>编号排序</option>
+                            <option value="rnd" {if$conch['home']['banner']['by']=='rnd'}selected{/if}>随机排序</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <select name="home[banner][order]">
+                            <option value="">排列顺序</option>
+                            <option value="asc"{if$conch['home']['banner']['order']=='asc'} selected{/if}>正序</option>
+                            <option value="desc"{if$conch['home']['banner']['order']=='desc'} selected{/if}>倒序</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">视频数量</label>
+                    <div class="layui-input-inline" style="width:52px;margin:0;">
+                        <input type="text" name="home[banner][num1]" value="{$conch['home']['banner']['num1']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                    </div>
+                    <label class="layui-form-label" style="width:auto;">专题数量</label>
+                    <div class="layui-input-inline" style="width:52px;">
+                        <input type="text" name="home[banner][num2]" value="{$conch['home']['banner']['num2']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">幻灯片显示数量（留空不显示）</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">分类菜单</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">菜单状态</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[meun][btn]" {if condition="$conch['home']['meun']['btn'] eq 1"}checked{/if} value="{$conch['home']['meun']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">指定分类</label>
+                    <div class="layui-input-inline conch-item">
+                        <input type="hidden" name="home[meun][id]" value="{$conch['home']['meun']['id']}"/>
+                        <select multiple="multiple" lay-filter="conch">
+                            {maccms:type order="asc" by="sort" id="vo" ids="parent"}
+                            <option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$conch['home']['meun']['id']))} selected{/if}>{$vo.type_name}</option>
+                            {/maccms:type}
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">选择显示的分类菜单</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序设置</label>
+                    <div class="layui-input-inline w100">
+                        <select name="home[meun][by]" lay-filter="">
+                            <option value="">排序依据</option>
+                            <option value="sort"{if$conch['home']['meun']['by']=='sort'} selected{/if}>序号</option>
+                            <option value="id"{if$conch['home']['meun']['by']=='id'} selected{/if}>编号</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <select name="home[meun][order]" lay-filter="">
+                           <option value="">排列顺序</option>
+                            <option value="asc"{if$conch['home']['meun']['order']=='asc'} selected{/if}>正序</option>
+                            <option value="desc"{if$conch['home']['meun']['order']=='desc'} selected{/if}>倒序</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类数量</label>
+                    <div class="layui-input-inline w60">
+                        <input type="text" name="home[meun][num]" value="{$conch['home']['meun']['num']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">分类显示数量</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">推荐模块</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块状态</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[hots][btn]" {if condition="$conch['home']['hots']['btn'] eq 1"}checked{/if} value="{$conch['home']['hots']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块标题</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="home[hots][title]" value="{$conch['home']['hots']['title']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">推荐模块显示的标题</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">推荐设置</label>
+                    <div class="layui-input-inline">
+                        <select name="home[hots][level]">
+                            <option value="">选择推荐</option>
+                            <option value="9" {if$conch['home']['hots']['level']==9}selected {/if}>推荐9</option>
+                            <option value="1" {if$conch['home']['hots']['level']==1}selected {/if}>推荐1</option>
+                            <option value="2" {if$conch['home']['hots']['level']==2}selected {/if}>推荐2</option>
+                            <option value="3" {if$conch['home']['hots']['level']==3}selected {/if}>推荐3</option>
+                            <option value="4" {if$conch['home']['hots']['level']==4}selected {/if}>推荐4</option>
+                            <option value="5" {if$conch['home']['hots']['level']==5}selected {/if}>推荐5</option>
+                            <option value="6" {if$conch['home']['hots']['level']==6}selected {/if}>推荐6</option>
+                            <option value="7" {if$conch['home']['hots']['level']==7}selected {/if}>推荐7</option>
+                            <option value="8" {if$conch['home']['hots']['level']==8}selected {/if}>推荐8</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">设置推荐值</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序设置</label>
+                    <div class="layui-input-inline w100">
+                        <select name="home[hots][by]">
+                            <option value="">排序依据</option>
+                            <option value="time" {if$conch['home']['hots']['by']=='time'}selected{/if}>更新时间</option>
+                            <option value="time_add" {if$conch['home']['hots']['by']=='time_add'}selected{/if}>添加时间</option>
+                            <option value="score" {if$conch['home']['hots']['by']=='score'}selected{/if}>评分排序</option>
+                            <option value="hits" {if$conch['home']['hots']['by']=='hits'}selected{/if}>总点击量</option>
+                            <option value="hits_month" {if$conch['home']['hots']['by']=='hits_month'}selected{/if}>月点击量</option>
+                            <option value="hits_week" {if$conch['home']['hots']['by']=='hits_week'}selected{/if}>周点击量</option>
+                            <option value="hits_day" {if$conch['home']['hots']['by']=='hits_day'}selected{/if}>日点击量</option>
+                            <option value="up" {if$conch['home']['hots']['by']=='up'}selected{/if}>点赞最多</option>
+                            <option value="id" {if$conch['home']['hots']['by']=='id'}selected{/if}>编号排序</option>
+                            <option value="rnd" {if$conch['home']['hots']['by']=='rnd'}selected{/if}>随机排序</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <select name="home[hots][order]">
+                            <option value="">排列顺序</option>
+                            <option value="asc"{if$conch['home']['hots']['order']=='asc'} selected{/if}>正序</option>
+                            <option value="desc"{if$conch['home']['hots']['order']=='desc'} selected{/if}>倒序</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">显示设置</label>
+                    <div class="layui-input-inline">
+                        <select name="home[hots][style]" lay-filter="vod-style">
+                            <option value="">数据显示样式</option>
+                            <option value="a" {if condition="$conch['home']['hots']['style'] eq 'a'"}selected {/if}>6个</option>
+                            <option value="b" {if condition="$conch['home']['hots']['style'] eq 'b'"}selected {/if}>12个</option>
+                            <option value="c" {if condition="$conch['home']['hots']['style'] eq 'c'"}selected {/if}>滑动</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">推荐模块数据显示的样式</div>
+                </div>
+                <div class="layui-form-item vod-style-filer" {if condition="$conch['home']['hots']['style'] neq 'c'"}style="display:none;"{/if}>
+                    <label class="layui-form-label">滑动数量</label>
+                    <div class="layui-input-inline w60">
+                        <input type="text" name="home[hots][num]" value="{$conch['home']['hots']['num']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">推荐模块数据显示数量</div>
+                </div>
+                <div class="layui-form-item vod-style-big" {if condition="$conch['home']['hots']['style'] eq 'c'"}style="display:none;"{/if}>
+                    <label class="layui-form-label">首条封面大图</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[hots][big]" {if condition="$conch['home']['hots']['big'] eq 1"}checked{/if} value="{$conch['home']['hots']['big']}" lay-skin="switch" lay-filter="switchConch" lay-text="启用|禁用">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">启用后首条数据封面大图显示（部分模式下无效）</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">周更模块</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块状态</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[weeks][btn]" {if condition="$conch['home']['weeks']['btn'] eq 1"}checked{/if} value="{$conch['home']['weeks']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块标题</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="home[weeks][title]" value="{$conch['home']['weeks']['title']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">周更模块显示的标题</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序设置</label>
+                    <div class="layui-input-inline w100">
+                        <select name="home[weeks][by]">
+                            <option value="">排序依据</option>
+                            <option value="time" {if$conch['home']['weeks']['by']=='time'}selected{/if}>更新时间</option>
+                            <option value="time_add" {if$conch['home']['weeks']['by']=='time_add'}selected{/if}>添加时间</option>
+                            <option value="score" {if$conch['home']['weeks']['by']=='score'}selected{/if}>评分排序</option>
+                            <option value="hits" {if$conch['home']['weeks']['by']=='hits'}selected{/if}>总点击量</option>
+                            <option value="hits_month" {if$conch['home']['weeks']['by']=='hits_month'}selected{/if}>月点击量</option>
+                            <option value="hits_week" {if$conch['home']['weeks']['by']=='hits_week'}selected{/if}>周点击量</option>
+                            <option value="hits_day" {if$conch['home']['weeks']['by']=='hits_day'}selected{/if}>日点击量</option>
+                            <option value="up" {if$conch['home']['weeks']['by']=='up'}selected{/if}>点赞最多</option>
+                            <option value="id" {if$conch['home']['weeks']['by']=='id'}selected{/if}>编号排序</option>
+                            <option value="rnd" {if$conch['home']['weeks']['by']=='rnd'}selected{/if}>随机排序</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <select name="home[weeks][order]">
+                            <option value="">排列顺序</option>
+                            <option value="asc"{if$conch['home']['weeks']['order']=='asc'} selected{/if}>正序</option>
+                            <option value="desc"{if$conch['home']['weeks']['order']=='desc'} selected{/if}>倒序</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">显示数量</label>
+                    <div class="layui-input-inline w60">
+                        <input type="text" name="home[weeks][num]" value="{$conch['home']['weeks']['num']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">周更模块数据显示数量</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">分类列表</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块状态</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[vod][btn]" {if condition="$conch['home']['vod']['btn'] eq 1"}checked{/if} value="{$conch['home']['vod']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类标题</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="home[vod][title]" value="{$conch['home']['vod']['title']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">分类列表显示的标题前缀/留空不启用</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">指定分类</label>
+                    <div class="layui-input-inline conch-item">
+                        <input type="hidden" name="home[vod][id]" value="{$conch['home']['vod']['id']}"/>
+                        <select multiple="multiple" lay-filter="conch">
+                            {maccms:type order="asc" by="sort" id="vo" type="all" flag="vod"}
+                            <option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$conch['home']['vod']['id']))} selected{/if}>{$vo.type_name}</option>
+                            {/maccms:type}
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">选择显示的分类列表</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序设置</label>
+                    <div class="layui-input-inline w100">
+                        <select name="home[vod][by]">
+                            <option value="">排序依据</option>
+                            <option value="time" {if$conch['home']['vod']['by']=='time'}selected{/if}>更新时间</option>
+                            <option value="time_add" {if$conch['home']['vod']['by']=='time_add'}selected{/if}>添加时间</option>
+                            <option value="score" {if$conch['home']['vod']['by']=='score'}selected{/if}>评分排序</option>
+                            <option value="hits" {if$conch['home']['vod']['by']=='hits'}selected{/if}>总点击量</option>
+                            <option value="hits_month" {if$conch['home']['vod']['by']=='hits_month'}selected{/if}>月点击量</option>
+                            <option value="hits_week" {if$conch['home']['vod']['by']=='hits_week'}selected{/if}>周点击量</option>
+                            <option value="hits_day" {if$conch['home']['vod']['by']=='hits_day'}selected{/if}>日点击量</option>
+                            <option value="up" {if$conch['home']['vod']['by']=='up'}selected{/if}>点赞最多</option>
+                            <option value="id" {if$conch['home']['vod']['by']=='id'}selected{/if}>编号排序</option>
+                            <option value="rnd" {if$conch['home']['vod']['by']=='rnd'}selected{/if}>随机排序</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <select name="home[vod][order]">
+                            <option value="">排列顺序</option>
+                            <option value="asc"{if$conch['home']['vod']['order']=='asc'} selected{/if}>正序</option>
+                            <option value="desc"{if$conch['home']['vod']['order']=='desc'} selected{/if}>倒序</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item line">
+                    <label class="layui-form-label">显示设置</label>
+                    <div class="layui-input-inline">
+                        <div class="layui-input" style="line-height: 36px;cursor: not-allowed;">默认显示</div>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <div class="layui-input" style="line-height: 36px;cursor: not-allowed;">显示6个</div>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">不选择则显示默认数量</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline conch-item">
+                        <input type="hidden" name="home[vod][v12]" value="{$conch['home']['vod']['v12']}"/>
+                        <select multiple="multiple" lay-filter="conch">
+                            {maccms:type order="asc" by="sort" id="vo" type="all" flag="vod"}
+                            <option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$conch['home']['vod']['v12']))} selected{/if}>{$vo.type_name}</option>
+                            {/maccms:type}
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <div class="layui-input" style="line-height: 36px;cursor: not-allowed;">显示12个</div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline conch-item">
+                        <input type="hidden" name="home[vod][vn]" value="{$conch['home']['vod']['vn']}"/>
+                        <select multiple="multiple" lay-filter="conch">
+                            {maccms:type order="asc" by="sort" id="vo" type="all" flag="vod"}
+                            <option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$conch['home']['vod']['vn']))} selected{/if}>{$vo.type_name}</option>
+                            {/maccms:type}
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <div class="layui-input" style="line-height: 36px;cursor: not-allowed;">滑动显示</div>
+                    </div>
+                    <div class="layui-input-inline w50">
+                        <input type="text" name="home[vod][num]" value="{$conch['home']['vod']['num']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">个</div>
+                </div>
+                <div class="layui-form-item line">
+                    <label class="layui-form-label">首条封面大图</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[vod][big]" {if condition="$conch['home']['vod']['big'] eq 1"}checked{/if} value="{$conch['home']['vod']['big']}" lay-skin="switch" lay-filter="switchConch" lay-text="启用|禁用">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">启用后首条数据封面大图显示（部分模式下无效）</div>
+                </div>
+                <div class="layui-form-item switchConch-filer" {if$conch['home']['vod']['big']==0}style="display:none;"{/if}>
+                    <label class="layui-form-label">指定分类</label>
+                    <div class="layui-input-inline conch-item">
+                        <input type="hidden" name="home[vod][big_id]" value="{$conch['home']['vod']['big_id']}"/>
+                        <select multiple="multiple" lay-filter="conch">
+                            {maccms:type order="asc" by="sort" id="vo" type="all" flag="vod"}
+                            <option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$conch['home']['vod']['big_id']))} selected{/if}>{$vo.type_name}</option>
+                            {/maccms:type}
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">选择显示封面大图的分类</div>
+                </div>
+                <div class="layui-form-item line">
+                    <label class="layui-form-label">分类排行</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[vod][rank]" {if condition="$conch['home']['vod']['rank'] eq 1"}checked{/if} value="{$conch['home']['vod']['rank']}" lay-skin="switch" lay-filter="switchConch" lay-text="启用|禁用">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">禁用后不显示对应模块和内容</div>
+                </div>
+                <div class="switchConch-filer" {if$conch['home']['vod']['rank']==0}style="display:none;"{/if}>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">指定分类</label>
+                    <div class="layui-input-inline conch-item">
+                        <input type="hidden" name="home[vod][rank_id]" value="{$conch['home']['vod']['rank_id']}"/>
+                        <select multiple="multiple" lay-filter="conch">
+                            {maccms:type order="asc" by="sort" id="vo" type="all" flag="vod"}
+                            <option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$conch['home']['vod']['rank_id']))} selected{/if}>{$vo.type_name}</option>
+                            {/maccms:type}
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">选择显示分类排行的分类</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排行设置</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="home[vod][rank_title]" value="{$conch['home']['vod']['rank_title']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">分类排行显示的标题后缀</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排行依据</label>
+                    <div class="layui-input-inline">
+                        <select name="home[vod][rank_by]">
+                            <option value="">排行依据</option>
+                            <option value="score" {if$conch['home']['vod']['rank_by']=='score'}selected{/if}>评分排序</option>
+                            <option value="hits" {if$conch['home']['vod']['rank_by']=='hits'}selected{/if}>总点击量</option>
+                            <option value="hits_month" {if$conch['home']['vod']['rank_by']=='hits_month'}selected{/if}>月点击量</option>
+                            <option value="hits_week" {if$conch['home']['vod']['rank_by']=='hits_week'}selected{/if}>周点击量</option>
+                            <option value="hits_day" {if$conch['home']['vod']['rank_by']=='hits_day'}selected{/if}>日点击量</option>
+                            <option value="up" {if$conch['home']['vod']['rank_by']=='up'}selected{/if}>点赞最多</option>
+                        </select>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">演员模块</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块状态</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[actor][btn]" {if condition="$conch['home']['actor']['btn'] eq 1"}checked{/if} value="{$conch['home']['actor']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块标题</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="home[actor][title]" value="{$conch['home']['actor']['title']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">演员模块显示的标题</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">演员推荐</label>
+                    <div class="layui-input-inline">
+                        <select name="home[actor][level]">
+                            <option value="">选择推荐</option>
+                            <option value="9" {if$conch['home']['actor']['level']==9}selected {/if}>推荐9</option>
+                            <option value="1" {if$conch['home']['actor']['level']==1}selected {/if}>推荐1</option>
+                            <option value="2" {if$conch['home']['actor']['level']==2}selected {/if}>推荐2</option>
+                            <option value="3" {if$conch['home']['actor']['level']==3}selected {/if}>推荐3</option>
+                            <option value="4" {if$conch['home']['actor']['level']==4}selected {/if}>推荐4</option>
+                            <option value="5" {if$conch['home']['actor']['level']==5}selected {/if}>推荐5</option>
+                            <option value="6" {if$conch['home']['actor']['level']==6}selected {/if}>推荐6</option>
+                            <option value="7" {if$conch['home']['actor']['level']==7}selected {/if}>推荐7</option>
+                            <option value="8" {if$conch['home']['actor']['level']==8}selected {/if}>推荐8</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">设置推荐值</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">演员排列</label>
+                    <div class="layui-input-inline w100">
+                        <select name="home[actor][by]">
+                            <option value="">排序依据</option>
+                            <option value="time" {if$conch['home']['actor']['by']=='time'}selected{/if}>更新时间</option>
+                            <option value="time_add" {if$conch['home']['actor']['by']=='time_add'}selected{/if}>添加时间</option>
+                            <option value="hits" {if$conch['home']['actor']['by']=='hits'}selected{/if}>总点击量</option>
+                            <option value="hits_month" {if$conch['home']['actor']['by']=='hits_month'}selected{/if}>月点击量</option>
+                            <option value="hits_week" {if$conch['home']['actor']['by']=='hits_week'}selected{/if}>周点击量</option>
+                            <option value="hits_day" {if$conch['home']['actor']['by']=='hits_day'}selected{/if}>日点击量</option>
+                            <option value="up" {if$conch['home']['actor']['by']=='up'}selected{/if}>点赞最多</option>
+                            <option value="id" {if$conch['home']['actor']['by']=='id'}selected{/if}>编号排序</option>
+                            <option value="rnd" {if$conch['home']['actor']['by']=='rnd'}selected{/if}>随机排序</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <select name="home[actor][order]">
+                            <option value="">排列顺序</option>
+                            <option value="asc"{if$conch['home']['actor']['order']=='asc'} selected{/if}>正序</option>
+                            <option value="desc"{if$conch['home']['actor']['order']=='desc'} selected{/if}>倒序</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">作品排列</label>
+                    <div class="layui-input-inline w100">
+                        <select name="home[actor][vod_by]">
+                            <option value="">排序依据</option>
+                            <option value="time" {if$conch['home']['actor']['vod_by']=='time'}selected{/if}>更新时间</option>
+                            <option value="time_add" {if$conch['home']['actor']['vod_by']=='time_add'}selected{/if}>添加时间</option>
+                            <option value="score" {if$conch['home']['actor']['vod_by']=='score'}selected{/if}>评分排序</option>
+                            <option value="hits" {if$conch['home']['actor']['vod_by']=='hits'}selected{/if}>总点击量</option>
+                            <option value="hits_month" {if$conch['home']['actor']['vod_by']=='hits_month'}selected{/if}>月点击量</option>
+                            <option value="hits_week" {if$conch['home']['actor']['vod_by']=='hits_week'}selected{/if}>周点击量</option>
+                            <option value="hits_day" {if$conch['home']['actor']['vod_by']=='hits_day'}selected{/if}>日点击量</option>
+                            <option value="up" {if$conch['home']['actor']['vod_by']=='up'}selected{/if}>点赞最多</option>
+                            <option value="id" {if$conch['home']['actor']['vod_by']=='id'}selected{/if}>编号排序</option>
+                            <option value="rnd" {if$conch['home']['actor']['vod_by']=='rnd'}selected{/if}>随机排序</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <select name="home[actor][vod_order]">
+                            <option value="">排列顺序</option>
+                            <option value="asc"{if$conch['home']['actor']['vod_order']=='asc'} selected{/if}>正序</option>
+                            <option value="desc"{if$conch['home']['actor']['vod_order']=='desc'} selected{/if}>倒序</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">作品数量</label>
+                    <div class="layui-input-inline w60">
+                        <input type="text" name="home[actor][vod_num]" value="{$conch['home']['actor']['vod_num']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">演员作品数据显示数量</div>
+                </div>  
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">专题模块</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块状态</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[topic][btn]" {if condition="$conch['home']['topic']['btn'] eq 1"}checked{/if} value="{$conch['home']['topic']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块标题</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="home[topic][title]" value="{$conch['home']['topic']['title']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">专题模块显示的标题</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序设置</label>
+                    <div class="layui-input-inline w100">
+                        <select name="home[topic][by]">
+                            <option value="">排序依据</option>
+                            <option value="time" {if$conch['home']['topic']['by']=='time'}selected{/if}>更新时间</option>
+                            <option value="time_add" {if$conch['home']['topic']['by']=='time_add'}selected{/if}>添加时间</option>
+                            <option value="hits" {if$conch['home']['topic']['by']=='hits'}selected{/if}>总点击量</option>
+                            <option value="hits_month" {if$conch['home']['topic']['by']=='hits_month'}selected{/if}>月点击量</option>
+                            <option value="hits_week" {if$conch['home']['topic']['by']=='hits_week'}selected{/if}>周点击量</option>
+                            <option value="hits_day" {if$conch['home']['topic']['by']=='hits_day'}selected{/if}>日点击量</option>
+                            <option value="up" {if$conch['home']['topic']['by']=='up'}selected{/if}>点赞最多</option>
+                            <option value="id" {if$conch['home']['topic']['by']=='id'}selected{/if}>编号排序</option>
+                            <option value="rnd" {if$conch['home']['topic']['by']=='rnd'}selected{/if}>随机排序</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <select name="home[topic][order]">
+                            <option value="">排列顺序</option>
+                            <option value="asc"{if$conch['home']['topic']['order']=='asc'} selected{/if}>正序</option>
+                            <option value="desc"{if$conch['home']['topic']['order']=='desc'} selected{/if}>倒序</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">显示数量</label>
+                    <div class="layui-input-inline">
+                        <select name="home[topic][num]">
+                            <option value="4" {if condition="$conch['home']['topic']['num'] eq '4'"}selected {/if}>4个</option>
+                            <option value="8" {if condition="$conch['home']['topic']['num'] eq '8'"}selected {/if}>8个</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">专题模块数据显示数量</div>
+                </div>    
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">文章模块</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块状态</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[art][btn]" {if condition="$conch['home']['art']['btn'] eq 1"}checked{/if} value="{$conch['home']['art']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块标题</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="home[art][title]" value="{$conch['home']['art']['title']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">文章模块显示的标题</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序设置</label>
+                    <div class="layui-input-inline w100">
+                        <select name="home[art][by]">
+                            <option value="">排序依据</option>
+                            <option value="time" {if$conch['home']['art']['by']=='time'}selected{/if}>更新时间</option>
+                            <option value="time_add" {if$conch['home']['art']['by']=='time_add'}selected{/if}>添加时间</option>
+                            <option value="hits" {if$conch['home']['art']['by']=='hits'}selected{/if}>总点击量</option>
+                            <option value="hits_month" {if$conch['home']['art']['by']=='hits_month'}selected{/if}>月点击量</option>
+                            <option value="hits_week" {if$conch['home']['art']['by']=='hits_week'}selected{/if}>周点击量</option>
+                            <option value="hits_day" {if$conch['home']['art']['by']=='hits_day'}selected{/if}>日点击量</option>
+                            <option value="up" {if$conch['home']['art']['by']=='up'}selected{/if}>点赞最多</option>
+                            <option value="id" {if$conch['home']['art']['by']=='id'}selected{/if}>编号排序</option>
+                            <option value="rnd" {if$conch['home']['art']['order']=='rnd'}selected{/if}>随机排序</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <select name="home[art][order]">
+                            <option value="">排列顺序</option>
+                            <option value="asc"{if$conch['home']['art']['order']=='asc'} selected{/if}>正序</option>
+                            <option value="desc"{if$conch['home']['art']['order']=='desc'} selected{/if}>倒序</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">显示数量</label>
+                    <div class="layui-input-inline">
+                        <select name="home[art][num]">
+                            <option value="6" {if condition="$conch['home']['art']['num'] eq '6'"}selected {/if}>6个</option>
+                            <option value="12" {if condition="$conch['home']['art']['num'] eq '12'"}selected {/if}>12个</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">文章模块数据显示数量</div>
+                </div>
+                <!--div class="layui-form-item">
+                    <label class="layui-form-label">首条封面大图</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[art][big]" {if condition="$conch['home']['art']['big'] eq 1"}checked{/if} value="{$conch['home']['art']['big']}" lay-skin="switch" lay-filter="switchConch" lay-text="启用|禁用">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">启用后首条数据封面大图显示</div>
+                </div-->
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">友链模块</div>
+            <div class="layui-card-body" pad15="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块状态</label>
+                    <div class="layui-input-inline w60">
+                      <input type="checkbox" name="home[links][btn]" {if condition="$conch['home']['links']['btn'] eq 1"}checked{/if} value="{$conch['home']['links']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模块标题</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="home[links][title]" value="{$conch['home']['links']['title']}" class="layui-input">
+                        </div>
+                    <div class="layui-form-mid layui-word-aux">友链模块显示的标题</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序设置</label>
+                    <div class="layui-input-inline w100">
+                        <select name="home[links][by]" lay-filter="">
+                            <option value="">排序依据</option>
+                            <option value="sort"{if$conch['home']['links']['by']=='sort'} selected{/if}>序号</option>
+                            <option value="id"{if$conch['home']['links']['by']=='id'} selected{/if}>编号</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline w80">
+                        <select name="home[links][order]">
+                            <option value="">排列顺序</option>
+                            <option value="asc"{if$conch['home']['links']['order']=='asc'} selected{/if}>正序</option>
+                            <option value="desc"{if$conch['home']['links']['order']=='desc'} selected{/if}>倒序</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">显示数量</label>
+                    <div class="layui-input-inline w60">
+                        <input type="text" name="home[links][num]" value="{$conch['home']['links']['num']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">友链模块链接显示数量</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">友链申请</label>
+                    <div class="layui-input-inline w60">
+                        <input type="checkbox" name="home[links][apply]" {if condition="$conch['home']['links']['apply'] eq 1"}checked{/if} value="{$conch['home']['links']['apply']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">关闭后不显示友链申请按钮</div>
+                </div>
+                <div class="layui-form-item switchConch-filer" {if$conch['home']['links']['apply']==0}style="display:none;"{/if}>
+                    <label class="layui-form-label">申请链接</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="home[links][url]" value="{$conch['home']['links']['url']}" class="layui-input">
+                        </div>
+                    <div class="layui-form-mid layui-word-aux">申请友链的联系方式（如QQ链接）</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

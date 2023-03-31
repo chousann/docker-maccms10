@@ -1,0 +1,56 @@
+{if condition="$obj.vod_copyright eq 1 && $GLOBALS['config']['app']['copyright_status'] eq 1 "}{else}
+{notempty name="obj.vod_down_list"}
+<div class="hl-row-box hl-rb-downlist hl-tabs-item clearfix" id="downlist">
+    <div class="hl-rb-head clearfix">
+        <h3 class="hl-rb-title">下载列表</h3>
+        <a class="hl-sort-btn hl-rb-more hl-text-muted hl-pull-right" href="javascript:void(0)"><i class="iconfont hl-icon-daoxu"></i>&nbsp;<span>倒序</span></a>
+    </div>
+    <div class="hl-play-source hl-hidden">
+         <div class="hl-plays-wrap hl-tabs-swiper">
+            <div class="hl-plays-from hl-tabs swiper-wrapper clearfix">
+                {maccms:foreach name="obj.vod_down_list" id="vo"}
+                <a class="hl-tabs-btn hl-slide-swiper{if$maccms.aid==16&&$vo.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} active{elseif$maccms.aid!=16&&$key==1} active{/if}" href="javascript:void(0);" alt="{$vo.player_info.show}"><i class="iconfont hl-icon-xiazai"></i>&nbsp;{$vo.player_info.show}</a>{/maccms:foreach}
+            </div>
+        </div>
+        <script src="{$maccms.path_tpl}asset/js/parts/down.js"></script>
+        {maccms:foreach name="obj.vod_down_list" id="vo"}
+        <div class="hl-tabs-box hl-fadeIn" style="display: {if$maccms.aid==16&&$vo.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']}block{elseif$maccms.aid!=16&&$key==1}block{else}none{/if};">
+            <div class="hl-list-wrap">
+                <div class="conch-scrollbar hl-downs-scrollbar" style="max-height: 216px;overflow: hidden;position: relative;">
+                    <div class="swiper-wrapper">
+                        <ul class="swiper-slide hl-downs-list hl-sort-list clearfix" id="hl-downs-list" style="height: auto;">
+                            {maccms:foreach name="vo.urls" id="vo2" key="key2"}
+                            <li{if$param.sid==$vo.sid&&$param.nid==$vo2.nid} class="active"{/if}>
+                                <div class="hl-downs-box">
+                                    <span class="text hl-lc-1">
+                                        <input type="checkbox" name="down_url_list_{$key}" class="conch-input down_url" value="{$vo2.url}" file_name="{$vo2.name}"/>
+                                        <a class="down-name" href="{:mac_url_vod_down($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}"><em class="filename">{$vo2.name}</em><em class="filesize"></em></a>
+                                    </span>
+                                    <input type="text" class="url-input hl-bg-subs hl-text-muted hl-hidden-xs hl-lc-1" value="{$vo2.url}" onclick="this.select()"/>
+                                    <span class="btns">
+                                        <a class="hl-text-white thunder_down down-xl" href="javascript:void(0)">迅雷下载</xiaomi>
+                                        <a class="hl-text-white xiaomi down-xm hl-hidden-xs" href="javascript:void(0)">小米路由</xiaomi>
+                                        <a class="hl-text-white down-url hl-hidden-xs" href="{$vo2.url}">本地下载</a>
+                                        <a class="hl-text-white down-copy conch-copy" href="javascript:void(0)" data-clipboard-action="copy" data-clipboard-text="{$vo2.url}">复制链接</a>
+                                    </span>
+                                </div>
+                            </li>
+                            {/maccms:foreach}
+                        </ul>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div> 
+                <div class="hl-downs-tools">
+                    <input id="allcheck{$key}" class="conch-input" type="checkbox" name="checkall"><em>全选</em><a rel="nofollow" href="javascript:void(0);" target="_self" class="thunder_down_all">迅雷批量下载</a>
+                    <span class="tips hl-hide-sm"><em class="hl-text-muted">没有迅雷？点击</em><a rel="nofollow" href="https://dl.xunlei.com/" target="_blank">下载 &gt;</a></span>
+                    <span class="tips hl-hidden-xs"><em class="hl-text-muted">没有安装迅雷？点击</em><a rel="nofollow" href="https://dl.xunlei.com/" target="_blank">这里下载最新版迅雷 &gt;</a></span>
+                </div>
+                <div class="hl-downs-tips hl-bg-subs hl-text-subs">
+                    下载帮助：<span class="hl-text-muted">{$vo.player_info.tip}</span>
+                </div>
+            </div>
+        </div>
+        {/maccms:foreach}
+    </div>
+</div>
+{/notempty}{/if}

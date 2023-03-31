@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="public/meta"}
+	<title>微信充值 - 个人中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="微信充值 - 个人中心">
+	<meta name="description" content="微信充值 - 个人中心">
+	{include file="public/include"}
+</head>
+<body id="conch-member">
+{include file="public/head"}
+<div class="conch-header">
+    <div class="conch-headwrap conch-hasone{if$conch['theme']['nav']['has']==1} conch-hasconch{/if} hl-hide-sm">
+        <div class="hl-mob-nav">
+            <a href="javascript:MAC.GoBack()" class="hl-pull-left left"><i class="iconfont hl-icon-jiantouzuo"></i></a>
+            <a href="javascript:void(0)" class="hl-pull-right right"></a>
+            <span class="hl-mob-title hl-text-site hl-lc-1">微信充值</span>
+        </div>
+    </div>
+</div>
+<div class="conch-content conch-member">
+    <div class="conch-ctwrap">
+        <div class="hl-ctwrap-item">
+            <div class="container">
+                <div class="hl-row-box clearfix">
+                    <div class="row">               
+                        <div id="left" class="hl-left-menus hl-col-xs-12 hl-col-sm-30w hl-col-lg-3 hl-hidden-xs">
+                            {include file="user/leftmenu"}
+                        </div>
+                        <div id="right" class="hl-right-content hl-col-xs-12 hl-col-sm-70w hl-col-lg-9">
+                            <div class="hl-cont-right">
+                                <div class="hl-rb-head hl-hidden-xs clearfix">
+                                    <h2 class="hl-rb-title">微信充值</h2>
+                                </div>
+                                <div class="hl-cont-list">
+                                    <div class="hl-list-wrap">
+                                        <form method="post" target="_blank" action="{:url('user/gopay')}">
+                                        <input type="hidden" name="order_id" value="{$info.order_id}">
+                                        <input type="hidden" name="order_code" value="{$info.order_code}">
+                                        <p><span>订单编号</span>{$order.order_code}</p>
+                                        <p><span>订单金额</span>{$order.order_price}元</p>
+                                        <p class="hl-pay-ewm hl-text-center"><img src="{:url('user/qrcode')}?data={$payment.code_url|urlencode}" width="150" height="150"/></p>
+                                        <p class="hl-pay-tips hl-text-center">打开微信，扫码支付</p>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+	function check(){
+		$.get("{:url('user/order_info')}" + '?order_id={$order.order_id}', function(data){
+			if(data.info.order_status == 1){
+				alert('支付完成，即将跳转到会员中心');
+				window.location.href = "{:url('user/index')}";
+			}
+		});
+	}
+	$(function(){
+		setInterval(function(){check()}, 5000);  //5秒查询一次支付是否成功
+	})
+</script>
+</div>
+{include file="public/foot"}
+</body>
+</html>

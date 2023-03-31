@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+{include file="public/meta"} 
+{include file="public/seos"} 
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div id="conch-content" class="conch-content">
+    <div class="conch-ctwrap conch-brwrap-art">
+        <div class="container">
+            {include file="ads/ads-all"}
+            {include file="widget/crumbs"}
+            <div class="hl-col-xs-12 hl-col-md-70w hl-col-lg-9">
+                <div class="hl-row-box clearfix">
+                    <div class="hl-rb-art hl-marg-right50 clearfix">
+                        <div class="hl-rb-head hl-head-slide clearfix">
+                            <h2 class="hl-rb-title">{$obj.type_name}</h2>
+                            <div class="hl-rb-type-child hl-rb-type-slide hl-tabs-swiper">
+                                <span class="swiper-wrapper">
+                                {maccms:type mid="2" type="all" order="asc" by="sort"}       
+                                    <a href="{:mac_url_type($vo)}" class="hl-text-site hl-slide-swiper{if$vo.type_id==$GLOBALS['type_id']} hl-hide{/if}">{$vo.type_name}</a>
+                                {/maccms:type}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="hl-list-wrap">
+                                <ul class="hl-art-list clearfix">
+                                {maccms:art num="'.$conch['art']['type']['num'].'" paging="yes" half="3" type="current" pageurl="art/type" order="'.$conch['art']['type']['order'].'" by="'.$conch['art']['type']['by'].'"}
+                                    <li class="hl-list-item hl-col-xs-12">
+                                    {include file="widget/art-item"}
+                                    </li>
+                                {/maccms:art}
+                                </ul>
+                                {include file="widget/page"}
+                                {empty name="$__PAGING__.record_total"}
+                                <div class="hl-empty-wrap hl-text-center hl-col-xs-12">
+                                    <i class="iconfont hl-icon-wushuju"></i><p>暂无数据</p>
+                                </div>
+                                {/empty}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hl-marg-right50">
+                    {include file="ads/ads-sw"}
+                    </div>
+                </div>
+            </div>
+            <div class="hl-col-xs-12 hl-col-md-30w hl-col-lg-3">
+                <div class="hl-row-box clearfix">
+                    <div class="hl-rb-side clearfix">
+                        {include file="module/artside"}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('.hl-total').html('{$__PAGING__.record_total}');
+    </script>
+</div>  
+{include file="public/foot"}
+</body>
+</html>

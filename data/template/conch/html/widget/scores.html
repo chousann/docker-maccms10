@@ -1,0 +1,72 @@
+<div class="hl-score-wrap hl-half-items clearfix">
+    {if$maccms.aid==14}
+    <div class="hl-score-info hl-hide-sm clearfix">
+        <div class="hl-score-nums hl-text-subs">
+            {if$obj.vod_score!=0}<span>{$obj.vod_score}</span>{else}<span class="wu"><i class="iconfont hl-icon-nanguo"></i></span>{/if}
+        </div>
+        <div class="hl-score-title">
+            <span class="hl-text-site">网友评分</span>
+            <div class="rating-sm" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-score="{$obj.vod_score/2|ceil}">
+                {if$obj.vod_score!=0}
+                <ul class="rating-s">
+                    <li class="one  {if condition="$obj.vod_score gt 0"}current active-m{/if}{if condition="$obj.vod_score gt 1"} active{/if}" title="很差" val="1">很差</li>
+                    <li class="two  {if condition="$obj.vod_score gt 2"}current active-m{/if}{if condition="$obj.vod_score gt 3"} active{/if}" title="较差" val="2">较差</li>
+                    <li class="three {if condition="$obj.vod_score gt 4"}current active-m{/if}{if condition="$obj.vod_score gt 5"} active{/if}" title="还行" val="3">还行</li>
+                    <li class="four {if condition="$obj.vod_score gt 6"}active-m{/if}{if condition="$obj.vod_score gt 7"} active{/if}" title="推荐" val="4">推荐</li>
+                    <li class="five {if condition="$obj.vod_score gt 8"}active-m{/if}{if condition="$obj.vod_score gt 9"} active{/if}" title="力荐" val="5">力荐</li>
+                </ul>
+                {else}
+                <div class="list-tips hl-text-muted">{if condition="$obj.vod_score eq 0"/}暂无评分{/if}</div>
+                {/if}
+            </div>
+        </div>
+        {if$obj.vod_douban_score!=0}
+        <span class="hl-douban-score hl-pull-right"><em class="db">豆</em><em class="score">{$obj.vod_douban_score}</em></span>
+        {/if}
+        <span class="hl-score-data hl-text-muted hl-pull-right">{$obj.vod_score_num}次评分</span>
+    </div>
+    {/if}
+    <div class="hl-bg-site hl-half-alert hl-half-y100">
+        <div class="hl-score-info clearfix">
+            <div class="hl-score-nums hl-text-subs">
+                {if$obj.vod_score!=0}<span>{$obj.vod_score}</span>{else}<span class="wu"><i class="iconfont hl-icon-nanguo"></i></span>{/if}
+            </div>
+            <div class="hl-score-title">
+                <span class="hl-text-site">网友评分</span>
+                <div class="rating-sm" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-score="{$obj.vod_score/2|ceil}">
+                    {if$obj.vod_score!=0}
+                    <ul class="rating-s">
+                        <li class="one  {if condition="$obj.vod_score gt 0"}current active-m{/if}{if condition="$obj.vod_score gt 1"} active{/if}" title="很差" val="1">很差</li>
+                        <li class="two  {if condition="$obj.vod_score gt 2"}current active-m{/if}{if condition="$obj.vod_score gt 3"} active{/if}" title="较差" val="2">较差</li>
+                        <li class="three {if condition="$obj.vod_score gt 4"}current active-m{/if}{if condition="$obj.vod_score gt 5"} active{/if}" title="还行" val="3">还行</li>
+                        <li class="four {if condition="$obj.vod_score gt 6"}active-m{/if}{if condition="$obj.vod_score gt 7"} active{/if}" title="推荐" val="4">推荐</li>
+                        <li class="five {if condition="$obj.vod_score gt 8"}active-m{/if}{if condition="$obj.vod_score gt 9"} active{/if}" title="力荐" val="5">力荐</li>
+                    </ul>
+                    {else}
+                    <div class="list-tips hl-text-muted">{if condition="$obj.vod_score eq 0"/}暂无评分{/if}</div>
+                    {/if}
+                </div>
+            </div>
+            {if$obj.vod_douban_score!=0}
+            <span class="hl-douban-score hl-pull-right"><em class="db">豆</em><em class="score">{$obj.vod_douban_score}</em></span>
+            {/if}
+            <span class="hl-score-data hl-text-muted hl-pull-right">{$obj.vod_score_num}次评分</span>
+        </div>
+        <div class="hl-score-rating">
+            <div id="rating" class="rating-list" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-score="{$obj.vod_score/2|ceil}">
+                <span class="label-top hl-hide-sm hl-text-muted">给影片打分</span>
+                <span class="label-top hl-hide-sm">《{$obj.vod_name}》</span>
+                <ul class="rating rating-star">
+                    <li class="big-star one" title="很差" val="1">很差</li>
+                    <li class="big-star two" title="较差" val="2">较差</li>
+                    <li class="big-star three" title="还行" val="3">还行</li>
+                    <li class="big-star four" title="推荐" val="4">推荐</li>
+                    <li class="big-star five" title="力荐" val="5">力荐</li>
+                </ul>
+                <span id="ratewords" class="label-list hl-text-muted hl-hidden-xs">我也要给影片打分</span>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="{$maccms.path_tpl}asset/js/parts/qireobj.js"></script>
+<script type="text/javascript" src="{$maccms.path_tpl}asset/js/parts/gold.js"></script>
+</div>

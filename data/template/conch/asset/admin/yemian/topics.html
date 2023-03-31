@@ -1,0 +1,67 @@
+<div class="layui-tab-item">
+    <div class="layui-collapse">
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">专题首页设置</h2>
+            <div class="layui-colla-content layui-show">
+            <div class="layui-form-item">
+                <label class="layui-form-label">列表标题</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="topic[index][title]" value="{$conch['topic']['index']['title']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">专题列表显示的标题</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline w100">
+                    <select name="topic[index][by]">
+                        <option value="">排序依据</option>
+                        <option value="time" {if$conch['topic']['index']['by']=='time'}selected{/if}>更新时间</option>
+                        <option value="time_add" {if$conch['topic']['index']['by']=='time_add'}selected{/if}>添加时间</option>
+                        <option value="score" {if$conch['topic']['index']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['topic']['index']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['topic']['index']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['topic']['index']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['topic']['index']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['topic']['index']['by']=='up'}selected{/if}>点赞最多</option>
+                        <option value="id" {if$conch['topic']['index']['by']=='id'}selected{/if}>编号排序</option>
+                        <option value="rnd" {if$conch['topic']['index']['by']=='rnd'}selected{/if}>随机排序</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline w80">
+                    <select name="topic[index][order]">
+                        <option value="">排列顺序</option>
+                        <option value="asc"{if$conch['topic']['index']['order']=='asc'} selected{/if}>正序</option>
+                        <option value="desc"{if$conch['topic']['index']['order']=='desc'} selected{/if}>倒序</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">翻页数量</label>
+                <div class="layui-input-inline w60">
+                    <input type="text" name="topic[index][num]" value="{$conch['topic']['index']['num']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                </div>
+                <div class="layui-form-mid layui-word-aux">专题页面每页显示的数量</div>
+            </div>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">专题详情页设置</h2>
+            <div class="layui-colla-content">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模糊背景</label>
+                <div class="layui-input-inline w60">
+                  <input type="checkbox" name="topic[detail][bg]" {if condition="$conch['topic']['detail']['bg'] eq 1"}checked{/if} value="{$conch['topic']['detail']['bg']}" lay-skin="switch" lay-filter="switchConch" lay-text="启用|禁用">
+                </div>
+                <div class="layui-form-mid layui-word-aux">禁用后不显示内容的模糊背景</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">最新专题</label>
+                <div class="layui-input-inline w60">
+                  <input type="checkbox" name="topic[detail][new]" {if condition="$conch['topic']['detail']['new'] eq 1"}checked{/if} value="{$conch['topic']['detail']['new']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                </div>
+                <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{if$__PAGING__.page_total>1}
+<div class="hl-page-small hl-text-muted cleafix">
+    <div class="hl-page-total">
+        {$__PAGING__.page_current}&nbsp;/&nbsp;{$__PAGING__.page_total}页
+    </div>
+    <div class="hl-page-btns">
+        <a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}"{if$__PAGING__['page_current']==1} class="hl-disad"{/if}><i class="iconfont hl-icon-jiantouzuo"></i></a>
+        <a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}"{if$__PAGING__['page_current']==$__PAGING__.page_total} class="hl-disad"{/if}><i class="iconfont hl-icon-jiantouyou"></i></a>
+    </div>		
+</div>
+{/if}

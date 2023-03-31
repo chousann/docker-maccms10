@@ -1,0 +1,270 @@
+<div class="layui-tab-item">
+    <div class="layui-collapse">
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">文章页通用设置</h2>
+            <div class="layui-colla-content layui-show">
+            <fieldset class="layui-elem-field">
+            <legend>关联文章模块</legend>
+            <div class="layui-field-box">
+            <div class="layui-form-item">
+                <label class="layui-form-label">关联文章</label>
+                <div class="layui-input-inline w60">
+                  <input type="checkbox" name="art[rel][btn]" {if condition="$conch['art']['rel']['btn'] eq 1"}checked{/if} value="{$conch['art']['rel']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                </div>
+                <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容（无关联文章时显示默认文章）</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块标题一</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="art[rel][title1]" placeholder="名称" value="{$conch['art']['rel']['title1']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">关联文章显示的标题</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块标题二</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="art[rel][title2]" placeholder="名称" value="{$conch['art']['rel']['title2']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">默认文章显示的标题</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline w100">
+                    <select name="art[rel][by]">
+                        <option value="">排序依据</option>
+                        <option value="time" {if$conch['art']['rel']['by']=='time'}selected{/if}>更新时间</option>
+                        <option value="time_add" {if$conch['art']['rel']['by']=='time_add'}selected{/if}>添加时间</option>
+                        <option value="score" {if$conch['art']['rel']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['art']['rel']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['art']['rel']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['art']['rel']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['art']['rel']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['art']['rel']['by']=='up'}selected{/if}>点赞最多</option>
+                        <option value="id" {if$conch['art']['rel']['by']=='id'}selected{/if}>编号排序</option>
+                        <option value="rnd" {if$conch['art']['rel']['by']=='rnd'}selected{/if}>随机排序</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline w80">
+                    <select name="art[rel][order]">
+                        <option value="">排列顺序</option>
+                        <option value="asc"{if$conch['art']['rel']['order']=='asc'} selected{/if}>正序</option>
+                        <option value="desc"{if$conch['art']['rel']['order']=='desc'} selected{/if}>倒序</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+            <legend>侧栏列表模块</legend>
+            <div class="layui-field-box">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块标题</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="art[side][title]" placeholder="名称" value="{$conch['art']['side']['title']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">侧栏列表显示的标题</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline">
+                    <select name="art[side][by]">
+                        <option value="">排序依据</option>
+                        <option value="score" {if$conch['art']['side']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['art']['side']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['art']['side']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['art']['side']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['art']['side']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['art']['side']['by']=='up'}selected{/if}>点赞最多</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">显示数量</label>
+                <div class="layui-input-inline w60">
+                    <input type="text" name="art[side][num]" value="{$conch['art']['side']['num']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                </div>
+                <div class="layui-form-mid layui-word-aux">列表数据显示数量</div>
+            </div>
+            </div>
+            </fieldset>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">文章首页设置</h2>
+            <div class="layui-colla-content">
+            <fieldset class="layui-elem-field">
+            <legend>幻灯片设置</legend>
+            <div class="layui-field-box">
+            <div class="layui-form-item">
+                <label class="layui-form-label">幻灯状态</label>
+                <div class="layui-input-inline w60">
+                  <input type="checkbox" name="art[banner][btn]" {if condition="$conch['art']['banner']['btn'] eq 1"}checked{/if} value="{$conch['art']['banner']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                </div>
+                <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">推荐设置</label>
+                <div class="layui-input-inline">
+                    <select name="art[banner][level]">
+                        <option value="">选择推荐</option>
+                        <option value="9" {if$conch['art']['banner']['level']==9}selected {/if}>推荐9</option>
+                        <option value="1" {if$conch['art']['banner']['level']==1}selected {/if}>推荐1</option>
+                        <option value="2" {if$conch['art']['banner']['level']==2}selected {/if}>推荐2</option>
+                        <option value="3" {if$conch['art']['banner']['level']==3}selected {/if}>推荐3</option>
+                        <option value="4" {if$conch['art']['banner']['level']==4}selected {/if}>推荐4</option>
+                        <option value="5" {if$conch['art']['banner']['level']==5}selected {/if}>推荐5</option>
+                        <option value="6" {if$conch['art']['banner']['level']==6}selected {/if}>推荐6</option>
+                        <option value="7" {if$conch['art']['banner']['level']==7}selected {/if}>推荐7</option>
+                        <option value="8" {if$conch['art']['banner']['level']==8}selected {/if}>推荐8</option>
+                    </select>
+                </div>
+                <div class="layui-form-mid layui-word-aux">设置推荐值</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline w100">
+                    <select name="art[banner][by]">
+                        <option value="">排序依据</option>
+                        <option value="time" {if$conch['art']['banner']['by']=='time'}selected{/if}>更新时间</option>
+                        <option value="time_add" {if$conch['art']['banner']['by']=='time_add'}selected{/if}>添加时间</option>
+                        <option value="score" {if$conch['art']['banner']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['art']['banner']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['art']['banner']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['art']['banner']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['art']['banner']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['art']['banner']['by']=='up'}selected{/if}>点赞最多</option>
+                        <option value="id" {if$conch['art']['banner']['by']=='id'}selected{/if}>编号排序</option>
+                        <option value="rnd" {if$conch['art']['banner']['by']=='rnd'}selected{/if}>随机排序</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline w80">
+                    <select name="art[banner][order]">
+                        <option value="">排列顺序</option>
+                        <option value="asc"{if$conch['art']['banner']['order']=='asc'} selected{/if}>正序</option>
+                        <option value="desc"{if$conch['art']['banner']['order']=='desc'} selected{/if}>倒序</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">显示数量</label>
+                <div class="layui-input-inline w60">
+                    <input type="text" name="art[banner][num]" value="{$conch['art']['banner']['num']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                </div>
+                <div class="layui-form-mid layui-word-aux">幻灯片显示数量</div>
+            </div>
+            </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+            <legend>最近热播模块</legend>
+            <div class="layui-field-box">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块状态</label>
+                <div class="layui-input-inline w60">
+                  <input type="checkbox" name="art[hotvod][btn]" {if condition="$conch['art']['hotvod']['btn'] eq 1"}checked{/if} value="{$conch['art']['hotvod']['btn']}" lay-skin="switch" lay-filter="switchConch" lay-text="开启|关闭">
+                </div>
+                <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+            </div>
+            </div>
+            </fieldset>
+            <fieldset class="layui-elem-field">
+            <legend>文章列表模块</legend>
+            <div class="layui-field-box">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块标题</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="art[index][title]" value="{$conch['art']['index']['title']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">文章列表显示的标题</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline w100">
+                    <select name="art[index][by]">
+                        <option value="">排序依据</option>
+                        <option value="time" {if$conch['art']['index']['by']=='time'}selected{/if}>更新时间</option>
+                        <option value="time_add" {if$conch['art']['index']['by']=='time_add'}selected{/if}>添加时间</option>
+                        <option value="score" {if$conch['art']['index']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['art']['index']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['art']['index']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['art']['index']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['art']['index']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['art']['index']['by']=='up'}selected{/if}>点赞最多</option>
+                        <option value="id" {if$conch['art']['index']['by']=='id'}selected{/if}>编号排序</option>
+                        <option value="rnd" {if$conch['art']['index']['by']=='rnd'}selected{/if}>随机排序</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline w80">
+                    <select name="art[index][order]">
+                        <option value="">排列顺序</option>
+                        <option value="asc"{if$conch['art']['index']['order']=='asc'} selected{/if}>正序</option>
+                        <option value="desc"{if$conch['art']['index']['order']=='desc'} selected{/if}>倒序</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">显示数量</label>
+                <div class="layui-input-inline">
+                    <select name="art[index][num]">
+                       <option value="">显示数量</option>
+                        <option value="10"{if$conch['art']['index']['num']=='10'} selected{/if}>10个</option>
+                        <option value="20"{if$conch['art']['index']['num']=='20'} selected{/if}>20个</option>
+                        <option value="30"{if$conch['art']['index']['num']=='30'} selected{/if}>30个</option>
+                    </select>
+                </div>
+                <div class="layui-form-mid layui-word-aux">文章列表显示数量及每次加载数量</div>
+            </div>
+            </div>
+            </fieldset>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">文章分类页设置</h2>
+            <div class="layui-colla-content">
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序设置</label>
+                <div class="layui-input-inline w100">
+                    <select name="art[type][by]">
+                        <option value="">排序依据</option>
+                        <option value="time" {if$conch['art']['type']['by']=='time'}selected{/if}>更新时间</option>
+                        <option value="time_add" {if$conch['art']['type']['by']=='time_add'}selected{/if}>添加时间</option>
+                        <option value="score" {if$conch['art']['type']['by']=='score'}selected{/if}>评分排序</option>
+                        <option value="hits" {if$conch['art']['type']['by']=='hits'}selected{/if}>总点击量</option>
+                        <option value="hits_month" {if$conch['art']['type']['by']=='hits_month'}selected{/if}>月点击量</option>
+                        <option value="hits_week" {if$conch['art']['type']['by']=='hits_week'}selected{/if}>周点击量</option>
+                        <option value="hits_day" {if$conch['art']['type']['by']=='hits_day'}selected{/if}>日点击量</option>
+                        <option value="up" {if$conch['art']['type']['by']=='up'}selected{/if}>点赞最多</option>
+                        <option value="id" {if$conch['art']['type']['by']=='id'}selected{/if}>编号排序</option>
+                        <option value="rnd" {if$conch['art']['type']['by']=='rnd'}selected{/if}>随机排序</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline w80">
+                    <select name="art[type][order]">
+                        <option value="">排列顺序</option>
+                        <option value="asc"{if$conch['art']['type']['order']=='asc'} selected{/if}>正序</option>
+                        <option value="desc"{if$conch['art']['type']['order']=='desc'} selected{/if}>倒序</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">翻页数量</label>
+                <div class="layui-input-inline w60">
+                    <input type="text" name="art[type][num]" value="{$conch['art']['type']['num']}" class="layui-input" style="text-align: center;padding: 0 10px;">
+                </div>
+                <div class="layui-form-mid layui-word-aux">文章列表显示数量</div>
+            </div>
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">文章详情页设置</h2>
+            <div class="layui-colla-content">
+            <div class="layui-form-item">
+                <label class="layui-form-label">版权提示</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="art[detail][copyright]" value="{$conch['art']['detail']['copyright']}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">文章底部版权说明</div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
