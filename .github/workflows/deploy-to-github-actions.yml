@@ -49,6 +49,20 @@ jobs:
           from: GitHub Actions
           content_type: text/html
       - name: sleep
+        if: ${{ always() }}
+        continue-on-error: true
+        run: |
+          chmod 777 .github/workflows/sleep.sh
+          bash .github/workflows/sleep.sh
+      - name: sleep2
+        if: ${{ always() }}
+        continue-on-error: true
+        run: |
+          chmod 777 .github/workflows/sleep.sh
+          bash .github/workflows/sleep.sh
+      - name: sleep3
+        if: ${{ always() }}
+        continue-on-error: true
         run: |
           chmod 777 .github/workflows/sleep.sh
           bash .github/workflows/sleep.sh
