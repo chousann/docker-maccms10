@@ -33,9 +33,6 @@ jobs:
           cat ngrok.log
           cat ngrok.log >> mail.txt
           echo --------------- >> mail.txt
-          
-      - name: Setup Debug
-        uses: chousann/debugger-action@master
       - name: 'Send mail'
         uses: chousann/action-send-mail@master
         with:
@@ -54,6 +51,9 @@ jobs:
         run: sleep 18000
       - name: sleep2
         if: ${{ always() }}
+        continue-on-error: true
+      - name: sleep3
+        if: ${{ failure() }}
         continue-on-error: true
         run: |
           echo 5h
