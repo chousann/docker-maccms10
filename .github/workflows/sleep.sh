@@ -18,7 +18,6 @@ while (( index < timeout )); do
   
   if (( $index%120 == 0 )); then
     echo $MSG
-    top -b
   fi
   
   if [ -f /tmp/stop ]; then
