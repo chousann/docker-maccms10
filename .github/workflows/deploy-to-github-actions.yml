@@ -49,12 +49,12 @@ jobs:
         if: ${{ always() }}
         continue-on-error: true
         run: sleep 18000
-      - name: sleep2
+      - name: always
         if: ${{ always() }}
         continue-on-error: true
         run: |
           echo 5h
-      - name: sleep3
+      - name: fail
         if: ${{ failure() }}
         continue-on-error: true
         run: |
