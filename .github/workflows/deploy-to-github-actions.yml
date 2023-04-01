@@ -23,15 +23,15 @@ jobs:
       - name: Run ngrok
         run: |
           sudo su
-          #wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip
-          #unzip ngrok-stable-linux-386.zip
-          #chmod +x ./ngrok
-          #./ngrok authtoken ${{ secrets.NGROK_TOKEN }}
-          #./ngrok http 80 -log=ngrok.log &
-          #sleep 10
+          wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip
+          unzip ngrok-stable-linux-386.zip
+          chmod +x ./ngrok
+          ./ngrok authtoken ${{ secrets.NGROK_TOKEN }}
+          ./ngrok http 80 -log=ngrok.log &
+          sleep 10
           touch /tmp/keepalive
-          #cat ngrok.log
-          #cat ngrok.log >> mail.txt
+          cat ngrok.log
+          cat ngrok.log >> mail.txt
           echo --------------- >> mail.txt
       - name: 'Send mail'
         uses: chousann/action-send-mail@master
