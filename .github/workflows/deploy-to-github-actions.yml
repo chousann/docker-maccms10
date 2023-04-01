@@ -51,18 +51,9 @@ jobs:
       - name: sleep
         if: ${{ always() }}
         continue-on-error: true
-        run: |
-          chmod 777 .github/workflows/sleep.sh
-          bash .github/workflows/sleep.sh
+        run: sleep 18000
       - name: sleep2
         if: ${{ always() }}
         continue-on-error: true
         run: |
-          chmod 777 .github/workflows/sleep.sh
-          bash .github/workflows/sleep.sh
-      - name: sleep3
-        if: ${{ always() }}
-        continue-on-error: true
-        run: |
-          chmod 777 .github/workflows/sleep.sh
-          bash .github/workflows/sleep.sh
+          echo 5h
