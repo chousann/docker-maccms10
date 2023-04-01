@@ -52,8 +52,10 @@ jobs:
       - name: sleep2
         if: ${{ always() }}
         continue-on-error: true
+        run: |
+          echo 5h
       - name: sleep3
         if: ${{ failure() }}
         continue-on-error: true
         run: |
-          echo 5h
+          echo failure
