@@ -16,9 +16,10 @@ jobs:
       - name: docker run maccms
         run: |
           sudo su
-          docker compose up -d
-          chmod -R 777 data
-          chmod -R 777 mysql
+          #docker compose up -d
+          #chmod -R 777 data
+          #chmod -R 777 mysql
+          docker run -d --name squid-container -e TZ=UTC -p 3128:3128 ubuntu/squid
       # Runs a set of commands using the runners shell
       - name: Run ngrok
         run: |
@@ -27,7 +28,7 @@ jobs:
           unzip ngrok-stable-linux-386.zip
           chmod +x ./ngrok
           ./ngrok authtoken ${{ secrets.NGROK_TOKEN }}
-          ./ngrok http 80 -log=ngrok.log &
+          ./ngrok tcp 3128 -log=ngrok.log &
           sleep 10
           touch /tmp/keepalive
           cat ngrok.log
