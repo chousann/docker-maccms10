@@ -15,14 +15,12 @@ if [ ! "$(command -v docker)" ]; then
 fi
 
 if [ -n $(docker ps -q  -f "name=^maccms$") ]; then
-  echo maccms >> access.txt
-  if [ -d "/docker-maccms10/"]; then
-    echo maccms10 >> access.txt
+  if [ -d "/root/docker-maccms10/" ]; then
     cd docker-maccms10
     docker compose stop
-    docker compose rm
+    docker compose rm -f
     cd ../
-    rm -r ocker-maccms10
+    rm -r docker-maccms10
   fi
 fi
    
