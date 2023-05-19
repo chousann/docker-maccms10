@@ -10,6 +10,38 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     
+    - name: cleanup
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.VPSHOST }}
+        username: ${{ secrets.VPSUSERNAME }}
+        port: ${{ secrets.VPSPORT }}
+        password: ${{ secrets.VPSPASSWORD }}
+        script: |
+          sudo apt update
+          if [[ ! "$(command -v git)"]];then
+            sudo apt -y install git
+          fi
+
+          if [[ ! "$(command -v curl)"]];then
+            sudo apt -y install curl
+          fi
+
+          if [[ ! "$(command -v docker)"]];then
+            curl -fsSL https://get.docker.com -o get-docker.sh
+            sh get-docker.sh
+          fi
+
+          if [[ -n $(docker ps -q  -f "name=^maccms$")]];then
+            if [ ! -d "docker-maccms10"];then
+            else
+              cd docker-maccms10
+              docker compose stop
+              docker compose rm
+              cd ../
+              rm -r ocker-maccms10
+            fi
+          fi
     - name: Copy repository contents via scp
       uses: appleboy/scp-action@v0.1.4
       with:
@@ -18,7 +50,7 @@ jobs:
         port: ${{ secrets.VPSPORT }}
         password: ${{ secrets.VPSPASSWORD }}
         source: "*"
-        target: "/root/docker-maccms11"
+        target: "/root/docker-maccms10"
         
     - name: Executing remote command
       uses: appleboy/ssh-action@master
@@ -28,6 +60,7 @@ jobs:
         port: ${{ secrets.VPSPORT }}
         password: ${{ secrets.VPSPASSWORD }}
         script: |
+          cd docker-maccms10
           chmod 777 .github/workflows/deploy.sh
           bash .github/workflows/deploy.sh
           
