@@ -1,0 +1,31 @@
+name: Deploy
+
+on: [push]
+#部署
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Copy repository contents via scp
+      uses: appleboy/scp-action@master
+      env:
+        HOST: ${{ secrets.VPSHOST }}
+        USERNAME: ${{ secrets.VPSUSERNAME }}
+        PORT: ${{ secrets.VPSPORT }}
+        KEY: ${{ secrets.VPSPASSWORD }}
+      with:
+        source: "."
+        target: "/var/www/mywebsite"
+
+    - name: Executing remote command
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.VPSHOST }}
+        USERNAME: ${{ secrets.VPSUSERNAME }}
+        PORT: ${{ secrets.VPSPORT }}
+        KEY: ${{ secrets.VPSPASSWORD }}
+        script: touch access.txt
