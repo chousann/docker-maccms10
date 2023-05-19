@@ -17,8 +17,8 @@ jobs:
         username: ${{ secrets.VPSUSERNAME }}
         port: ${{ secrets.VPSPORT }}
         password: ${{ secrets.VPSPASSWORD }}
-        source: "docker-maccms10"
-        target: "/root/docker-maccms10"
+        source: "docker-maccms10/*"
+        target: "/root/docker-maccms11"
         
     - name: Executing remote command
       uses: appleboy/ssh-action@master
