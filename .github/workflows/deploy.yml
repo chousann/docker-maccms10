@@ -14,7 +14,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.VPSHOST }}
-        USERNAME: ${{ secrets.VPSUSERNAME }}
-        PORT: ${{ secrets.VPSPORT }}
-        KEY: ${{ secrets.VPSPASSWORD }}
+        username: ${{ secrets.VPSUSERNAME }}
+        port: ${{ secrets.VPSPORT }}
+        password: ${{ secrets.VPSPASSWORD }}
         script: touch access.txt
