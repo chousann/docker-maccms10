@@ -15,8 +15,7 @@ if [ ! "$(command -v docker)" ]; then
 fi
 
 if [ -n $(docker ps -q  -f "name=^maccms$") ]; then
-  if [ ! -d "docker-maccms10"]; then
-  else
+  if [ -d "docker-maccms10"]; then
     cd docker-maccms10
     docker compose stop
     docker compose rm
