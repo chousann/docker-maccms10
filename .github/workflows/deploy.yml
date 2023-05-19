@@ -1,6 +1,12 @@
 name: Deploy
 
-on: [push]
+on: 
+  push:
+    branches:
+      - main
+  watch:
+    types: [started]
+  workflow_dispatch:
 #部署
 jobs:
   build:
