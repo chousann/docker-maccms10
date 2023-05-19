@@ -13,10 +13,10 @@ jobs:
     - name: Copy repository contents via scp
       uses: appleboy/scp-action@master
       env:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        port: ${{ secrets.PORT }}
-        password: ${{ secrets.SSHKEY }}
+        host: ${{ secrets.VPSHOST }}
+        username: ${{ secrets.VPSUSERNAME }}
+        port: ${{ secrets.VPSPORT }}
+        password: ${{ secrets.VPSPASSWORD }}
       with:
         source: "."
         target: "/var/www/mywebsite"
