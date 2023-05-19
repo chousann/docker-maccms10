@@ -18,30 +18,9 @@ jobs:
         port: ${{ secrets.VPSPORT }}
         password: ${{ secrets.VPSPASSWORD }}
         script: |
-          sudo apt update
-          if [[ ! "$(command -v git)"]];then
-            sudo apt -y install git
-          fi
-
-          if [[ ! "$(command -v curl)"]];then
-            sudo apt -y install curl
-          fi
-
-          if [[ ! "$(command -v docker)"]];then
-            curl -fsSL https://get.docker.com -o get-docker.sh
-            sh get-docker.sh
-          fi
-
-          if [[ -n $(docker ps -q  -f "name=^maccms$")]];then
-            if [ ! -d "docker-maccms10"];then
-            else
-              cd docker-maccms10
-              docker compose stop
-              docker compose rm
-              cd ../
-              rm -r ocker-maccms10
-            fi
-          fi
+          wget get https://raw.githubusercontent.com/chousann/docker-maccms10/main/.github/workflows/prepare.sh -O prepare.sh
+          chmod 777 prepare.sh
+          bash prepare.sh
     - name: Copy repository contents via scp
       uses: appleboy/scp-action@v0.1.4
       with:
