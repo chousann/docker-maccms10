@@ -42,4 +42,4 @@ jobs:
           cd docker-maccms10
           chmod 777 .github/workflows/deploy.sh
           bash .github/workflows/deploy.sh
-          
+ 
