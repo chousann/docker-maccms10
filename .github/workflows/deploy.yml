@@ -47,5 +47,7 @@ jobs:
         script: |
           cd docker-maccms10
           chmod 777 .github/workflows/deploy.sh
+          chmod -R 777 data
+          chmod -R 777 mysql
           bash .github/workflows/deploy.sh
  
