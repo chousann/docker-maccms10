@@ -15,7 +15,9 @@ if [ ! "$(command -v docker)" ]; then
 fi
 
 if [ -n $(docker ps -q  -f "name=^maccms$") ]; then
+  echo maccms >> access.txt
   if [ -d "docker-maccms10"]; then
+    echo maccms10 >> access.txt
     cd docker-maccms10
     docker compose stop
     docker compose rm
