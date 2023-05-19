@@ -17,4 +17,6 @@ jobs:
         username: ${{ secrets.VPSUSERNAME }}
         port: ${{ secrets.VPSPORT }}
         password: ${{ secrets.VPSPASSWORD }}
-        script: touch access.txt
+        script: |
+          touch access.txt
+          touch access1.txt
