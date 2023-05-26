@@ -88,7 +88,7 @@ return array (
     'collect_timespan' => '3',
     'pagesize' => '20',
     'makesize' => '30',
-    'admin_login_verify' => '1',
+    'admin_login_verify' => '0',
     'editor' => 'Ueditor',
     'lang' => 'zh-cn',
     'vod_search_optimise' => '',
