@@ -1,0 +1,77 @@
+    <div class="nex_main_search" id="ecso">
+            <form class="searchform" method="post" target="_self" action="{:mac_url('vod/search')}">
+                <div class="nex_Search clearfix">
+                  <input class="nex_Search_input mac_wd" name="wd" type="search" autocomplete="off" placeholder="输入影片片名或演员名称。">
+                  
+                  <div class="nex_Seachbtns">取消</div>
+                </div>                
+            </form>
+            <div class="nex_hot_searchtags">
+                <div class="nex_Search_title">热搜词</div>
+                <div id="scbar_hot">
+                {maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+                     <a href="{:mac_url('vod/search',['wd'=>$vo2])}" class="xi2" sc="1">{$vo2}</a>
+                {/maccms:foreach}
+                </div>
+            </div>
+            <div id="so-top">
+              <div class="til">热门推荐</div>
+              <div class="list-text">
+              {maccms:vod num="6" type="all" order="desc" by="score"}
+                 <a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}"><em>{$key}</em><span>{$vo.vod_name}</span></a>
+              {/maccms:vod}
+              </div>
+            </div>        
+    </div>
+<div id="menu" style="display:none;">
+        <div class="comiis_sidenv_top f_f">
+        {if condition="$GLOBALS['user']['user_id']" gt 0}
+                <div class="sidenv_exit"><a href="{:mac_url('user/logout')}"><span>退出</span></a></div>
+                <a href="{:mac_url('user/index')}" class="sidenv_user">		
+                  <em><img src="{$user.user_id|mac_get_user_portrait}"></em>
+                  <p><span class="user_tit fyy">{$user.user_name}</span><span class="user_lev bg_0" style="background: linear-gradient(to right, #FA8072, #EEAEEE, #87CEFF 100%)!important;color:#fff !important">Lv.9</span></p>
+                  <p class="fyy mt5"><span>金币: {$user.user_points}</span></p>
+                </a>
+        {else/}
+                <div class="sidenv_exit"><a href="{:mac_url('user/login')}"><span>登陆</span></a></div>
+                <a href="{:mac_url('user/login')}" class="sidenv_user">		
+                  <em><img src="{$user.user_id|mac_get_user_portrait}"></em>
+                  <p><span class="user_tit fyy">登陆后告诉你哦...</span></p>
+                </a>
+         {/if}
+        </div>
+        <div class="f1">
+            <ul>
+            <li><a href="{$maccms.path}" class="lefteca"><i class="leftMenuico leftMenu0"></i>首页</a></li>
+            {maccms:type ids="1,2" mid="1" order="asc" by="sort"}
+                <li class="hasChild">
+                    <a href="javascript:;" class="lefteca"><i class="leftMenuico leftMenu{$key}"></i>{$vo.type_name}</a>
+                    <div class="f2">
+                        <ul>
+                           {maccms:type  parent="'.$vo['type_id'].'" order="asc" by="sort" id="vo2" key="key2"}
+                            <li style="padding: 5px 0;"><a href="{:mac_url_type($vo2)}" target="_top">{$vo2.type_name}</a></li> 
+                            {/maccms:type} 
+                        </ul>
+                    </div>
+                </li>
+             {/maccms:type}
+             <li><a href="http://{$maccms.site_url}/index.php/vod/type/id/3.html" class="lefteca"><i class="leftMenuico leftMenu4"></i>综艺</a></li>
+             <li><a href="http://{$maccms.site_url}/index.php/vod/type/id/4.html" class="lefteca"><i class="leftMenuico leftMenu3"></i>动漫</a></li>
+             <li><a href="{:mac_url('map/index')}" class="lefteca"><i class="leftMenuico leftMenu6"></i>最新更新</a></li>
+             <li><a href="{:mac_url('gbook/index')}" class="lefteca"><i class="leftMenuico leftMenu5"></i>留言板</a></li>
+             {if condition="$GLOBALS['user']['user_id']" gt 0}
+             <li><a href="{:mac_url('user/plays')}" class="lefteca"><i class="leftMenuico leftMenu7"></i>观看记录</a></li>
+             {else/}
+             <li><a href="{:mac_url('label/plays')}" class="lefteca"><i class="leftMenuico leftMenu7"></i>观看记录</a></li>
+             {/if}
+             <li><a href="{:mac_url('label/so')}" class="lefteca"><i class="leftMenuico leftMenu8"></i>网盘搜索</a></li>
+            </ul>
+        </div>
+</div>
+<script type="text/javascript">
+    $(function ($) {
+        $('#menu').leftMenu({
+            "triggerBtn":".btn"
+        }).init()
+    })
+</script>

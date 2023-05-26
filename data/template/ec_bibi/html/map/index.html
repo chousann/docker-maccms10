@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$maccms.site_name}</title>
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="nex_bbstopnav_displaylist">
+    <div id="wd" class="nex_postbbsbtn"><a href="javascript:;"></a></div>
+    <h3>最新更新</h3>
+    <a href="javascript:MAC.GoBack()" class="nexback"></a>
+</div>
+<div style="height:50px"></div>
+<!--列表部分-->
+<div class="comiis_mh_txtlist_bk cl">
+<ul>{maccms:vod num="100" order="desc" by="time"}
+    <li class="b_t"><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}"><span class="f_d y">{$vo.vod_time|date='Y-m-d',###}</span><font class="ectop_font ectop_fcl{$vo.type_id_1}">{$vo.type.type_name}</font>{$vo.vod_name}</a></li>    
+{/maccms:vod}
+</ul>
+</div>
+{include file="public/foot"}
+</body>
+</html>

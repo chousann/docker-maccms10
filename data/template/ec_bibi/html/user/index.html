@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width = device-width ,initial-scale = 1,minimum-scale = 1,maximum-scale = 1,user-scalable =no,"/>
+	<title>个人中心 - {$maccms.site_name}</title>
+	{include file="user/include" /}
+</head>
+<body>
+<div class="nex_u_center_Top">
+    <div class="nex_bbstopnav_ucenter" style="border-bottom:0; background:none;position:relative;">
+        <a href="javascript:history.back()" class="z nexback"></a>
+        <h3>个人资料</h3>
+        <div class="y nex_postbbsbtn nex_personal_setting"><a href="{:url('user/info')}"></a></div>
+    </div>
+    <div class="nex_ucenter_logstatus">
+                <h5>欢迎回来,{$obj.group.group_name}{$obj.user_name}</h5>
+        <div class="nex_myinfo_list">
+            <ul>
+                <li class="nex_myinfo_list_scores">总积分：<span>{$obj.user_points}</span></li>
+                <em></em>
+                <li class="nex_myinfo_list_money">期限：<span>{if condition="$obj.group_id lt 3"}永久{else}{$obj.user_end_time|date='Y-m-d',###}{/if}</span></li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+            </div>
+    <div class="nex_ucenter_iners">
+    	<div class="nex_ucenter_iners_top">
+        	<div class="nex_ucenter_iners_top_avator"><img src="{$obj.user_portrait|mac_default='static/images/touxiang.png'|mac_url_img}" style="display: inline; visibility: visible;"></div>
+            <div class="nex_ucenter_iners_top_author">
+            <div class="nex_user_name"><b>{$obj.user_name}</b><em><i>财富</i>{$obj.user_points}</em><div class="clear"></div></div>
+            <div class="nex_uc_infos">
+               <span><a href="{:url('user/buy')}">积分充值</a></span>
+               <span class="nex_uc_spline"><a href="{:url('user/cash')}">积分提现</a></span>
+            </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+       <div class="nex_user_intros"><p>这个人很懒，什么也没有留下</p></div>
+       <div class="nex_user_Spot">
+            <ul>
+                <li class="nex_ucenter_icon1"><a href="{:url('user/orders')}"><span>充值记录</span></a></li>
+                <li class="nex_ucenter_icon2"><a href="{:url('user/plays')}"><span>我的播放</span></a></li>
+                <li class="nex_ucenter_icon3"><a href="{:url('user/favs')}"><span>我的收藏</span></a></li>
+                <li class="nex_ucenter_icon4"><a href="{:url('user/upgrade')}"><span>升级会员</span></a></li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+    <div class="nex_ucenter_iners_btm">
+        <div class="nex_ucenter_iners_btmtxt">分享给好友赚积分</div>
+        <div class="nex_user_Profile">
+			{if $GLOBALS['config']['user']['invite_visit_points'] gt 0}
+			<li><input id="url2" value="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/visit')}?uid={$obj.user_id}" size="70" style="padding: 5px 0;width: 100%;"></li>
+			{/if}
+            <div class="nex_user_quits"><a href="{:url('user/logout')}">退出登录</a></div>                                      
+        </div>
+    </div>
+</div>
+<!--loading start-->
+<div class="loading_box"></div>
+<!--loading end-->
+{include file="user/foot" /}
+</body>
+</html>

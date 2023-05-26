@@ -1,0 +1,65 @@
+  <div class="main">
+   <header class="sidebar">
+    <div class="container">
+     <div class="logo">
+      <a href="{$maccms.path}" title="{$maccms.site_url}"><img src="/{$maccms.site_logo}" alt="{$maccms.site_url}" /></a>
+     </div>
+     <div class="form-search">
+      <form role="search" id="search" name="search" method="get" action="{:mac_url('vod/search')}"> 
+       <div class="input-group">
+        <input type="text" name="wd" class="form-control input-sm keyword" placeholder="搜索..." autocomplete="off" value="" />
+        <span class="input-group-btn"><button type="submit" class="btn btn-sm btn-search" style="outline: 0;"><span class="glyphicon glyphicon-search"></span></button></span>
+       </div>
+      </form>
+     </div>
+	 {if condition="$GLOBALS['user']['user_id']" gt 0}
+	 <div class="user">
+      <a href="{:mac_url('user/login')}">
+	  <img src="{$user.user_id|mac_get_user_portrait}" style="border-radius: 50px;height: 30px;margin: 0px 5px 0px 0;width: 30px;">
+		{$user.user_name}
+	  </a>
+	 </div>
+	 {else/}
+	 <div class="user">
+	  <i class="glyphicon glyphicon-user"></i>
+      <a href="{:mac_url('user/login')}">登录</a> / 
+      <a href="{:mac_url('user/reg')}">注册</a>
+	 </div>
+	 {/if}
+    </div>
+    <div class="nav-main container">
+     <div class="header-links header-item">
+      <ul>
+       <li><a class="Home cusfont" href="{$maccms.path}" rel="Home" title="首页"><span>首页</span></a></li>
+	   {maccms:type ids="parent" order="asc" by="sort" flag="vod"}
+       <li><a class="{$vo.type_en} cusfont {if condition="($vo.type_id eq MAC_TYPE_ID || $vo.type_id eq MAC_TYPE_PID)"}active{/if}" href="{:mac_url_type($vo)}" rel="tag" title="{$vo.type_name}"><span>{$vo.type_name}</span></a></li>
+	   {/maccms:type}
+       <li class="dropdown"><a title="分类"><span>分类</span><span class="caret"></span></a>
+        <div class="categories-wrapper">
+         <div class="row">
+          <div class="custom-page">
+           <a href="{:mac_url('label/classify')}" title="观看所有分类">观看所有分类</a>
+          </div>
+          <div class="custom-page">
+           <a href="{:mac_url('label/tags')}" title="标签">标签</a>
+          </div>
+		{maccms:foreach name=":explode(',',$maccms.search_hot)"}
+          <div class="col-sm-4">
+           <a href="{:mac_url('vod/search',['tag'=>$vo])}" title="{$vo}">{$vo}</a>
+          </div>
+		{/maccms:foreach}
+          <div class="clearfix"></div>
+         </div>
+        </div></li>
+       <li><a class="HOT cusfont" href="{:mac_url('label/hot')}" rel="tag" title="热门影片"><span>热门影片</span></a></li>
+      </ul>
+     </div>
+    </div>
+    <div class="header-mobile">
+     <button type="button" class="show-sidebar-left"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+     <a href="{$maccms.path}" title="{$maccms.site_url}"><img src="/{$maccms.site_logo}" alt="{$maccms.site_url}" /></a>
+	 <a class="user-right" href="{:mac_url('user/login')}"><i class="glyphicon glyphicon-user"></i></a>
+    </div>
+    <div class="overlay"></div>
+   </header>
+  </div>

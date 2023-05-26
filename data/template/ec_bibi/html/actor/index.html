@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html data-n-head-ssr lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<title>{$maccms.site_name}-明星库</title>
+<meta name="keywords" content="{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+<link rel="stylesheet" href="{$maccms.path_tpl}css/swiper.min.css">
+{include file="public/include"}
+</head><body>
+{include file="public/head2"}
+<div class="ec-position ec-top1 highlight">
+    <div class="topmenuki">
+      <div class="swiper-container2">
+        <div class="swiper-wrapper">
+            <span class="swiper-slide swiper-nav"><a class="ecnav-dt" href="{:mac_url('actor/index')}">广场</a></span>
+            {maccms:actor num="6" level="9" order="desc" by="time"}
+            <span class="swiper-slide swiper-nav"><a href="{$vo|mac_url_actor_detail}">{$vo.actor_name}</a></span>
+            {/maccms:actor}
+        </div>
+      </div>
+    </div>
+    <div class="ec-classify btn"></div>
+    <div class="ec-box clearfix ec-top1 z13 y13">
+        <div id="sowd" class="search2"><input type="text" name="" id="" value="搜爱豆 快速锁定TA的全部作品"><span class="s"><i class="iconfont-v3 v3-search"></i></span></div>
+        <div class="ec-cioc ec-cioc2">
+          <span><a href="{:mac_url('map/index')}"><img src="{$maccms.path_tpl}images/vod.png" /></a></span>
+          {if condition="$GLOBALS['user']['user_id']" gt 0}
+          <span><a href="{:mac_url('user/plays')}"><img src="{$maccms.path_tpl}images/jilu.png" /></a></span>
+          {else/}
+          <span><a href="{:mac_url('label/plays')}"><img src="{$maccms.path_tpl}images/jilu.png" /></a></span>
+          {/if}
+          <span><a href="{:mac_url('gbook/index')}"><img src="{$maccms.path_tpl}images/liuyan.png" /></a></span></div>
+    </div>
+</div>
+<div class="swiper-container1" style="padding-top: 1.1rem;">
+    <div class="swiper-wrapper ecbgp">
+     {maccms:art num="6" level="9" type="all" order="desc" by="time"}
+      <div class="swiper-slide swiper-color" edata-color="#{$vo.vod_color}">
+          <a class="ec-idxzt" href="{:mac_url_art_detail($vo)}"><div class="ec-idxzt ec-jabj" style="background-image: url({$vo.art_pic|mac_url_img});"></div></a>
+      </div>
+      {/maccms:art}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination" style="bottom: .2rem;"></div>
+</div>
+<div class="box ec-top2 ecbt3">
+  <div class="title ecdy ec-lf13">
+        <h2>明星人气榜</h2><a href="{:mac_url('label/xrank')}">完整榜单&gt;</a>
+  </div>
+  <div class="ec-actiornot ecm2 clearfix">
+    {maccms:actor num="3"  order="desc" by="hits"}
+    <a href="{$vo|mac_url_actor_detail}" class="top0{$key}" title="{$vo.actor_name}"><img src="{$vo.actor_pic|mac_url_img}"><div class="mxb"><em>{if condition="$key==1"}总榜{else}榜{$key}{/if}</em><p>{$vo.actor_name}</p></div></a>
+    {/maccms:actor}
+  </div>
+</div>
+<!--内地明星-->
+<div class="ecactorn4 box ec-new ec-lf13">
+    <div class="title ecdy">
+        <h2>内地明星</h2><a href="{:mac_url('actor/show',['area'=>'内地'])}">查看更多&gt;</a>
+    </div>
+    <div class="clearfix">
+    {maccms:actor num="12" area="内地" order="desc" by="time"}
+	    <span class="actorlist_item" style="width: 22.6%;">
+		    <div class="actorlist_box">
+				<a class="vodlist_thumb" href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" style="background-image: url({$vo.actor_pic|mac_url_img});"></a>
+				<div class="actorlist_tit">									
+				    <a href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}">{$vo.actor_name}</a>
+				</div>
+		    </div>
+	    </span>
+    {/maccms:actor}
+    </div>
+</div>
+<!--韩国-->
+<div class="ecactorn4 box ec-new ec-lf13">
+    <div class="title ecdy">
+        <h2>韩国明星</h2><a href="{:mac_url('actor/show',['area'=>'韩国'])}">查看更多&gt;</a>
+    </div>
+    <div class="clearfix">
+    {maccms:actor num="12" area="韩国" order="desc" by="time"}
+	    <span class="actorlist_item" style="width: 22.6%;">
+		    <div class="actorlist_box">
+				<a class="vodlist_thumb" href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" style="background-image: url({$vo.actor_pic|mac_url_img});"></a>
+				<div class="actorlist_tit">									
+				    <a href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}">{$vo.actor_name}</a>
+				</div>
+		    </div>
+	    </span>
+    {/maccms:actor}
+    </div>
+</div>
+<!--港台-->
+<div class="ecactorn4 box ec-new ec-lf13">
+    <div class="title ecdy">
+        <h2>港台明星</h2><a href="{:mac_url('actor/show',['area'=>'香港'])}">查看更多&gt;</a>
+    </div>
+    <div class="clearfix">
+    {maccms:actor num="12" area="香港,台湾,澳门" order="desc" by="time"}
+	    <span class="actorlist_item" style="width: 22.6%;">
+		    <div class="actorlist_box">
+				<a class="vodlist_thumb" href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" style="background-image: url({$vo.actor_pic|mac_url_img});"></a>
+				<div class="actorlist_tit">									
+				    <a href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}">{$vo.actor_name}</a>
+				</div>
+		    </div>
+	    </span>
+    {/maccms:actor}
+    </div>
+</div>
+<!--欧美-->
+<div class="ecactorn4 box ec-new ec-lf13">
+    <div class="title ecdy">
+        <h2>欧美明星</h2><a href="{:mac_url('actor/show',['area'=>'美国'])}">查看更多&gt;</a>
+    </div>
+    <div class="clearfix">
+    {maccms:actor num="12" area="美国,欧美" order="desc" by="time"}
+	    <span class="actorlist_item" style="width: 22.6%;">
+		    <div class="actorlist_box">
+				<a class="vodlist_thumb" href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" style="background-image: url({$vo.actor_pic|mac_url_img});"></a>
+				<div class="actorlist_tit">									
+				    <a href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}">{$vo.actor_name}</a>
+				</div>
+		    </div>
+	    </span>
+    {/maccms:actor}
+    </div>
+</div>
+<!--亚太-->
+<div class="ecactorn4 box ec-new ec-lf13">
+    <div class="title ecdy">
+        <h2>亚太明星</h2><a href="{:mac_url('actor/show',['area'=>'亚太'])}">查看更多&gt;</a>
+    </div>
+    <div class="clearfix">
+    {maccms:actor num="12" area="日本,亚太" order="desc" by="time"}
+	    <span class="actorlist_item" style="width: 22.6%;">
+		    <div class="actorlist_box">
+				<a class="vodlist_thumb" href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" style="background-image: url({$vo.actor_pic|mac_url_img});"></a>
+				<div class="actorlist_tit">									
+				    <a href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}">{$vo.actor_name}</a>
+				</div>
+		    </div>
+	    </span>
+    {/maccms:actor}
+    </div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

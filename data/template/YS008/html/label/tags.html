@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="utf-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <style type="text/css">
+#ajax-fax a {display:none;}@media(max-width: 400px){#ajax-fax .col-sm-4.col-md-3 {width: 50%;float: left;}}</style>
+  <title>Tags大全 - {$maccms.site_name}</title> 
+  <meta name="description" content="Tags大全 - {$maccms.site_name}</" />
+  <meta name="keywords" content="Tags大全 - {$maccms.site_name}" /> 
+  {include file="public/include"}
+ </head>
+ <body>
+  {include file="public/head"}
+  <div class="main-page">
+   <section class="breadcrumb-wrapper visible-md-block visible-lg-block"> 
+    <div class="container"> 
+     <ol class="breadcrumb"> 
+      <li><a href="{$maccms.path}"><i class="glyphicon glyphicon-home"></i> 首页</a></li>
+      <li class="active">标签</li> 
+     </ol> 
+    </div>
+   </section>
+  </div>
+  <div class="container">
+   <div class="home-box">
+    <div class="home-ad">
+      <script src="{$maccms.path_ads}topads.js"></script>
+    </div>
+    <h3 class="title" style="float:left;">Tags</h3>
+    <div class="clearfix"></div>
+    <div class="categories-list" id="ajax-fax">
+	{maccms:vod order="desc" by="time" num="10000000000000" ids="all" type="all"}
+	 {if condition="$vo.vod_tag eq ''"}
+	 {else}
+     {$vo.vod_tag|mac_url_create='tag'}
+	 {/if}
+	{/maccms:vod}
+    </div>
+    <div class="clearfix"></div>
+    <div class="home-ad">
+      <script src="{$maccms.path_ads}bottomads.js"></script>
+    </div>
+    <div class="models-page-box"></div>
+    <div class="clearfix"></div>
+   </div>
+  </div>
+  <div class="container"> 
+   <div class="home-img-box"> 
+    <div class="center-ad"> 
+     <script type="text/javascript">var sin=0;</script>
+     <div class="video-box-ad">
+      <div class="AD-box AD1">
+		<script src="{$maccms.path_ads}centerads01.js"></script>
+      </div>
+      <div class="AD-box AD2">
+		<script src="{$maccms.path_ads}centerads02.js"></script>
+      </div>
+      <div class="AD-box AD3">
+		<script src="{$maccms.path_ads}centerads03.js"></script>
+      </div>
+     </div> 
+    </div> 
+   </div>
+  </div>
+  <link rel="stylesheet" type="text/css" href="{$maccms.path_tpl}html/style/css/exonav.css" />
+  <script type="text/javascript" src="{$maccms.path_tpl}html/style/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{$maccms.path_tpl}html/style/js/jquery.lazyload.min.js"></script>
+  <script>$("img.lazy").lazyload({effect : 'fadeIn'});</script>
+  {include file="public/foot"}
+  <script>
+	$(document).ready(function() {
+		$(function(){
+			var json = {};
+			var $div = $("#ajax-fax");
+			var $diva = $div.find("a");
+			$diva.each(function(){
+				var key = $(this).html();
+				json[key] = key;
+			});
+			$div.empty();
+			for(var key in json){
+				$div.append("<div class='col-sm-4 col-md-3'><h4><a style='display:inline-block !important;' title='"+key+"' href='/index.php/vod/search/tag/"+key+".html' target='_blank'>"+key+"</a></h4></div>");
+			}   
+		})
+	})
+    </script> 
+ </body>
+</html>

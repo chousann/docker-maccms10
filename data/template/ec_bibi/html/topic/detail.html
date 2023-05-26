@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html data-n-head-ssr lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$obj.topic_name}专题详情- {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.topic_name}电影专题,{$obj.topic_name}电视剧专题,{$obj.topic_name}综艺专题,{$obj.topic_name}动漫专题,{$obj.topic_name}推荐专题" />
+    <meta name="description" content="本站提供{$obj.topic_name},最新最全精品专题数据" />
+    {include file="public/include"}
+</head>
+<body>
+<div id="comiis_head" class="nex_bbstopnav_displaylist">
+    <h3>专题视频列表</h3>
+    <a href="javascript:MAC.GoBack()" class="nexback"></a>
+</div>
+<style>
+#comiis_head{background: transparent;box-shadow: none;}
+#comiis_head h3{display:none;}
+.highlight h3{display:block!important;}
+</style>
+<div class="topdetail" style="background-image: url({$obj.topic_pic|mac_url_img});">
+  <div class="zhedang"></div>
+  <div class="title">
+    <p class="p">专题视频列表</p>
+    <div class="soli">共“{$obj.vod_list|count}”部</div>
+  </div>
+</div>
+<div class="ecm2 ec-lf13 ecbgc">
+{maccms:foreach name="$obj.vod_list"}
+<div class="ec-media clearfix ecm2 ecdy">
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-img"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div><i>{$vo.vod_remarks}</i></a>
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-til">
+        <div class="title">{$vo.vod_name}</div>
+        <ul class="desc">
+          <li>{$vo.type.type_name} / {$vo.vod_area} / {$vo.vod_year}</li>
+          <li>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</li>
+        </ul>
+        <div class="ec-playnam-titxti"><span><img src="{$maccms.path_tpl}images/ic_noah_hot.png">热度&nbsp;{$vo.vod_hits}</span></div>
+     </a>
+     <div class="rank-cancel"><a href="javascript:;" class="mac_ulog" data-type="2" data-mid="{$user.user_id}" data-id="{$vo.vod_id}">+收藏</a></div>
+</div>
+{/maccms:foreach}
+</div>
+{include file="public/foot"}
+</body>
+</html>

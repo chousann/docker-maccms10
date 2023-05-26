@@ -1,0 +1,143 @@
+/*验证码*/
+.mac_verify_img{width:70px;height:30px;line-height:30px;vertical-align:middle}
+.fl {float: left; _display: inline;}
+.fr {float: right; _display: inline;}
+.clearfix:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0} .clearfix{*zoom:1;}
+
+/*-Pages-*/
+.mac_pages {text-align:center; padding:4px 0; overflow:hidden;}
+.mac_pages .page_tip {margin-left:4px; font-weight:bold; color:#7f7f7f;  font-weight:normal;}
+.mac_pages .page_link{display:inline-block; padding:2px 4px; border:1px solid #ddd; margin-left:4px;}
+.mac_pages .page_link{display:inline-block; padding:2px 4px; border:1px solid #ddd; margin-left:4px;}
+.mac_pages .page_current{display:inline-block; padding:2px 4px; background-color : #fee; border : 1px solid red; color : red; margin-left:4px;}
+.mac_pages .page_input {margin-left:4px; height:22px; width:30px;}
+.mac_pages .page_btn{border:1px solid #CCCCCC; height:24px; width:40px;text-align:center; cursor: hand;}
+/*-/Page-*/
+
+/*搜索下拉*/
+.mac_results {width: 4.0rem!important;border-radius: .1rem;background-color:#fcfcfc;overflow:hidden;z-index:99999;margin:0;padding:0;text-align:left;box-shadow: 1px 1px 3px 1px #ccc;}
+.mac_results ul {width: 100%;list-style-position: outside;list-style: none;padding: 0;margin: 0;}
+.mac_results li {margin: 0px;padding: 2px .2rem;cursor: default;display: block;font: menu;font-size: 12px;height:25px; line-height: 25px;overflow: hidden;}
+.mac_results .mac_loading {background: white right center no-repeat;}
+.mac_results .ac_odd {background-color: #f6f6f6;}
+
+/*评论*/
+.mac_comment{margin-top:.2rem;font-family:"Microsoft YaHei"}
+.mac_comment .clearfix::after{height:0;clear:both;font-size:0;display:block;visibility:hidden;content:" "}
+.mac_comment .cmt_form{margin-bottom:10px}
+.mac_comment .face_wrap img{width:50px;height:50px}
+.mac_comment .input_wrap{width:98%;padding-left:1%;position:relative}
+.mac_comment .cmt_wrap .input_wrap{width:98%}
+.mac_comment .input_wrap textarea{outline: 0;background:#fff;border-width:1px 1px medium;border-style:solid solid none;border-color:#bbb #bbb currentColor;border-radius:3px 3px 0 0;width:100%;height:.8rem;line-height:1.4;overflow:auto;padding-top:.08rem;padding-left:1%;color:#666;box-sizing:border-box}
+.mac_comment .input_wrap .handle{position:relative;background:#fbfbfb;border-width:1px;border-style:solid;border-color:#bbb;border-top-color:#e5e5e5;border-radius:0 0 .04rem .04rem;width:100%;height:.53rem;color:#cecece;box-sizing:border-box}
+.mac_comment .input_wrap .face{cursor:pointer;position:absolute;width:.53rem;height:.53rem;cursor:pointer;z-index:2}
+.mac_comment .input_wrap .face.curr{background:#fff}
+.mac_comment .input_wrap .face-box{display:none;padding:.05rem;width:3.06rem;position:absolute;top:.53rem;background:#fff;border:.01rem solid #bbb;border-top-color:#e5e5e5;z-index:1}
+.mac_comment .input_wrap .face-box img{display:inline-block;margin:.024rem}
+.mac_comment .icon-face{display:block;width:.50rem;height:.53rem;background:url(../images/home/face.png) center no-repeat}
+.mac_comment .icon-face:hover,.mac_comment .input_wrap .face.curr .icon-face{background:url(../images/home/face-on.png) center no-repeat}
+.mac_comment .expression{background:url(../images/home/emotion2.png) no-repeat 0 0;margin:6px 0 0 6px;width:18px;height:16px;display:block;cursor:pointer}
+.mac_comment .expression:hover{background:url(../images/home/emotion2.png) no-repeat 0 -16px}
+.mac_comment .remaining-w{float:left;margin-left:.5rem;padding-left:.1rem;line-height:.50rem;border-left:1px solid #e5e5e5;font-size:.18rem}
+.mac_comment .smt_wrap{width:100%;margin-bottom:.2rem}
+.mac_comment .smt_wrap span{color:#424242}
+.mac_comment .smt_wrap .total{font-size:16px;font-weight:700}
+.mac_comment .smt_wrap span span{margin:0;padding:0}
+.mac_comment .smt_wrap span a{margin:0 0 0 8px;color:#318bb7}
+.mac_comment .smt .cmt_post{background:#ff5f00;border:currentColor;width:.86rem;height:.36rem;text-align:center;color:#fff;line-height:.36rem;margin-left:.1rem;display:inline-block;cursor:pointer;vertical-align:middle;border-radius:.2rem}
+.mac_comment .smt .cmt_text{outline: 0;height:.36rem;background:#fbfbfb;padding:0 8px;border-radius:.2rem;border:1px solid #ccc;width:.7rem;line-height:.36rem;margin-left:.1rem;vertical-align:middle}
+.mac_comment .smt .cmt_verify{width:80px;height:30px;line-height:30px;vertical-align:middle}
+.mac_comment .smt input:hover{background-position:-1px -603px}
+.mac_comment .smt{margin-top:6px;margin-right:12px;color:#454545}
+.mac_comment .sort_wrap{padding-bottom:2px;border-bottom-color:#d7d7d7;border-bottom-width:1px;border-bottom-style:solid}
+.mac_comment .sort_wrap a:hover{text-decoration:none}
+.mac_comment .sort_wrap .current{color:#318bb7;font-weight:700;border-bottom-color:#2b8ce6;border-bottom-width:2px;border-bottom-style:solid}
+.mac_comment .cmt_item{padding:15px 0 8px;width:100%;color:#999;border-bottom-color:#d7d7d7;border-bottom-width:1px;border-bottom-style:dotted}
+.mac_comment .item_con{width:93%;padding-left:1%}
+.mac_comment .item_con p.top{padding:0;width:auto;margin-bottom:8px}
+.mac_comment .item_con a{color:#999}
+.mac_comment .item_con a:hover{color:#999;text-decoration:none}
+.mac_comment .item_con .name{color:#999;font-size:.19rem}
+.mac_comment .item_con .name:hover{color:#016a9f;text-decoration:none}
+.mac_comment .item_con .con{color:#333;line-height:.3rem;overflow:hidden;margin-top:.1rem;font-size:.20rem;-ms-word-wrap:break-word}
+.mac_comment .item_con .bottom li{height:16px;line-height:15px;overflow:hidden;margin-right:10px;float:left}
+.mac_comment .item_con .bottom .reply{background:url(../images/home/rpy2.png) no-repeat 0 0;color:#999;text-indent:19px;font-size:11px;display:block}
+.mac_comment .item_con .bottom .reply:hover{color:#016a9f;text-decoration:none}
+.mac_comment .item_con .bottom .bdshare_t{margin-top:-5px}
+.mac_comment .item_con .bottom .bds_more{padding-top:5px}
+.mac_comment .inner{padding:3px;border:1px solid #999;width:auto;background-color:#fefef1}
+.mac_comment .inner .top{margin:8px 0 8px 3px}
+.mac_comment .inner .con{margin:5px 0 5px 3px}
+.mac_comment .inner .bottom{margin-bottom:5px;visibility:hidden}
+.mac_comment .mid_cmt_item{margin-top:3px;border-top-color:currentColor;border-top-width:medium;border-top-style:none}
+.mac_comment .pages{margin-top:15px}
+.mac_comment .item_con .gw-action{text-align:right;margin:.12rem;}
+.mac_comment .item_con .gw-action a{margin-left:10px}
+.mac_comment .item_con a:hover{color:#333}
+.mac_comment .item_con .click-ding-gw{margin-right:10px}
+.mac_comment .item_con .click-ding-gw a,.mac_digg .click-ding-gw a{color:#f29898}
+.mac_comment .item_con .click-ding-gw a:hover,.mac_digg .click-ding-gw a{color:#f29898}
+.mac_comment .item_con .click-ding-gw a i,.mac_digg a i{display:inline-block;width:14px;height:14px;vertical-align:middle}
+.mac_comment .cmt_wrap .item_con .input_wrap{width:100%;margin:10px 0;padding-left:0}
+.mac_comment .item_con .con img,.mac_comment .input_wrap .face-box img{width:.4rem}
+.mac_comment .cmt_wrap .item_con .cmt_item .gw-action{text-align:left;clear:left}
+.mac_comment .cmt_wrap .item_con .cmt_item .gw-action a{margin-right:10px;margin-left:0}
+
+/*用户留言*/
+.reply_box .mac_msg_r{margin-bottom:.4rem;width:100%;border: 1px solid #ddd;border-radius: 5px;color: #666;}
+.reply_box .mac_msg_r form{padding: 15px;}
+.reply_box .mac_msg_r form .msg_cue{margin-bottom: 8px;}
+.reply_box .mac_msg_r form textarea{width:100%;height: 106px;padding: 10px;overflow-y: auto;box-sizing: border-box;border-color: #ddd;}
+.reply_box .mac_msg_r .msg_code{margin: 10px 0;}
+.reply_box .mac_msg_r .msg_code input{border: 1px solid #ddd;padding: 4px;width: 65px;}
+.reply_box .mac_msg_r .msg_code .mac_verify_img{height: 30px;margin-left: 2px;vertical-align: top;}
+.reply_box .mac_msg_r .submit_btn{width:100%;height:.42rem;background:#ff5f00;color:#fff;border:1px solid #ff5f00;margin:.2rem auto 0;display:block;cursor:pointer}
+.mac_msg_r .submit_btn:hover{background: #619ff3;}
+.mac_msg_r .submit_btn:active{background: #3883e6;}
+.ec-liouyan{position:relative;padding:.1rem 0 .2rem .7rem;border-top:.01rem solid #f1f1f1;overflow:hidden}
+.ec-liouyan-tx{position:absolute;width:.6rem;height:.6rem;top:.1rem;left:0;border-radius:50%;overflow:hidden}
+.ec-liouyan-nc{display:block;max-width:60%;margin-bottom:.1rem;color:#ff5f00;font-size:.18rem}
+.ec-liouyan-rq{position:absolute;top:.15rem;right:0;font-size:.16rem;color:#999}
+.ec-liouyan-nr{white-space:pre-line;color:#212121;line-height:.28rem;font-size:.18rem}
+.ec-liouyan:first-child {border-top: none;}
+
+/*登录页面*/
+.mac_login{padding: 30px;width:400px;height:350px;background: #fff;box-sizing: border-box;font-family: "microsoft yahei"}
+.mac_login h3{font-weight: normal;color: #333;margin: 0 0 30px;}
+.mac_login .mac_login_form .login_form_group{margin-top: 20px;}
+.mac_login .mac_login_form .login_form_group input{padding:4px 10px 4px 36px;width:100%;height:38px;line-height:38px;border: 1px solid #cacaca;box-sizing: border-box;}
+.mac_login .mac_login_form .login_form_group input.mac_u_name{background: url("../images/home/u_name.png") no-repeat 7px 8px;}
+.mac_login .mac_login_form .login_form_group input.mac_u_pwd{background: url("../images/home/u_pwd.png") 8px 8px no-repeat;}
+.mac_login .mac_login_form .login_form_group input.mac_u_verify{float:left;width:50%;background: url("../images/home/u_verify.png") 8px 9px no-repeat;}
+.mac_login .mac_login_form .login_form_group img.mac_verify_img{float:left;margin-left:1%;width: 88px;height: 38px;border: 1px solid #cacaca;box-sizing: border-box;cursor: pointer;}
+.mac_login .mac_login_form .login_form_link{margin-top: 10px;text-align: right;}
+.mac_login .mac_login_form .login_form_link a{font-size: 12px;color: #333;margin-left: 15px;}
+.mac_login .mac_login_form .login_form_link a:hover{color: #ff5f00}
+.mac_login .mac_login_form input.login_form_submit{background: #ff5f00;color: #fff;font-size: 14px;line-height: normal;border: none;cursor: pointer;}
+.mac_login .mac_login_form input.login_form_submit:hover{background: #1d94ef;}
+
+/*弹出层*/
+.mac_pop_bg{position: fixed; z-index: 9999; left: 0;top: 0; width: 100%; height: 100%; background: rgba(0,0,0,.2);}
+.mac_pop {z-index:99998; display: none; min-height: 20px; max-height: 750px; position: fixed;  top: 0;  left: 0;  bottom: 0;  right: 0;  margin: auto;  padding: 25px; border-radius: 8px;  background-color: #fff;  box-shadow: 0 3px 18px rgba(0, 0, 0, .5);}
+.mac_pop .pop_top{  height:40px;  width:100%;  border-bottom: 1px #E5E5E5 solid;}
+.mac_pop .pop_top h2{  float: left; display:block;margin: 0;font-size: 18px;font-weight: normal;font-family:"microsoft yahei";}
+.mac_pop span.pop_close{  float: right;width: 23px;height: 23px;font-size: 0;text-indent: 9999; cursor: pointer;  font-weight: bold; display:block;background: url("../images/home/background.png") -10px 0 no-repeat;}
+.mac_pop .pop-foot{  height:50px;  line-height:50px;  width:100%;  border-top: 1px #E5E5E5 solid;  text-align: right;  }
+.mac_pop .pop-cancel, .pop-ok {  padding:8px 15px;  margin:15px 5px;  border: none;  border-radius: 5px;  background-color: #337AB7;  color: #fff;  cursor:pointer;  }
+.mac_pop .pop-cancel {  background-color: #FFF;  border:1px #CECECE solid;  color: #000;  }
+.mac_pop .pop-content{  height: 380px;  }
+.mac_pop .pop-content-left{  float: left;  }
+.mac_pop .pop-content-right{  width:310px;  float: left;  padding-top:20px;  padding-left:20px;  font-size: 16px;  line-height:35px;  }
+.mac_pop .bgPop{  display: none;  position: absolute;  z-index: 129;  left: 0;  top: 0;  width: 100%;  height: 100%;  background: rgba(0,0,0,.2);  }
+.mac_pop .pop-msg{  text-align:center;  font-size: 14px;  }
+
+.mac_pop_msg_bg{position: fixed; z-index:9999; left: 0;top: 0; width: 100%; height: 100%; background: rgba(0,0,0,.2);}
+.mac_pop_msg { z-index:99999; display: none; min-height: 20px; max-height: 750px; position: fixed;  top: 0;  left: 0;  bottom: 0;  right: 0;  margin: auto;  padding: 25px; border-radius: 8px;  background-color: #fff;  box-shadow: 0 3px 18px rgba(0, 0, 0, .5);}
+.mac_pop_msg .pop-msg{  text-align:center;  font-size: 14px;  }
+
+/*跳转信息*/
+.mac_msg_jump{width:90%;max-width:624px;min-height:60px;padding:20px 50px 50px;margin:20% auto 0;font-size:14px;line-height:24px;border: 1px solid #cdd5e0;border-radius: 10px;background:#fff;box-sizing: border-box;}
+.mac_msg_jump .title{margin-bottom:11px;}
+.mac_msg_jump .text{padding-left:29px;margin-bottom:11px;}
+.mac_msg._jump .jump{ }
+.msg_jump_tit{width:100%;height: 35px;margin: 25px 0 10px;text-align:center; font-size: 25px;color: #23c319;font-family: "黑体","microsoft yahei";letter-spacing: 5px;}

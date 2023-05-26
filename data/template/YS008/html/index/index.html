@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="utf-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>{$maccms.site_name}</title> 
+  <meta name="description" content="{$maccms.site_description}" /> 
+  <meta name="keywords" content="{$maccms.site_keywords}" /> 
+  {include file="public/include"}
+ </head>
+ <body>
+  {include file="public/head"}
+  <div class="container"> 
+   <div class="home-featured col-md-8"> 
+    <div class="home-ad"> 
+    </div> 
+    <div class="category-count"> 
+     <h3 class="title">精选视频</h3> 
+    </div> 
+    <div class="post-list">
+	{maccms:vod num="6" by="hits" order="desc" level="1"}
+     <div class="col-md-4 col-sm-6 col-xs-6">
+      <div class="video-item">
+       <div class="featured-content-image">
+        <a href="{:mac_url_vod_play($vo)}"><img class="lazy" referrerpolicy="no-referrer" data-original="{:mac_url_img($vo.vod_pic)}" src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" />
+         <div class="link-overlay"></div></a>
+        <span class="model-view">{$vo.vod_hits} Views</span>
+       </div>
+      </div>
+      <div class="entry-title">
+       <a href="{:mac_url_vod_play($vo)}" rel="nofollow">{$vo.vod_name}</a>
+      </div>
+     </div>
+	{/maccms:vod}
+    </div> 
+    <div class="clearfix"></div>
+   </div>
+   <div class="home-featured-ad">
+    <div class="featuredad1"> 
+     <script src="{$maccms.path_ads}rightads01.js"></script>
+    </div> 
+    <div class="featuredad2"> 
+     <script src="{$maccms.path_ads}rightads02.js"></script> 
+    </div>
+   </div>
+  </div>
+  <section>
+   <div class="container"> 
+    <div class="home-img-box"> 
+     <div class="center-ad"> 
+	  <script src="{$maccms.path_ads}topads.js"></script>
+     </div> 
+	{maccms:type order="asc" by="sort" mid="1" ids="1" id="vo1" key="key1"}
+     <div class="category-count"> 
+      <h3 class="title"> {$vo1.type_name} ({:mac_data_count($vo1['type_id'],'all','vod')}) </h3> 
+      <span class="home-link"> <a class="btn btn-sm btn-danger" href="{:mac_url_type($vo1)}" rel="tag">观看更多</a> </span> 
+     </div> 
+     <div class="post-list"> 
+	 {maccms:vod num="8" order="desc" by="time" type="'.$vo1['type_id'].'"}
+      <div class="col-md-3 col-sm-6 col-xs-6"> 
+       <div class="video-item"> 
+        <div class="featured-content-image"> 
+         <a href="{:mac_url_vod_play($vo)}" rel="bookmark"><img class="lazy" referrerpolicy="no-referrer" data-original="{:mac_url_img($vo.vod_pic)}" src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" />
+          <div class="link-overlay"></div></a> 
+         <span class="model-view">{$vo.vod_hits} Views</span> 
+        </div> 
+       </div> 
+       <div class="entry-title"> 
+        <a title="{$vo.vod_name}" href="{:mac_url_vod_play($vo)}" rel="bookmark"> {$vo.vod_name} </a> {$vo.vod_time|date="Y / m / d",###} 
+       </div> 
+      </div> 
+	  {/maccms:vod}
+     </div>
+	{/maccms:type}
+     <div class="clearfix"></div>
+    </div>
+   </div>
+   <div class="container"> 
+    <div class="home-img-box"> 
+     <div class="center-ad">
+      <div class="video-box-ad">
+       <div class="AD-box AD1">
+        <script src="{$maccms.path_ads}centerads01.js"></script>
+       </div>
+       <div class="AD-box AD2">
+        <script src="{$maccms.path_ads}centerads02.js"></script>
+       </div>
+       <div class="AD-box AD3">
+        <script src="{$maccms.path_ads}centerads03.js"></script>
+       </div>
+      </div>
+     </div> 
+    </div>
+   </div> 
+   <div class="container"> 
+    <div class="home-img-box"> 
+    {maccms:type order="asc" by="sort" mid="1" ids="2" id="vo1" key="key1"}
+     <div class="category-count"> 
+      <h3 class="title"> {$vo1.type_name} ({:mac_data_count($vo1['type_id'],'all','vod')}) </h3> 
+      <span class="home-link"> <a class="btn btn-sm btn-danger" href="{:mac_url_type($vo1)}" rel="tag">观看更多</a> </span> 
+     </div> 
+     <div class="post-list"> 
+	 {maccms:vod num="8" order="desc" by="time" type="'.$vo1['type_id'].'"}
+      <div class="col-md-3 col-sm-6 col-xs-6"> 
+       <div class="video-item"> 
+        <div class="featured-content-image"> 
+         <a href="{:mac_url_vod_play($vo)}" rel="bookmark"><img class="lazy" referrerpolicy="no-referrer" data-original="{:mac_url_img($vo.vod_pic)}" src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" />
+          <div class="link-overlay"></div></a> 
+         <span class="model-view">{$vo.vod_hits} Views</span> 
+        </div> 
+       </div> 
+       <div class="entry-title"> 
+        <a title="{$vo.vod_name}" href="{:mac_url_vod_play($vo)}" rel="bookmark"> {$vo.vod_name} </a> {$vo.vod_time|date="Y / m / d",###} 
+       </div> 
+      </div> 
+	  {/maccms:vod}
+     </div>
+	{/maccms:type}
+     <div class="clearfix"></div>
+    </div>
+   </div>
+   <div class="container"> 
+    <div class="home-img-box"> 
+     <div class="bottom-ad" style="overflow:hidden;"> 
+      <script src="{$maccms.path_ads}bottomads.js"></script> 
+     </div> 
+    {maccms:type order="asc" by="sort" mid="1" ids="3" id="vo1" key="key1"}
+     <div class="category-count"> 
+      <h3 class="title"> {$vo1.type_name} ({:mac_data_count($vo1['type_id'],'all','vod')}) </h3> 
+      <span class="home-link"> <a class="btn btn-sm btn-danger" href="{:mac_url_type($vo1)}" rel="tag">观看更多</a> </span> 
+     </div> 
+     <div class="post-list"> 
+	 {maccms:vod num="8" order="desc" by="time" type="'.$vo1['type_id'].'"}
+      <div class="col-md-3 col-sm-6 col-xs-6"> 
+       <div class="video-item"> 
+        <div class="featured-content-image"> 
+         <a href="{:mac_url_vod_play($vo)}" rel="bookmark"><img class="lazy" referrerpolicy="no-referrer" data-original="{:mac_url_img($vo.vod_pic)}" src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" />
+          <div class="link-overlay"></div></a> 
+         <span class="model-view">{$vo.vod_hits} Views</span> 
+        </div> 
+       </div> 
+       <div class="entry-title"> 
+        <a title="{$vo.vod_name}" href="{:mac_url_vod_play($vo)}" rel="bookmark"> {$vo.vod_name} </a> {$vo.vod_time|date="Y / m / d",###} 
+       </div> 
+      </div> 
+	  {/maccms:vod}
+     </div>
+	{/maccms:type}
+     <div class="clearfix"></div>
+    </div>
+   </div> 
+   <a class="go-top" href="#"><span class="glyphicon glyphicon-chevron-up"></span></a>
+  </section>
+  <link rel="stylesheet" type="text/css" href="{$maccms.path_tpl}html/style/css/exonav.css" />
+  <script type="text/javascript" src="{$maccms.path_tpl}html/style/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{$maccms.path_tpl}html/style/js/jquery.lazyload.min.js"></script>
+  <script>$("img.lazy").lazyload({effect : 'fadeIn'});</script>
+  {include file="public/foot"}
+ </body>
+</html>

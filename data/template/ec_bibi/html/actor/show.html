@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<title>{$maccms.site_name}-明星库</title>
+<meta name="keywords" content="{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{include file="public/include"}
+<link href="{$maccms.path_tpl}css/actor.css" rel="stylesheet" type="text/css" />
+</head><body>
+<div class="nex_bbstopnav_displaylist">
+    <h3>明星库</h3>
+    <a href="javascript:MAC.GoBack()" class="nexback"></a>
+</div>
+<div style="height:.55rem"></div>
+<!--筛选条件-->
+<div class="ec-lf13 fed-part-layout fed-back-whits fed-part-rows">
+	<div class="fed-casc-list fed-part-rows">
+		<dl>
+			<dt>地区</dt>
+			<dd><a href="{:mac_url('actor/show',['sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter']])}" {if condition="$param['area']==''"} class="fed-this fed-text-green"{/if}>全部</a></dd>
+			{maccms:foreach name=":explode(',','内地,韩国,台湾,香港,澳门,日本,美国,亚太,欧美')" id="vo2" key="key2"}
+			<dd><a href="{:mac_url('actor/show',['area'=>$vo2,'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter']])}" {if condition="$param['area'] eq $vo2"} class="fed-this fed-text-green"{/if}>{$vo2}</a></dd>
+			{/maccms:foreach}
+		</dl>
+		<dl>
+			<dt>性别</dt>
+			<dd><a href="{:mac_url('actor/show',['area'=>$param['area'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter']])}" {if condition="$param['sex']==''"} class="fed-this fed-text-green"{/if}>全部</a></dd>
+			{maccms:foreach name=":explode(',','男,女')" id="vo2" key="key2"}
+			<dd><a href="{:mac_url('actor/show',['area'=>$param['area'],'sex'=>$vo2,'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter']])}" {if condition="$param['sex'] eq $vo2"} class="fed-this fed-text-green"{/if}>{$vo2}</a></dd>
+			{/maccms:foreach}
+		</dl>
+		<dl>
+			<dt>字母</dt>
+			<dd><a href="{:mac_url('actor/show',['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign']])}" {if condition="$param['letter'] ==''"}  class="fed-this fed-text-green"{/if}>全部</a></dd>
+			{maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z')" id="vo2" key="key2"}
+			<dd><a href="{:mac_url('actor/show',['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$vo2])}" {if condition="$param['letter'] eq $vo2"}  class="fed-this fed-text-green"{/if}>{$vo2}</a></dd>
+			{/maccms:foreach}
+		</dl>
+	</div>
+</div>
+<!--明星列表-->
+<div class="ecactorn4 box ec-new ec-lf13">
+    <div class="clearfix">
+    {maccms:actor num="36" paging="yes" pageurl="actor/show" order="desc" by="time"}
+	    <span class="actorlist_item" style="width: 22.6%;">
+		    <div class="actorlist_box">
+				<a class="vodlist_thumb" href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" style="background-image: url({$vo.actor_pic|mac_url_img});"></a>
+				<div class="actorlist_tit">									
+				    <a href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}">{$vo.actor_name}</a>
+				</div>
+		    </div>
+	    </span>
+    {/maccms:actor}
+    </div>
+</div>
+{include file="public/paging"}
+{include file="public/foot"}
+</body>
+</html>

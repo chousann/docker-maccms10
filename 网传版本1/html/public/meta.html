@@ -1,9 +1,0 @@
-<?php $version = parse_ini_file(substr($maccms['path_tpl'], strlen($maccms['path'])).'info.ini'); $version = stristr('127.0.0|192.168', substr($_SERVER['HTTP_HOST'], 0, 7)) == true ? time() : $version['version']; ?>
-<?php $file = 'template/conch/asset/admin/Conch.php'; $newfile = 'application/admin/controller/Conch.php'; if (file_exists($newfile)) {} else { copy($file,$newfile); } ?> 
-<?php $file = 'template/conch/asset/admin/conchvip.php'; $newfile = 'application/extra/conchvip.php'; if (file_exists($newfile)) {} else { copy($file,$newfile); } ?> 
-<?php $file = 'template/conch/asset/admin/theme.html'; $dir = 'application/admin/view/conch'; $newfile = 'application/admin/view/conch/theme.html'; if (file_exists($dir)) {} else { mkdir($dir, 0777); copy($file,$newfile); } ?>
-<?php $conch = file_exists('application/extra/conchvip.php') ? require('application/extra/conchvip.php') : require(substr($maccms['path_tpl'], strlen($maccms['path'])).'asset/admin/conchvip.php'); ?>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
-<meta name="renderer" content="webkit|ie-comp|ie-stand">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">

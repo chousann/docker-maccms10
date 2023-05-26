@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html data-n-head-ssr lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$obj.actor_name}个人资料_{$obj.actor_name}演过的电视剧_{$obj.actor_name}电影全集-{$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.actor_name}个人资料,{$obj.actor_name}演过的电视剧,{$obj.actor_name}电影全集,{$obj.actor_name}最新电影,{$obj.actor_name}最新电视剧">
+    <meta name="description" content="{$maccms.site_name}演示站为你收集了{$obj.actor_name}个人资料包括了{$obj.actor_name}最新演过的电视剧,{$obj.actor_name}电影全集,以及{$obj.actor_name}图片剧照最近动态等信息希望你能喜欢。">
+    <link rel="stylesheet" href="{$maccms.path_tpl}css/swiper.min.css">
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head2"}
+<div id="comiis_head" class="ec-position ec-top1">
+    <div class="topmenuki">
+      <div class="swiper-container2">
+        <div class="swiper-wrapper">
+            <span class="swiper-slide swiper-nav"><a class="ecnav-dt" href="{:mac_url('actor/index')}">广场</a></span>
+            {maccms:actor num="6" order="desc" by="time"}
+            <span class="swiper-slide swiper-nav"><a href="{$vo|mac_url_actor_detail}">{$vo.actor_name}</a></span>
+            {/maccms:actor}
+        </div>
+      </div>
+    </div>
+    <div class="ec-classify btn"></div>
+    <div class="ec-box clearfix ec-top1 z13 y13">
+        <div id="sowd" class="search2"><input type="text" name="" id="" value="搜索一下发现精彩影视"><span class="s"><i class="iconfont-v3 v3-search"></i></span></div>
+        <div class="ec-cioc ec-cioc1">
+          <span><a href="{:mac_url('map/index')}"><img src="{$maccms.path_tpl}images/vod1.png" /></a></span>
+          {if condition="$GLOBALS['user']['user_id']" gt 0}
+          <span><a href="{:mac_url('user/plays')}"><img src="{$maccms.path_tpl}images/jilu1.png" /></a></span>
+          {else/}
+          <span><a href="{:mac_url('label/plays')}"><img src="{$maccms.path_tpl}images/jilu1.png" /></a></span>
+          {/if}
+          <span><a href="{:mac_url('gbook/index')}"><img src="{$maccms.path_tpl}images/liuyan1.png" /></a></span></div>
+        <div class="ec-cioc ec-cioc2">
+          <span><a href="{:mac_url('map/index')}"><img src="{$maccms.path_tpl}images/vod.png" /></a></span>
+          {if condition="$GLOBALS['user']['user_id']" gt 0}
+          <span><a href="{:mac_url('user/plays')}"><img src="{$maccms.path_tpl}images/jilu.png" /></a></span>
+          {else/}
+          <span><a href="{:mac_url('label/plays')}"><img src="{$maccms.path_tpl}images/jilu.png" /></a></span>
+          {/if}
+          <span><a href="{:mac_url('gbook/index')}"><img src="{$maccms.path_tpl}images/liuyan.png" /></a></span></div>
+    </div>
+</div>
+<div class="ec-actorber">
+  <div class="actor_list">
+  <div class="content_actor clearfix">
+  <div class="actor_thumb">											
+    <a class="actor_a" href="javascript:;" title="{$obj.actor_name}" style="background-image:url({$obj.actor_pic|mac_url_img})"></a>									
+  </div>
+  <div class="actor_detail">
+    <span class="text_muted pull_right">
+      <a class="digg_link" data-id="{$obj.actor_id}" data-mid="{$maccms.mid}" data-type="up" href="javascript:;">❤&nbsp;<em class="digg_num">{$obj.actor_up}</em></a>
+    </span>
+    <h3 class="title">{$obj.actor_name}</h3>
+    <p class="nex_mneditsninfos">总人气：{$obj.actor_hits}<span>|</span>支持数：{$obj.actor_up}</p>
+  </div>
+  </div>				
+  <div>
+</div></div></div>
+<!--详细资料-->
+<div class="layui-tab layui-tab-brief main dattop" lay-filter="docDemoTabBrief">
+  <ul class="tab-nav layui-tab-title clearfix">
+    <li id="tab1" class="layui-this current" onmousemove="setTab('tab','stab',1,3)"><em></em><a target="_self" href="javascript:;">参演</a></li>
+    <li id="tab2" onmousemove="setTab('tab','stab',2,3)"><em></em><a target="_self" href="javascript:;">个人资料</a></li>
+    <li id="tab3" onmousemove="setTab('tab','stab',3,3)"><em></em><a target="_self" href="javascript:;">星闻资讯</a></li>
+  </ul>
+<!-- tab内容-->
+<div class="layui-tab-content ecm2">
+<div id="stab1" class="layui-tab-item layui-show">
+  <div class="box ec-lf13">
+    <div class="title">
+        <h2>电影作品</h2>
+    </div>
+    <div class="box_con">
+        <ul class="img-list dis ecbgc">
+            {maccms:vod num="5" type="1" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+            <li><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div>
+            <i>{$vo.vod_remarks}</i></a>
+            <div><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></div>
+            <div class="ub-txt"><p>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</p></div>
+            </li>
+            {/maccms:vod}
+        </ul>
+    </div>  
+  </div>  
+  <div class="box ec-lf13 ecm2">
+    <div class="title">
+        <h2>电视剧作品</h2>
+    </div>
+    <div class="box_con">
+        <ul class="img-list dis ecbgc">
+            {maccms:vod num="20" type="2" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+            <li><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div>
+            <i>{$vo.vod_remarks}</i></a>
+            <div><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></div>
+            <div class="ub-txt"><p>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</p></div>
+            </li>
+            {/maccms:vod}
+        </ul>
+    </div>  
+  </div>
+  <div class="box ec-lf13 ecm3">
+    <div class="title">
+        <h2>参与综艺</h2>
+    </div>
+    <div class="box_con">
+        <ul class="img-list dis ecbgc">
+            {maccms:vod num="20" type="3" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+            <li><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div>
+            <i>{$vo.vod_remarks}</i></a>
+            <div><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></div>
+            <div class="ub-txt"><p>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</p></div>
+            </li>
+            {/maccms:vod}
+        </ul>
+    </div>  
+  </div>
+</div>
+	<!--介绍-->
+    <div id="stab2" class="layui-tab-item ec-lf13" style="display:none">
+	   <div class="conList" id="conList">
+        <ul class="ulDetailIntro clearfix">
+           <li> <span class="sTit">别名:</span>{$obj.actor_alias}</li>
+           <li><span class="sTit">身高:</span>{$obj.actor_height}</li>
+           <li><span class="sTit">体重:</span>{$obj.actor_weight}</li>
+           <li> <span class="sTit">国籍:</span> 中国</li>
+           <li> <span class="sTit">民族:</span> 汉族</li>
+           <li> <span class="sTit">星座:</span> {$obj.actor_starsign}</li>
+           <li> <span class="sTit">血:型</span> {$obj.actor_blood}型</li>
+           <li> <span class="sTit">职业:</span> <em>演员</em><em>音乐人</em></li>
+           <li> <span class="sTit">出生地:</span> {$obj.actor_birtharea}</li>
+           <li> <span class="sTit">出生日期:</span> {$obj.actor_birthday}</li>
+           <li> <span class="sTit">毕业院校:</span> {$obj.actor_school}</li>
+           <li> <span class="sTit">经纪公司:</span> EEG</li>
+           <li class="all"> <span class="sTit">代表作品:</span> {$obj.actor_works}</li>
+         </ul>
+        <dl class="dlTxtList">
+			<!--详细内容-->
+           <dt> <span class="sMark"><i class="iIcon"></i>{$obj.actor_name}的经历：</span> <i class="iLine"></i> </dt>
+           <dd>
+            <div class="txtList">{$obj.actor_content}</div>
+          </dd>
+         </dl>
+        <!-- 个人资料 end --> 
+      </div>
+	</div>
+	<!--资讯-->
+	<div id="stab3" class="layui-tab-item" style="display:none">
+	   <!--这里是文章-->
+	    <div class="vodlist_l ecm2">
+        <ul class="pianyi">
+            {maccms:art num="30" paging="no" tag="'.$obj['actor_name'].'" order="desc" by="time"}
+            <li class="clearfix"><a href="{:mac_url_art_detail($vo)}">{$vo.art_name}</a><span>{$vo.art_time|date='m-d',###}</span></li>
+            {/maccms:art}
+        </ul>
+        </div>
+	</div>
+</div>	 
+<!--分类标签--> 
+</div>	
+<script>
+  function setTab(name,name2,cursel,n){
+    for(i=1;i<=n;i++){
+      var menu=document.getElementById(name+i);
+      var con=document.getElementById(name2+i);
+      menu.className=i==cursel?"current":"";
+      con.style.display=i==cursel?"block":"none";
+    }
+  }
+</script>
+{include file="public/foot"}
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width = device-width ,initial-scale = 1,minimum-scale = 1,maximum-scale = 1,user-scalable =no,"/>
+	<title>我的收藏 - {$maccms.site_name}</title>
+	{include file="user/include" /}
+</head>
+<div class="nex_bbstopnav_viewthread" style="border-bottom:0;">
+        <a href="javascript:history.back()" class="z nexback"></a>
+        <h3>我的收藏</h3>
+</div>
+<div style="height:50px"></div>
+<div class="wrap" id="list">
+	<!--我的收藏-->
+	<div class="order-list often-odr">
+		{volist name="list" id="vo"}
+		{if condition="$vo.ulog_mid eq 1"}
+		<div class="item clearfix">
+			<div class="info">
+				<p class="tit">
+					{if condition="$vo.ulog_mid eq 1"}
+					<a target="_blank" href="{$vo.data.link}">[{$vo.data.type.type_name}] {$vo.data.name}</a>
+					{elseif condition="$vo.ulog_mid eq 2"}
+					<a target="_blank" href="{$vo.data.link}">[{$vo.data.type.type_name}] {$vo.data.name}</a>
+					{elseif condition="$vo.ulog_mid eq 3"}
+					<a target="_blank" href="{$vo.data.link}">{$vo.data.name}</a>
+					{/if}
+				</p>
+				<div class="p-bottom">
+					<p>{$vo.remarks}</p>
+				</div>
+			</div>
+			<div class="odr-price">
+				<p class="price">{$vo.ulog_time|mac_day}</p>
+			</div>
+			<div class="often-del clearfix">
+				<a class="btn-brand btn-del" href="javascript:void(0)" data-id="{$vo.ulog_id}" style="width:60px;" >删除</a>
+			</div>
+		</div>
+		{/if}
+
+		{/volist}
+
+	</div>
+</div>
+
+
+<!--loading start-->
+<div class="loading_box"></div>
+<!--loading end-->
+
+<script>
+
+	$(".go-back").click(function () {
+		var ref = document.referrer;
+		location.href=ref;
+	});
+
+	$('.btn-del').click(function(){
+		var that=$(this);
+		if(confirm('确定要删除吗')) {
+			$.ajax({
+				url: "{:url('user/ulog_del')}",
+				type: "post",
+				dataType: "json",
+				data: {ids: that.attr('data-id'), 'type': 2},
+				beforeSend: function () {
+				},
+				success: function (r) {
+					alert(r.msg);
+					if (r.code == 1) {
+						that.parent().parent().remove();
+					}
+				},
+				complete: function () {
+
+				}
+			});
+		}
+	});
+
+</script>
+</body>
+</html>

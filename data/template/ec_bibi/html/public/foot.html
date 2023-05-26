@@ -1,0 +1,36 @@
+<script src="{$maccms.path_tpl}js/swiper.min.js"> </script>   
+<script src="{$maccms.path_tpl}js/ec.js"> </script>   
+<div style="height:.6rem"></div>
+<div class="nex_bottomnav">
+<div class="nex_bottominter">
+    	<ul>
+        	<li>
+            	<a {if condition="$maccms.aid eq 1"}class="ecnav-btidx ecnav-bti"{/if} href="{$maccms.path}">
+                	<i class="nex_iconbtm1"></i>
+                    <p>首页</p>
+                </a>
+            </li>
+            <li>
+            	{maccms:type ids="5" order="asc" by="sort"}<a {if condition="$obj.type_id eq $vo.type_id"}class="ecnav-btizx ecnav-bti"{/if} href="{:mac_url_type($vo)}">
+                	<i class="nex_iconbtm4"></i>
+                    <p>{$vo.type_name}</p>
+                </a>{/maccms:type}
+            </li>
+            <li>
+            	<a href="{:mac_url('label/jx')}">
+                	<i class="nex_iconbtm2"></i>
+                    <p>VIP解析</p>
+                </a>
+            </li>
+            <li>
+            	<a href="//{$maccms.site_url}/mp3">
+                	<i class="nex_iconbtm5"></i>
+                    <p>音乐</p>
+                </a>
+            </li>
+            <div class="clear"></div>
+        </ul>
+</div>
+</div>
+  <a href="javascript:;" class="qdxw_top"></a>
+<div style="display:none">{$maccms.site_tj}</div>

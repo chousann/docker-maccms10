@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="UTF-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>分销记录 - 个人中心 - {$maccms.site_name}</title> 
+  <meta name="keywords" content="个人中心,{$maccms.site_keywords}" /> 
+  <meta name="description" content="{$maccms.site_description}" />
+  {include file="user/include"} 
+ </head>
+ <body class="fed-min-width">
+  {include file="user/head"}   
+  <div class="fed-main-info fed-min-width"> 
+   <div class="fed-part-case"> 
+    <div class="fed-user-head fed-margin-top fed-back-whits"> 
+     <div class="fed-list-pics fed-lazy fed-part-5by2 fed-part-rows" style="background:url({$maccms.path_tpl}html/style/images/user.jpg);"> 
+      <div class="fed-part-core fed-text-center"> 
+       <div class="fed-user-image" data-role="{:mac_url('user/portrait')}"> 
+        <img class="face fed-user-avat fed-part-roun" src="{$obj.user_portrait|mac_default='static/images/touxiang.png'|mac_url_img}?v={:time()}" /> 
+       </div> 
+       <span class="fed-visible fed-text-white fed-padding">{$obj.user_name}</span> 
+      </div> 
+     </div> 
+     <div class="fed-padding fed-part-rows fed-back-whits fed-hide-md"> 
+      <ul class="fed-user-brief fed-part-rows fed-back-whits"> 
+       <li class="fed-padding-x fed-text-center fed-col-xs4"> <span class="fed-visible fed-text-gules">{$obj.user_points}</span> <span class="fed-visible">我的积分</span> </li> 
+       <li class="fed-padding-x fed-text-center fed-line-left fed-col-xs4"> <span class="fed-visible fed-text-gules">{$obj.group.group_name}</span> <span class="fed-visible">我的等级</span> </li> 
+       <li class="fed-padding-x fed-text-center fed-line-left fed-col-xs4"> <span class="fed-visible fed-text-gules">{$obj.user_login_num}</span> <span class="fed-visible">登录次数</span> </li> 
+      </ul> 
+     </div> 
+    </div> 
+    <div class="fed-part-rows"> 
+     <div class="fed-main-left fed-col-xs12 fed-col-md4 fed-col-lg3 fed-hide-xs fed-hide-sm fed-show-md-block">
+       {include file="user/menu"} 
+     </div> 
+     <div class="fed-main-right fed-col-xs12 fed-col-md8 fed-col-lg9"> 
+      <div class="fed-part-layout fed-back-whits"> 
+       <div class="fed-user-title fed-list-head fed-part-rows fed-padding fed-line-bottom"> 
+        <h2 class="fed-font-xvi fed-padding"><a class="{if condition="$param.level eq ''"}fed-text-green{/if} fed-more" href="{:mac_url('user/reward')}">一级下线</a>&nbsp;&nbsp;<a class="{if condition="$param.level eq '2'"}fed-text-green{/if} fed-more" href="{:mac_url('user/reward')}?level=2">二级下线</a>&nbsp;&nbsp;<a class="{if condition="$param.level eq '3'"}fed-text-green{/if} fed-more" href="{:mac_url('user/reward')}?level=3">三级下线</a></h2> 
+        <ul class="fed-part-tips fed-padding"> 
+         <li class="fed-padding"> <a class="fed-more" href="{:mac_url('user/index')}">返回</a> </li> 
+        </ul> 
+       </div> 
+       <ul class="fed-user-list fed-part-rows fed-back-whits"> 
+        <li class="fed-padding-x fed-part-rows"> 
+         <div class="fed-user-input fed-visible fed-font-xvi fed-part-rows"> 
+          <span class="fed-col-xs4 fed-col-sm4 fed-part-eone">编号</span> 
+          <span class="fed-col-xs4 fed-col-sm4 fed-part-eone">会员</span> 
+          <span class="fed-col-xs4 fed-col-sm4 fed-part-eone fed-text-right">时间</span>  
+         </div> </li> {volist name="list" id="vo"} 
+        <li class="fed-padding-x fed-part-rows fed-line-top"> 
+         <div class="fed-user-input fed-visible fed-font-xvi fed-part-rows"> 
+          <span class="fed-col-xs4 fed-col-sm4 fed-part-eone">{$vo.user_id}</span> 
+          <span class="fed-col-xs4 fed-col-sm4 fed-part-eone">{$vo.user_name}</span> 
+          <span class="fed-col-xs4 fed-col-sm4 fed-part-eone fed-text-right">{$vo.user_reg_time|mac_day}</span> 
+         </div> </li> {/volist} {if$__PAGING__.page_total>1} 
+        <div class="fed-page-info fed-text-center"> 
+         <a class="fed-btns-info fed-rims-info fed-hide fed-show-xs-inline{if$__PAGING__['page_current']==1} fed-btns-disad{/if}" href="{$__PAGING__.page_url|mac_url_page=1}">首页</a> 
+         <a class="fed-btns-info fed-rims-info{if$__PAGING__['page_current']==1} fed-btns-disad{/if}" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}">上一页</a> {if$__PAGING__.page_current>3} 
+         <a class="fed-btns-info fed-rims-info fed-hide fed-show-sm-inline" href="{$__PAGING__.page_url|mac_url_page=1}">1</a> 
+         <a class="fed-btns-info fed-rims-info fed-hide fed-show-sm-inline fed-btns-disad" href="javascript:;">...</a> {/if} {maccms:foreach name="$__PAGING__.page_num" id="num"} 
+         <a class="fed-btns-info fed-rims-info fed-hide fed-show-sm-inline{if$__PAGING__['page_current']==$num} fed-btns-green{/if}" href="{if$__PAGING__['page_current']==$num}javascript:;{else}{$__PAGING__.page_url|mac_url_page=$num}{/if}">{$num}</a> {/maccms:foreach} {if$__PAGING__.page_current<($__PAGING__.page_total-2)} 
+         <a class="fed-btns-info fed-rims-info fed-hide fed-show-sm-inline fed-btns-disad" href="javascript:;">...</a> 
+         <a class="fed-btns-info fed-rims-info fed-hide fed-show-sm-inline" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}">{$__PAGING__.page_total}</a> {/if} 
+         <a class="fed-btns-info fed-rims-info fed-hide fed-show-xs-inline" href="javascript:;">{$__PAGING__.page_current}/{$__PAGING__.page_total}</a> 
+         <a class="fed-btns-info fed-rims-info{if$__PAGING__['page_current']==$__PAGING__.page_total} fed-btns-disad{/if}" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}">下一页</a> 
+         <a class="fed-btns-info fed-rims-info fed-hide fed-show-xs-inline{if$__PAGING__['page_current']==$__PAGING__.page_total} fed-btns-disad{/if}" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}">尾页</a> 
+        </div> {/if}{if$__PAGING__.record_total!=0} 
+        <script type="text/javascript">
+		if(document.getElementById('fed-now')) document.getElementById('fed-now').innerHTML='{$__PAGING__.page_current}';
+		if(document.getElementById('fed-count')) document.getElementById('fed-count').innerHTML='{$__PAGING__.record_total}';
+		</script> {/if} 
+       </ul> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  {include file="user/foot"}
+  <script>
+	$(".face").imageUpload({
+		formAction: "{:url('user/portrait')}",
+		inputFileName:'file',
+		browseButtonValue: '',
+		browseButtonClass:'btn btn-default btn-xs fed-user-alter fed-part-roun fed-icon-font fed-icon-xiugai',
+		automaticUpload: true,
+		hideDeleteButton: true,
+		hover:true
+	})
+	$(".jQuery-image-upload-controls").mouseenter(function(){
+    $(".jQuery-image-upload-controls").css("display","block");
+	});
+	$(".jQuery-image-upload-controls").mouseleave(function(){
+    $(".jQuery-image-upload-controls").css("display","none");
+	});
+	$(".face").on("imageUpload.uploadFailed", function (ev, err) {
+		alert(err);
+	});
+</script>  
+ </body>
+</html>

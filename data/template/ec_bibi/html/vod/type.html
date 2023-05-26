@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html data-n-head-ssr lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>最新{$obj.type_name}-推荐{$obj.type_name} - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+    <link rel="stylesheet" href="{$maccms.path_tpl}css/swiper.min.css">
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+  <div class="ec-position ec-top1 highlight">
+    <div class="topmenu">
+      <div class="swiper-container2">
+        <div class="swiper-wrapper">
+            <span class="swiper-slide swiper-nav"><a {if condition="$maccms.aid eq 1"}class="ecnav-dt"{/if} href="{$maccms.path}">首页</a></span>
+            {maccms:type ids="parent" order="asc" by="sort"}
+            <span class="swiper-slide swiper-nav"><a {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])"}class="ecnav-dt"{/if} href="{:mac_url_type($vo)}">{$vo.type_name}</a></span>
+            {/maccms:type}
+            <span class="swiper-slide swiper-nav"><a href="{:mac_url('label/rank')}">热播精选</a></span>
+            <span class="swiper-slide swiper-nav"><a href="{:mac_url_topic_index()}">专题</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="studyimg"><a href="#"><img src="{$maccms.path_tpl}images/20191011150535538.png" width="100%" height="100%"></a></div><!--自定义链接，可以是节日或者活动......-->
+    <div class="ec-classify btn"></div>
+    <div class="ec-box clearfix ec-top1 z13 y13">
+        <div id="sowd" class="search2"><input type="text" name="" id="" value="搜索一下发现精彩影视"><span class="s"><i class="iconfont-v3 v3-search"></i></span></div>
+        <div class="ec-cioc ec-cioc2">
+          <span><a href="{:mac_url('map/index')}"><img src="{$maccms.path_tpl}images/vod.png" /></a></span>
+          {if condition="$GLOBALS['user']['user_id']" gt 0}
+          <span><a href="{:mac_url('user/plays')}"><img src="{$maccms.path_tpl}images/jilu.png" /></a></span>
+          {else/}
+          <span><a href="{:mac_url('label/plays')}"><img src="{$maccms.path_tpl}images/jilu.png" /></a></span>
+          {/if}
+          <span><a href="{:mac_url('gbook/index')}"><img src="{$maccms.path_tpl}images/liuyan.png" /></a></span></div>
+    </div>
+  </div>   
+  <div class="swiper-container1">
+    <div class="swiper-wrapper">
+    {maccms:vod num="6" type="current" level="9" order="desc" by="id"}
+      <div class="swiper-slide swiper-color" edata-color="#{$vo.vod_color}">
+          <a href="{:mac_url_vod_play($vo)}"><img src="{:mac_url_img($vo.vod_pic_thumb)}" alt="{$vo.vod_name}  {$vo.vod_remarks}"></a>
+          <div class="ec-hdptext">
+          <div  class="title a-hide">{$vo.vod_name}·{$vo.vod_remarks}</div>
+          <div  class="title b-hide">{$vo.vod_sub}</div>
+          </div>
+      </div>
+      {/maccms:vod}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+  <div class="ec-news">
+	<div class="ec-newshezi">
+		{maccms:art num="4" level="5" type="all" order="desc" by="time"}
+        <span class="ec-newshto">公告</span><div class="ec-newsli"><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name}</a></div>
+        {/maccms:art}
+	</div>	
+  </div>
+<!-- 分类最新更新数据 -->
+<section class="box ec-lf13 ecm2">
+    <section class="title">
+        <h2>今日更新</h2><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'time' ],'show')}"><i class="ec-pianku"></i><em class="fed-text-green">影片库</em></a>
+    </section>
+    <div class="box_con">
+        <ul class="img-list dis shipin ecbgk">
+            {maccms:vod num="6" type="current" order="desc" by="time"}
+            <li><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}"><div class="ec-idxct ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div>
+            <i>{$vo.vod_remarks}</i></a>
+            <div><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></div>
+            <div class="ub-txt"><p>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</p></div>
+            </li>
+            {/maccms:vod}
+        </ul>
+    </div>
+</section>
+<!-- 循环板块综合人气最高数据 -->
+{maccms:type parent="current" order="asc" by="sort" mid="1" id="vo3"}
+<section class="box ec-lf13">
+    <section class="title">
+        <h2>最新{$vo3.type_name}</h2>
+    </section>
+    <div class="box_con ecbgk">
+        <ul class="img-list dis">
+            {maccms:vod num="1" level="5" type="'.$vo3['type_id'].'" order="desc" by="time"}
+            <li class="box_ecli" style="width: 100%;"><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}"><div class="ec-idxzt ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic_thumb)}"></div><i style="line-height: .20rem;font-size: .20rem;text-align: center;bottom: 0;">{$vo.vod_name}</i></a>
+            </li>
+            {/maccms:vod}
+        </ul>
+    </div>
+    <div class="box_con">
+        <ul class="img-list dis ecbgc">
+            {maccms:vod num="6" type="'.$vo3['type_id'].'" order="desc" by="hits"}
+            <li><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div>
+            <i>{$vo.vod_remarks}</i></a>
+            <div><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></div>
+            <div class="ub-txt"><p>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</p></div>
+            </li>
+            {/maccms:vod}
+        </ul>
+    </div>  
+</section>
+{/maccms:type} 
+{include file="public/foot"}
+</body>
+</html>

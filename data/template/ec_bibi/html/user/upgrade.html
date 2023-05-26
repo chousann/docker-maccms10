@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width = device-width ,initial-scale = 1,minimum-scale = 1,maximum-scale = 1,user-scalable =no,"/>
+	<title>升级会员组 - {$maccms.site_name}</title>
+	{include file="user/include" /}
+</head>
+<body>
+<div class="nex_uc_mylisttop">
+<div class="nex_uc_mylisttopinter">
+    <a href="javascript:history.back()" class="nex_uc_mylisttop_back"></a>
+    <span class="nex_uc_mylisttop_txt">VIP办理中心</span>
+</div>
+<div class="nex_uc_infomation">
+    	<div class="nex_uc_info_avator"><img src="{$obj.user_portrait|mac_default='static/images/touxiang.png'|mac_url_img}" style="display: inline; visibility: visible;"></div>
+        <div class="nex_uc_info_cell">
+        	<h5>{$obj.user_name}</h5>
+            <div class="nex_uc_info_numsd"><em>会员组：{$obj.group.group_name}</em><i> 期限：{if condition="$obj.group_id lt 3"}无限期{else}{$obj.user_end_time|date='Y-m-d',###}{/if}</i></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="nex_MY_threadlist nex_UC_mylists">
+<ul>
+	{volist name="group_list" id="vo"}
+	{if condition="$vo.group_id gt 2 && $vo.group_status eq 1"}
+    <li>
+        <div class="nex_UC_mylists_title">
+          <span>体验1天{$vo.group_name}</span>
+          <span class="vipjf grade" style="background: #F39A07" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_day}" data-long="day">开通</span>
+          <span class="vipjf" style="background-color: #ff410f">{$vo.group_points_day}积分</span>
+          <div class="clear"></div>
+          </div>
+          <div class="nex_mythreadsums">开通1天体验会员可以欣赏部分本站vip资源哦~</div>
+    </li>
+    <li>
+        <div class="nex_UC_mylists_title">
+          <span>包一周{$vo.group_name}</span>
+          <span class="vipjf grade" style="background: #F39A07" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_week}" data-long="week">开通</span>
+          <span class="vipjf" style="background-color: #B0E2FF">{$vo.group_points_week}积分</span>
+          <div class="clear"></div>
+          </div>
+          <div class="nex_mythreadsums">开通一周vip可以享受全站视频免费欣赏</div>
+    </li>
+    <li>
+        <div class="nex_UC_mylists_title">
+          <span>月度{$vo.group_name}</span>
+          <span class="vipjf grade" style="background: #F39A07" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_month}" data-long="month">开通</span>
+          <span class="vipjf" style="background-color: #F08080">{$vo.group_points_month}积分</span>
+          <div class="clear"></div>
+          </div>
+          <div class="nex_mythreadsums">开通月度vip可以享受全站视频免费欣赏+下载</div>
+    </li>
+    <li>
+        <div class="nex_UC_mylists_title">
+          <span>年度{$vo.group_name}</span>
+          <span class="vipjf grade" style="background: #F39A07" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_year}" data-long="year">开通</span>
+          <span class="vipjf" style="background-color: #EE7AE9">{$vo.group_points_year}积分</span>
+          <div class="clear"></div>
+          </div>
+          <div class="nex_mythreadsums">年度vip大佬~这里你说着算</div>
+    </li>
+	{/if}
+	{/volist}
+</ul>
+</div>
+<!--loading start-->
+<div class="loading_box"></div>
+<!--loading end-->
+
+<script>
+
+	$(".go-back").click(function () {
+		var ref = document.referrer;
+		location.href=ref;
+	});
+
+	$('.grade').click(function(){
+		var that=$(this);
+		var group_id = that.attr('data-id');
+		var group_name = that.attr('data-name');
+		var long = that.attr('data-long');
+		var points = that.attr('data-points');
+
+		if(confirm('确定要升级到【'+group_name+'】吗,需要花费【'+points+'】积分')) {
+			$.ajax({
+				url: "{:url('user/upgrade')}",
+				type: "post",
+				dataType: "json",
+				data: {group_id: group_id,long:long },
+				beforeSend: function () {
+					$("#btn_submit").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					alert(r.msg);
+					if (r.code == 1) {
+						location.reload();
+					}
+				},
+				complete: function () {
+					$("#btn_submit").css("background","#fa4646").val("提交");
+				}
+			});
+		}
+	});
+
+</script>
+</body>
+</html>

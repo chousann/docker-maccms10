@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* 草根资源吧/明星榜2019.10.29 */
+.ec-rankgz{top: .07rem;position: absolute;right: .13rem;}
+#comiis_head{background: transparent;box-shadow: none;}
+#comiis_head h3{display:none;}
+.highlight h3{display:block!important;}
+.rule-con-title{display: block;padding: .1rem 0;font-size: .20rem;color: #333;font-weight: bold;}
+.comiis_topnv{height:40px;text-align:center;white-space:nowrap;width:100%}
+.head_hao{margin-top:48px}
+.b_b{border-bottom:1px solid #efefef!important}
+.comiis_topnv a{display:inline-block;font-size:15px;height:40px;line-height:38px;padding:0 12px}
+.ec-rankhot{background:url(http://app.comiis.com/template/comiis_app/comiis/img/comiis_rankbg01.png) no-repeat center bottom/100%;overflow:hidden;position:relative;height:3.28rem;}
+.ec-rankhot li{width:calc(33% - .2rem);padding:.99rem .2rem 0;text-align:center;overflow:hidden}
+.ec-rankhot li:nth-child(1){position:absolute;top:0;left:33%;width:calc(34% - .2rem);padding-top:.6rem}
+.ec-rankhot li:nth-child(2){position:absolute;top:0;left:0}
+.ec-rankhot li:nth-child(3){position:absolute;top:0;left:67%}
+.ec-rankhot li a{display:block}
+.ec-rankhot li .user_img{width:100%;text-align:center}
+.ec-rankhot li:nth-child(1) .user_img span{width:1.16rem;height:1.16rem}
+.ec-rankhot li .user_img span{background:#fff;margin:0 auto;display:block;width:.91rem;height:.91rem;border-radius:50%;position:relative}
+.ec-rankhot li:nth-child(1) .user_img span em{position:absolute;top:-18px;left:50%;margin-left:-18px;width:36px;z-index:10}
+.ec-rankhot li .user_img span img{width:.85rem;height:.85rem;margin-top:.03rem;vertical-align:middle;border-radius:50%}
+.ec-rankhot li:nth-child(1) .user_img span img{width:1.09rem;height:1.09rem}
+.ec-rankhot li:nth-child(1) .user_img span em img{width:100%;height:auto}
+.ec-rankhot li .user_img span em img{width:100%;height:auto}
+.ec-rankhot li h2{margin:14px 0 4px;height:16px;line-height:16px;font-size:14px;overflow:hidden}
+.ec-rankhot li .user_txt{height:20px;line-height:20px;overflow:hidden}
+.comiis_tm{filter:alpha(opacity=60);-moz-opacity:.6;-khtml-opacity:.6;opacity:.6}
+.ec-rankhot li .user_img span em{position:absolute;top:-15px;left:50%;margin-left:-16px;width:32px;z-index:10}
+.ec-ranklist{width:100%;overflow:hidden}
+.ec-ranklist li:first-child{border-top:none!important}
+.ec-ranklist li{margin:0 12px;padding: .1rem 0;}
+.ec-ranklist li a{display:block;height:38px;line-height:38px}
+.ec-ranklist li .y{font-size:12px}
+.ec-ranklist li .user_mun{float:left;width:22px;text-align:center;margin-right:10px;font-size:14px}
+.ec-ranklist li img{float:left;width:38px;height:38px;margin-right:10px;font-size:0;border-radius:50%}
+.ec-ranklist li .user_tit{float:left;margin-right:5px;font-size:16px}

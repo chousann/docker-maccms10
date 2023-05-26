@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html data-n-head-ssr lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$maccms.site_name}</title>
+    {include file="public/include"}
+</head>
+<body style="overflow-y:scroll;">
+{include file="public/head"}
+<div class="nex_bbstopnav_displaylist">
+    <div id="sowd" class="nex_postbbsbtn"><a href="javascript:;"></a></div>
+    <h3>我看过的</h3>
+    <a href="javascript:MAC.GoBack()" class="nexback"></a>
+</div>
+<div style="height:.56rem;"></div>
+<div class="ec-yktx"><a href="{:mac_url('user/login')}">立即登录</a>可同步播放记录</div>
+<div class="mac_history"></div>
+{include file="public/foot"}
+</body>
+</html>

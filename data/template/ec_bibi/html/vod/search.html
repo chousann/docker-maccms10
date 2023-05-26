@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果" />
+    <meta name="description" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果" />
+    {include file="public/include"}
+</head>
+<body>
+<div class="nex_bbstopnav_displaylist">
+    <h3>搜索结果</h3>
+    <a href="javascript:MAC.GoBack()" class="nexback"></a>
+</div>
+<div style="height:.55rem"></div>
+<!--搜索结果-->
+<div class="ecm2 ec-lf13 ecbgc">
+{maccms:vod num="12" paging="yes" pageurl="vod/search" order="desc" by="time"}
+<div class="ec-media clearfix ecm2">
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-img"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div><i>{$vo.vod_remarks}</i></a>
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-til">
+        <div class="title">{$vo.vod_name}</div>
+        <ul class="desc">
+          <li>{$vo.type.type_name} / {$vo.vod_area} / {$vo.vod_year}</li>
+          <li>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</li>
+        </ul>
+        <div class="media-play"><img src="{$maccms.path_tpl}images/play.png">立即播放</div>
+     </a>  
+</div>
+{/maccms:vod}
+</div>
+{include file="public/paging"}
+{include file="public/foot"}
+</body>
+</html>

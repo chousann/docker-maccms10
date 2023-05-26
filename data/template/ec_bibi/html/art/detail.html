@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$obj.art_name} - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.art_name}最新资讯,推荐资讯" />
+    <meta name="description" content="{$obj.art_name}最新资讯,推荐资讯" />
+    <link rel="stylesheet" href="{$maccms.path_tpl}css/swiper.min.css">
+    {include file="public/include"}
+</head>
+<body>
+<div class="nex_bbstopnav_displaylist">
+    <h3>文章内容</h3>
+    <a href="javascript:MAC.GoBack()" class="nexback"></a>
+</div>
+<div style="height:.55rem"></div>
+<div class="nex_artical_Tops">
+    <div class="nex_mntitles">{$obj.art_name}</div>
+    <div class="nex_mneditsninfos">{$obj.art_time|date='Y-m-d',###}<span>|</span>栏目: <em id="_viewnum">{$obj.type.type_name}</em><span>|</span>人气: <em id="_commentnum">{$obj.art_hits}</em></div>
+</div>
+<div class="nex_content ec-lf13">
+{$obj.art_page_list[$param['page']]['content']|mac_url_content_img}
+<p class="art_tbsm_m">本文来自网络理 © 版权归原作者所有</p>
+</div>
+{if condition="$obj.art_rel_vod==true"}  
+<div class="box ec-lf13 topbj">
+    <div class="ec-detailhbx pannel_head clearfix"><h3 class="hzhuany">相关影视免费播放</h3></div>
+    <div class="box_con">
+        <ul class="img-list dis ecbgc">
+            {maccms:vod num="3" rel="'.$obj['art_rel_vod'].'" order="desc" by="time"}
+            <li><a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" title="{$vo.vod_name}"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div>
+            <i>{$vo.vod_remarks}</i></a>
+            <div><a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" title="{$vo.vod_name}">{$vo.vod_name}</a></div>
+            <div class="ub-txt"><p>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</p></div>
+            </li>
+            {/maccms:vod}
+        </ul>
+    </div>  
+</div>
+{/if} 
+<div class="ec-lf13 clearfix ecm2 topbj">
+    <div class="pannel_head clearfix"><h3 class="hzhuany">推荐阅读</h3></div>
+    <ul class="art_relates clearfix ecm2 ecbgp">
+    {maccms:art num="4" ids="'.$obj['art_rel_art'].'" order="desc" by="hits"}
+        <li>
+           <a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">
+           <div class="artlr_tit"><p class="artlr_b">{$vo.art_name}</p><p class="artlr_name">{$vo.type.type_name}</p></div>
+           <div class="ec-jabj eclazy artlr_pic" data-original="{$vo.art_pic|mac_url_img}"></div>
+           </a>
+        </li>
+    {/maccms:art}
+    </ul>
+</div>
+<div class="ec-lf13 ecm2">
+<div style="height:.3rem"><h3 class="hzhuany">我要唠两句</h3></div>
+<div class="ui-box marg" id="pinglun" >
+    <div class="mac_comment" data-id="{$obj.art_id}" data-mid="{$maccms.mid}" ></div>
+    <script>
+        $(function(){
+            MAC.Comment.Login = {$comment.login};
+            MAC.Comment.Verify = {$comment.verify};
+            MAC.Comment.Init();
+            MAC.Comment.Show(1);
+        });
+    </script>
+</div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

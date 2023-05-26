@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html data-n-head-ssr lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>VIP解析-{$maccms.site_name}</title>
+    {include file="public/include"}
+    <link rel="stylesheet" href="{$maccms.path_tpl}css/jx.css">
+</head>
+<body>
+<div class="container-fluid video-box">
+  <div class="container ">
+    <p class="ecysjz">影视加载中请稍后...</p>
+    <iframe id="palybox" src="//player.bilibili.com/player.html?aid=64963508&cid=112761319&page=1" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+    <div class="url-box">
+      <div class="input-group clearfix">
+        <input type="text" onpaste="myFunction()" id="url" class="form-control url-text" aria-label="Text input with segmented button dropdown" placeholder="请粘贴视频网址>ㅂ<ﾉ ☆" title="请复制你想要看的视频网址，粘贴到此处点击播放即可！">
+        <div class="input-group-addon">
+          <select class="url-c url-text" title="如发现视频无法正常播放请尝试更换视频线路！" id="jk">
+            <option value="http://jx.du2.cc/?url=" selected="">⑤号通用</option> 
+            <option value="http://jx.drgxj.com/?url=" selected="">④号通用</option>
+            <option value="http://jx.618ge.com/?url=" selected="">③号通用</option>
+            <option value="http://vip.jlsprh.com/?url=" selected="">②号通用</option>
+            <option value="http://jx.drgxj.com/?url=" selected="">超速解析</option> 
+            <option value="http://jx.598110.com/?url=" selected="">①号通用</option> 
+            <option value="http://api.lunvip.xyz/?url="> 磁力一 </option>
+            <option value="http://www.ibb6.com/playm3u8/?url="> 磁力二 </option>
+            <option value="http://api.bbbbbb.me/jx/?url="> 思古解析 </option>
+          </select>
+        </div>
+        <button type="button" class="btn-play" title="点击开始解析并开始播放" id="ssdi">解析播放</button>
+      </div>
+      <span class="tit-gg">若视频播放异常，尝试刷新或更换接口即可解决！</span>
+    </div>
+  </div>
+</div>
+<span id="message"></span>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#ipt-test").bind({
+            copy : function(){
+                $('#message').text('copy内容');
+            },
+            paste : function(){
+                $('#message').text('paste内容');
+            },
+            cut : function(){
+                $('#message').text('cut内容');
+            }
+        });
+        $("#ipt-test").keyup(function(){
+            console.log("Hello Word");
+        });
+    });
+</script>
+<div class="col-lg-12 ec-lf13 ecm2">
+  <h4>使用方法</h4>
+  <p>第&nbsp;一&nbsp;步&nbsp;进入各大视频网站，找到想要观看的VIP视频vip会员，然后复制链接（浏览器上的视频地址，app复制分享地址）</p>
+  <p>第&nbsp;二&nbsp;步&nbsp;将复制的链接粘贴到本站播放地址，并点击解析播放</p>
+  <p>第&nbsp;三&nbsp;步&nbsp;等待解析完成，即可免费观看VIP视频vip会员</p>
+</div>
+<div class="col-lg-12 ec-lf13">
+  <h4>支持以下网站</h4>
+<div class="col-xs-4">
+<a href="http://vip.iqiyi.com/" target="_blank" title="爱奇艺会员"> <img src="{$maccms.path_tpl}images/jx/iqiyilogo.png"> </a>
+<a href="http://film.qq.com/" target="_blank" title="腾讯会员中心"> <img src="{$maccms.path_tpl}images/jx/qqlogo.png"> </a>
+<a href="http://vip.youku.com/" target="_blank" title="优酷会员中心"> <img src="{$maccms.path_tpl}images/jx/youkulogo.png"> </a>
+<a href="http://www.mgtv.com/vip/" target="_blank" title="芒果会员中心"> <img src="{$maccms.path_tpl}images/jx/hunantvlogo.png"> </a>
+<a href="http://yuanxian.le.com/" target="_blank" title="乐视会员中心"> <img src="{$maccms.path_tpl}images/jx/letvlogo.png"> </a>
+<a href="http://vip.tudou.com" target="_blank" title="土豆会员中心"> <img src="{$maccms.path_tpl}images/jx/tudoulogo.png"> </a>
+<a href="http://www.baofeng.com/" target="_blank" title="暴风会员"> <img src="{$maccms.path_tpl}images/jx/baofeng.png"> </a> 
+<a href="http://vip.1905.com/" target="_blank" title="1905电影网视频"> <img src="{$maccms.path_tpl}images/jx/1905logo.png"> </a> 
+<a href="http://vip.kankan.com/" target="_blank" title="天天看看"> <img src="{$maccms.path_tpl}images/jx/kankan.png"> </a> 
+<a href="http://www.pptv.com/" target="_blank" title="PPTV聚力"> <img src="{$maccms.path_tpl}images/jx/pptv.png"> </a> 
+<a href="http://www.yinyuetai.com/" target="_blank" title="音悦台MV"> <img src="{$maccms.path_tpl}images/jx/yinyuetailogo.png"> </a> 
+<a href="http://www.56.com/" target="_blank" title="56视频"> <img src="{$maccms.path_tpl}images/jx/56logo.png"> </a>
+</div>
+</div>
+<div style="height:.6rem"></div>
+<div class="nex_bottomnav">
+<div class="nex_bottominter">
+    	<ul>
+        	<li>
+            	<a href="{$maccms.path}">
+                	<i class="nex_iconbtm1"></i>
+                    <p>首页</p>
+                </a>
+            </li>
+            <li>
+            	<a href="{:mac_url('art/index')}">
+                	<i class="nex_iconbtm4"></i>
+                    <p>资讯</p>
+                </a>
+            </li>
+            <li>
+            	<a class="ecnav-btizx ecnav-bti" href="{:mac_url('label/jx')}">
+                	<i class="nex_iconbtm2"></i>
+                    <p>VIP解析</p>
+                </a>
+            </li>
+            <li>
+            	<a href="//{$maccms.site_url}/mp3">
+                	<i class="nex_iconbtm5"></i>
+                    <p>音乐</p>
+                </a>
+            </li>
+            <div class="clear"></div>
+        </ul>
+</div>
+</div>
+<a href="javascript:;" class="qdxw_top"></a>
+<div style="display:none">{$maccms.site_tj}</div>
+<script> 
+var ssbay=document.getElementById('tittext');
+var sslis=document.getElementById('jk');
+var sssrc=document.getElementById('palybox');
+var ssurl=document.getElementById('url');
+var ssdi=document.getElementById('ssdi');					   
+ssdi.onclick=function() {						   						   
+if(ssurl.value==''){							   							  
+ alert('哥哥姐姐啊 ，拜托你先输入一个地址在进行解析哦~ 每有地址小宠也无能为力了！');						   
+ }else{sssrc.src=sslis.value+ssurl.value;};	};
+</script>
+</body>
+</html>

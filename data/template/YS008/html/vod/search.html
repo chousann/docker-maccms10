@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="utf-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />  
+  <title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class} 搜索结果 - {$maccms.site_name}</title> 
+  <meta name="description" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class} 搜索结果 - {$maccms.site_name}" /> 
+  <meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class} 搜索结果" />
+  {include file="public/include"}
+ </head>
+ <body>
+  {include file="public/head"}
+  <div class="main-page">
+   <section class="breadcrumb-wrapper visible-md-block visible-lg-block"> 
+    <div class="container"> 
+     <ol class="breadcrumb"> 
+      <li><a href="{$maccms.path}"><i class="glyphicon glyphicon-home"></i> 首页</a></li>
+      <li class="active">搜索结果 </li> 
+     </ol> 
+    </div>
+   </section>
+  </div>
+  <div class="container">
+   <div class="home-img-box">
+    <center> 
+     <div class="home-ad"> 
+      <script src="{$maccms.path_ads}topads.js"></script>
+     </div>
+    </center>
+    <div class="clearfix"></div>
+    <div class="category-count">
+     <h3 class="title">搜索结果</h3>
+    </div>
+    <div class="post-list" id="ajax-fax">
+     {maccms:vod num="24" paging="yes" pageurl="vod/search" order="desc" by="time"}
+	 {if condition="$key == 12"}
+	 <div class="col-md-3 col-sm-6 col-xs-6">
+      <div class="video-item">
+       <div class="featured-content-image">
+        <a href="{:mac_url_vod_play($vo)}" rel="nofollow"><img class="lazy" referrerpolicy="no-referrer" data-original="{:mac_url_img($vo.vod_pic)}" src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" />
+         <div class="link-overlay"></div></a>
+        <span class="model-view">{$vo.vod_hits} Views</span>
+       </div>
+       <div class="entry-title">
+        <a href="{:mac_url_vod_play($vo)}">{$vo.vod_name}</a> {$vo.vod_time|date="Y / m / d",###}
+       </div>
+      </div>
+     </div>
+     <div class="center-ad" style="clear:both;height:auto;">
+      <div class="hr-adstyle hr-ad info"></div>
+      <div class="video-box-ad">
+       <div class="AD-box AD1">
+		<script src="{$maccms.path_ads}centerads01.js"></script>
+       </div>
+       <div class="AD-box AD2">
+		<script src="{$maccms.path_ads}centerads02.js"></script>       </div>
+       <div class="AD-box AD3">
+		<script src="{$maccms.path_ads}centerads03.js"></script>
+       </div>
+      </div>
+      <div class="hr-adstyle hr-adend info"></div>
+     </div>
+	 {else}
+     <div class="col-md-3 col-sm-6 col-xs-6">
+      <div class="video-item">
+       <div class="featured-content-image">
+        <a href="{:mac_url_vod_play($vo)}" rel="nofollow"><img class="lazy" referrerpolicy="no-referrer" data-original="{:mac_url_img($vo.vod_pic)}" src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" />
+         <div class="link-overlay"></div></a>
+        <span class="model-view">{$vo.vod_hits} Views</span>
+       </div>
+       <div class="entry-title">
+        <a href="{:mac_url_vod_play($vo)}">{$vo.vod_name}</a> {$vo.vod_time|date="Y / m / d",###}
+       </div>
+      </div>
+     </div>
+	 {/if}
+	 {/maccms:vod}
+    </div>
+    <div class="clearfix"></div>
+    <div class="models-page-box"> 
+     <nav> 
+      <ul class="pagination">
+	    {include file="public/paging"}
+      </ul> 
+     </nav> 
+    </div>
+    <div class="bottom-ad" style="overflow:hidden;"> 
+      <script src="{$maccms.path_ads}bottomads.js"></script>
+    </div>
+   </div>
+  </div>
+  <a class="go-top" href="#"><span class="glyphicon glyphicon-chevron-up"></span></a>
+  <link rel="stylesheet" type="text/css" href="{$maccms.path_tpl}html/style/css/exonav.css" />
+  <script type="text/javascript" src="{$maccms.path_tpl}html/style/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{$maccms.path_tpl}html/style/js/jquery.lazyload.min.js"></script>
+  <script>$("img.lazy").lazyload({effect : 'fadeIn'});</script>
+  {include file="public/foot"}
+  <script>
+	$(document).ready(function() {
+		var total = $(".pagination div").html();
+		if($(".pagination div").hasClass("total")){
+			$("h3.title").html("搜索结果 ("+total+") ");
+		}else{
+			$("h3.title").html("搜索结果 (0) ");
+		}
+	});
+  </script>
+ </body>
+</html>

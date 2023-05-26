@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html data-n-head-ssr lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$maccms.site_name}</title>
+    {include file="public/include"}
+</head>
+<body>
+<div id="comiis_head" class="nex_bbstopnav_displaylist">
+    <h3>热播排行榜</h3>
+    <a href="javascript:MAC.GoBack()" class="nexback"></a>
+</div>
+<style>
+#comiis_head{background: transparent;box-shadow: none;}
+#comiis_head h3{display:none;}
+.highlight h3{display:block!important;}
+</style>
+<div class="ec-rank">
+  <div class="hotauto">
+    <span class="hspan">热播排行榜</span>
+    <p class="pick">最热内容，等你来PICK!</p>
+  </div>  
+</div>
+<div class="ec-rankh">
+  <ul id="tag">
+    <li class="tab_rank fed-text-green" title="电影榜"><em class="bg_0"></em>电影榜</li>
+    <li class="tab_rank" title="连续剧榜"><em class="bg_0"></em>连续剧榜</li>
+    <li class="tab_rank" title="综艺榜"><em class="bg_0"></em>综艺榜</li>
+    <li class="tab_rank" title="动漫榜"><em class="bg_0"></em>动漫榜</li>
+  </ul>
+</div>
+<div id="tagContent" class="ecm2 ec-lf13 ecbgc">
+<div id="ectag" style="display:none">
+{maccms:vod num="10" type="1" order="desc" by="score"}
+<div class="ec-media clearfix ecm2 ecdy">
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-img"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div><em class="nex_rki_num{$key}">{$key}</em><i>{$vo.vod_remarks}</i></a>
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-til">
+        <div class="title">{$vo.vod_name}</div>
+        <ul class="desc">
+          <li>{$vo.type.type_name} / {$vo.vod_area} / {$vo.vod_year}</li>
+          <li>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</li>
+        </ul>
+        <div class="ec-playnam-titxti"><span><img src="{$maccms.path_tpl}images/ic_noah_hot.png">热度&nbsp;{$vo.vod_hits}</span></div>
+     </a>
+     <div class="rank-cancel"><a href="javascript:;" class="mac_ulog" data-type="2" data-mid="{$user.user_id}" data-id="{$vo.vod_id}">+收藏</a></div>
+</div>
+{/maccms:vod}
+</div>
+<div id="ectag" style="display:none">
+{maccms:vod num="10" type="2" order="desc" by="score"}
+<div class="ec-media clearfix ecm2 ecdy">
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-img"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div><em class="nex_rki_num{$key}">{$key}</em><i>{$vo.vod_remarks}</i></a>
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-til">
+        <div class="title">{$vo.vod_name}</div>
+        <ul class="desc">
+          <li>{$vo.type.type_name} / {$vo.vod_area} / {$vo.vod_year}</li>
+          <li>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</li>
+        </ul>
+        <div class="ec-playnam-titxti"><span><img src="{$maccms.path_tpl}images/ic_noah_hot.png">热度&nbsp;{$vo.vod_hits}</span></div>
+     </a>
+     <div class="rank-cancel"><a href="javascript:;" class="mac_ulog" data-type="2" data-mid="{$user.user_id}" data-id="{$vo.vod_id}">+收藏</a></div>
+</div>
+{/maccms:vod}
+</div>
+<div id="ectag" style="display:none">
+{maccms:vod num="10" type="3" order="desc" by="score"}
+<div class="ec-media clearfix ecm2 ecdy">
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-img"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div><em class="nex_rki_num{$key}">{$key}</em><i>{$vo.vod_remarks}</i></a>
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-til">
+        <div class="title">{$vo.vod_name}</div>
+        <ul class="desc">
+          <li>{$vo.type.type_name} / {$vo.vod_area} / {$vo.vod_year}</li>
+          <li>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</li>
+        </ul>
+        <div class="ec-playnam-titxti"><span><img src="{$maccms.path_tpl}images/ic_noah_hot.png">热度&nbsp;{$vo.vod_hits}</span></div>
+     </a>
+     <div class="rank-cancel"><a href="javascript:;" class="mac_ulog" data-type="2" data-mid="{$user.user_id}" data-id="{$vo.vod_id}">+收藏</a></div>
+</div>
+{/maccms:vod}
+</div>
+<div id="ectag" style="display:none">
+{maccms:vod num="10" type="4" order="desc" by="score"}
+<div class="ec-media clearfix ecm2 ecdy">
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-img"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div><em class="nex_rki_num{$key}">{$key}</em><i>{$vo.vod_remarks}</i></a>
+    <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" class="media-til">
+        <div class="title">{$vo.vod_name}</div>
+        <ul class="desc">
+          <li>{$vo.type.type_name} / {$vo.vod_area} / {$vo.vod_year}</li>
+          <li>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</li>
+        </ul>
+        <div class="ec-playnam-titxti"><span><img src="{$maccms.path_tpl}images/ic_noah_hot.png">热度&nbsp;{$vo.vod_hits}</span></div>
+     </a>
+     <div class="rank-cancel"><a href="javascript:;" class="mac_ulog" data-type="2" data-mid="{$user.user_id}" data-id="{$vo.vod_id}">+收藏</a></div>
+</div>
+{/maccms:vod}
+</div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

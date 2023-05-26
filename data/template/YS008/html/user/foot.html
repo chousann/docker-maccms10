@@ -1,0 +1,39 @@
+  <footer>
+   <div class="footer-menu">
+    <div class="container">
+     <a href="{$maccms.path}">首页</a>
+     <a href="mailto:{$maccms.site_email}">联系我们</a>
+    </div>
+   </div>
+   <div class="footer">
+    <div class="container">
+     <div class="col-md-12">
+      <div class="footer-item newest-keyword">
+       <b style="color: #F99A16;">友情链接:</b>
+      </div>
+      <div class="footer-item feature-list"> 
+       <div class="row"> 
+		{maccms:link order="desc" by="sort" type="font"}
+        <div class="col-md-1">
+         <a style="color:#fff;" href="{$vo.link_url}" target="_blank">{$vo.link_name}</a>
+        </div>
+		{/maccms:link}
+       </div> 
+      </div>
+      <div class="footer-item">
+       <p>所有的影片皆从外部来源于网络收集。没有视频托管本服务器上。如果您有任何法律问题，请联系合适的视频所有者或主机的网站.你还可以与我们联系。</p>
+      </div>
+      <div class="footer-item copyright">
+       © {$maccms.site_url}, 2018  {$maccms.site_icp}  {$maccms.site_tj}
+      </div>
+     </div>
+     <div class="col-md-3"></div>
+    </div>
+   </div>
+  </footer>
+  <div class="m-footer" style="display:none;">
+    <a class="navFooter" target="_self" href="/"><i class="glyphicon glyphicon-home"></i>首页</a>
+    <button type="button" class="navFooter show-sidebar-left"><i class="glyphicon glyphicon-list"></i>分类</button>
+    <a class="navFooter" target="_self" href="{:mac_url('user/ajax_info')}"><i class="glyphicon glyphicon-share"></i>推广</a>
+    <a class="navFooter" target="_self" href="{:mac_url('user/index')}"><i class="glyphicon glyphicon-user"></i>我的</a>
+  </div>

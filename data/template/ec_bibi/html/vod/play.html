@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html data-n-head-ssr lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>在线播放{$obj.vod_name} {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']} - 高清资源 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}免费在线观看,{$obj.vod_name}剧情介绍" />
+    <link rel="stylesheet" href="{$maccms.path_tpl}css/swiper.min.css">
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="ec-playgg clearfix">
+      <span class="ec-playgg-icn"><img src="{$maccms.path_tpl}images/laba.png"></span>
+      <div class="ec-playgg-gd"><marquee direction="left">如果无法播放或者播放慢请点击[播放列表-片源-当前片源下的播放选集]这样即可切换片源，因为某一些片源访问的用户过多无法承受，速度变慢，所以这时候你就可以切换其他片源观赏。</marquee></div>
+      <span class="ec-playgg-x"><img src="{$maccms.path_tpl}images/gbi.png"></span>
+</div>
+<div id="detail-box">
+    <!-- 播放器 -->
+    <div id="bofang_box" class="nex_bbstopnav_displaylist">
+    {$player_data}
+    {$player_js}
+    </div>
+</div>
+<div style="height:3.13rem;"></div>   
+<!-- 第一部分 准备隐藏 -->
+<div id="ecdiv1" class="ec-lf13">
+  <div class="ec-playnam">
+    <div class="ec-playnam-titbox clearfix"><span>{$obj.type.type_name}</span><h1 class="hzhuany">{$obj.vod_name}</h1></div>
+    <div class="ec-playnam-titxti"><span><img src="{$maccms.path_tpl}images/ic_noah_hot.png">热度&nbsp;{$obj.vod_hits}</span>&nbsp;&nbsp;/&nbsp;&nbsp;<span>{$obj.vod_lang}&nbsp;&nbsp;{$obj.vod_year}</span>&nbsp;&nbsp;/&nbsp;&nbsp;<span>{$obj.vod_remarks}</span>
+    </div>
+    <a class="ec-playnam-tcjj">简介<i class="laiba"></i></a>
+  </div>
+  <div class="ec-playpf clearfix">
+      <div class="ec-playpfl clearfix">
+          <span class="ec-playpfls">{$obj.vod_score}</span>
+          <div class="ec-playpfll">
+              <p class="ec-playpfllpa"><img src="{$maccms.path_tpl}images/xingxing.png"></p>
+              <p class="ec-playpfllpb">{$obj.vod_up}人已评分</p>
+          </div>
+      </div>
+      <div class="ec-playpfr">
+          <span class="ec-playpfrimg"><img src="{$maccms.path_tpl}images/pinfen.png"></span>
+          <div class="ec-playpfrqx">去评分</div>
+      </div>
+  </div>
+  <div class="ec-playbut clearfix ecm2">
+      <a href="javascript:;" onclick="MAC.Gbook.Report('编号【{$obj.vod_id}】名称【{$obj.vod_name}】不能观看请检查修复，页面地址' + location.href,'{$obj.vod_id}')"><span><img src="{$maccms.path_tpl}images/7-1.png"></span><p>报错</p></a> 
+      <a href="javascript:;" onclick="location.reload()"><span><img src="{$maccms.path_tpl}images/7-4.png"></span><p>刷新</p></a>
+      <a id="tanchu" href="javascript:;"><span><img src="{$maccms.path_tpl}images/7-3.png"></span><p>分享</p></a>
+      <a href="javascript:;" class="mac_ulog" data-type="2" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}"><span><img src="{$maccms.path_tpl}images/7-2.png"></span><p>收藏</p></a> 
+  </div>
+  <div class="ec-gfqqqun"><a class="text">爱鸭~发现神秘追剧群，快来瞧一瞧。</a></div>
+  <div class="ecdy" style="margin-bottom: .3rem;">
+      <div class="ec-playxj clearfix">
+          <h3 class="hzhuany">播放列表</h3>
+          <div class="ec-muted">
+              <a id="xiazai" href="javascript:;"><span><img src="{$maccms.path_tpl}images/7-5.png"></span>下载</a>
+              <a id="qhpy" href="javascript:;"><span><img src="{$maccms.path_tpl}images/7-6.png"></span>切换片源</a>
+          </div>
+      </div> 
+      <div class="ec-sites-inner ec-inxpic">
+          <p class="arrow"></p>
+          <ul class="js-list" id="tag">
+             {maccms:foreach name="obj.vod_play_list" id="vo" key="key"}
+              <li {if condition="$param.sid eq $key"}class="fed-text-green"{else/} {/if}><span>{$vo.player_info.show}</span></li>
+             {/maccms:foreach}
+          </ul>
+      </div>
+      <div id="tagContent">
+      {maccms:foreach name="obj.vod_play_list" id="vo"}
+      <div id="ectag" class="swiper-container6" style="display:none">
+      <div class="clearfix swiper-wrapper">
+         {maccms:foreach name="vo.urls" id="vo2" key="key2"}<span class="{if condition="$param.sid eq $vo.sid && $param.nid eq $vo2.nid"}current1{/if} swiper-slide"><a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}" {if condition="$param.sid eq $vo.sid && $param.nid eq $vo2.nid"}class="current"{/if}>{$vo2.name}</a></span>{/maccms:foreach}
+      </div>     
+      </div>
+      {/maccms:foreach}
+      </div>
+  </div> 
+  {if condition="$obj.vod_rel_art==true"}
+  <!-- 相关文章 -->
+  <section class="box ec-new">
+    <section class="title" style="line-height: .3rem;height: .3rem;">
+        <h2 class="hzhuany">相关文章~</h2>
+    </section>
+    <div class="box_con">
+        <ul class="img-list dis shipin ecbgp">
+            {maccms:art num="2" ids="'.$obj['vod_rel_art'].'" order="desc" by="time"}
+            <li><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}"><div class="ec-idxct ec-jabj eclazy" data-original="{$vo.art_pic|mac_url_img}"></div>
+            <i>{$vo.art_hits}次阅读</i></a>
+            <div class="ec-inewbor"><a class="ec-newlia" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name}</a></div>
+            </li>
+            {/maccms:art}
+        </ul>
+    </div>
+  </section>
+  {/if} 
+  <!-- 猜你喜欢 --> 
+  <section class="box ecm2">
+    <section class="title" style="line-height: .3rem;height: .3rem;">
+        <h2 class="hzhuany">根据你的浏览，也许你会喜欢这些~</h2>
+    </section>
+    <div class="box_con">
+        <ul class="img-list dis ecbgc">
+            {maccms:vod num="6" type="current" order="desc" by="time"}
+            <li><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}"><div class="ec-jabj eclazy" data-original="{:mac_url_img($vo.vod_pic)}"></div>
+            <i>{$vo.vod_remarks}</i></a>
+            <div><a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></div>
+            <div class="ub-txt"><p>{$vo.vod_actor|mac_default=$vo.vod_area.$vo.type.type_name|mac_filter_html}</p></div>
+            </li>
+            {/maccms:vod}
+        </ul>
+    </div>  
+  </section>
+  <div class="ui-box marg ecm2" id="pinglun">
+    <section class="title" style="line-height: .3rem;height: .3rem;">
+        <h2 class="hzhuany">影视评论</h2>
+    </section>
+    <div class="mac_comment" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" ></div>
+    <script>
+        $(function(){
+            MAC.Comment.Login = {$comment.login};
+            MAC.Comment.Verify = {$comment.verify};
+            MAC.Comment.Init();
+            MAC.Comment.Show(1);
+        });
+    </script>
+  </div>
+</div>  
+<!-- 第二部分 简介 -->  
+<div id="ecdiv2" class="ecdy" style="display: none">
+  <div class="title ec-palytcji">
+        <h2 class="hzhuany">简介</h2><img id="ecgbjx" src="{$maccms.path_tpl}images/ecbh.png">
+  </div>
+  <div style="height:.8rem"></div>
+  <div class="ec-lf13">
+  <div class="ec-playnam-titxti">
+      <h2 class="hzhuany">{$obj.vod_name}</h2>
+      <span>热度&nbsp;{$obj.vod_hits}</span>&nbsp;&nbsp;/&nbsp;&nbsp;
+      <span>类型&nbsp;{$obj.vod_class|mac_url_create='class','vod','search'}</span>&nbsp;&nbsp;/&nbsp;&nbsp;
+      <span>{$obj.vod_lang}&nbsp;&nbsp;{$obj.vod_year}</span>&nbsp;&nbsp;/&nbsp;&nbsp;
+      <span>{$obj.vod_remarks}</span>
+      <div class="ec-palytcdy">
+      <span>导演：</span>{$obj.vod_director|mac_url_create='director','vod','search'}
+      </div>
+  </div>
+  <div class="swiper-container3">
+    <div class="clearfix swiper-wrapper">
+    {maccms:actor name="'.$obj[vod_actor].'" key="key1" order="desc" by="time"}
+	    <span class="swiper-slide actorlist_item" style="display:inline-block">
+		    <div class="actorlist_box ecdy">
+				<a class="vodlist_thumb" href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" style="background-image: url({$vo.actor_pic|mac_url_img});"></a>
+				<div class="actorlist_tit">									
+				    <a href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}">{$vo.actor_name}</a>
+				</div>
+		    </div>
+	    </span>
+    {/maccms:actor}
+    </div>
+  </div>
+  <div>
+    <section class="title" style="line-height: .3rem;height: .3rem;">
+        <h2 class="hzhuany">概要</h2>
+    </section>
+    <p class="ecm2">{$obj.vod_content|mac_filter_html|mac_substring=150|mac_default='暂无简介'}</p>
+  </div>
+  </div>
+</div> 
+<!-- 第三部分 评分 -->
+<div id="ecdiv3" class="ecdy" style="display:none">
+  <div class="title ec-palytcji">
+        <h2 class="hzhuany">评分</h2><img id="ecgbjx2" src="{$maccms.path_tpl}images/ecbh.png">
+  </div>
+  <div style="height:.8rem"></div>
+  <div id="detail-rating" class="ec_pingfen">
+       <div id="rating" class="macplus-ting" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-score="{$obj.vod_score/2|ceil}">
+               <span id="ratewords">{if$obj.vod_score gt 5}拍桌 爱了(๑•̀ㅂ•́)و✧{elseif$obj.vod_score gt 4}棒棒的{elseif$obj.vod_score gt 3}掀桌子{elseif$obj.vod_score gt 2}噢,上帝啊!这糟糕的演技。{else /}烂片~烂片{/if}</span>
+               <ul class="rating">
+                <li class="one{if$obj.vod_score gt 0} current active{/if}" title="烂片~烂片" val="1"></li>
+                <li class="two{if$obj.vod_score gt 2} current active{/if}" title="噢,上帝啊!这糟糕的演技。" val="2"></li>
+                <li class="three{if$obj.vod_score gt 4} current active{/if}" title="掀桌子~给我打" val="3"></li>
+                <li class="four{if$obj.vod_score gt 6} active{/if}" title="棒棒的" val="4"></li>
+                <li class="five{if$obj.vod_score gt 8} active{/if}" title="拍桌 爱了(๑•̀ㅂ•́)و✧" val="5"></li>
+              </ul>
+       </div>
+  </div>
+</div> 
+<script type="text/javascript" src="{$maccms.path_tpl}js/qireobj.js"></script> 
+<script type="text/javascript" src="{$maccms.path_tpl}js/gold.js"></script> 
+<!-- 第四部分 下载 --> 
+<div id="ecdiv4" class="ecdy" style="display:none">
+  <div class="title ec-palytcji">
+        <h2 class="hzhuany">下载{$obj.vod_name}</h2><img id="ecgbjx3" src="{$maccms.path_tpl}images/ecbh.png">
+  </div>
+  <div style="height:.8rem"></div>
+  <div class="ec-lf13">
+  {notempty name="$obj.vod_down_from"}
+    {maccms:foreach name="obj.vod_down_list" id="vo"}
+       <div class="filmSelectWrap">
+           <ul>{maccms:foreach name="vo.urls" id="vo2" key="key2"}
+			 <li class="video_list"><a href="{$vo2.url}" rel="nofollow">{$vo2.name}<span class="video_listrap">下载</span></a></li>{/maccms:foreach}
+		   </ul>
+       </div>
+   {/maccms:foreach}
+   {else}
+   <p>抱歉《{$obj.vod_name}》暂时尚未添加下载地址，如果你需要请到官方群反馈或者到留言板留言，蟹蟹~</p>
+   {/notempty}
+  </div>
+</div> 
+<!-- 最后部分 分享 --> 
+<div class="ec-playssites ec-inxpic am-share">
+  <div style="padding: .4rem .13rem;">
+  <h3 class="am-share-title">分享给你的小伙伴:</h3>
+  <ul class="ecm2 am-share-sns bdsharebuttonbox">
+    <script type="text/javascript"> 
+    function jsCopy(){ 
+        var ecfz=document.getElementById("content");
+        ecfz.select();  
+        document.execCommand("Copy"); 
+       alert("好了宝贝 ~ 现在分享给你的朋友吧");   
+    } 
+    </script> 
+    <textarea style="width: 100%;" name="content" rows="2" id="content" class="mac_shorten">{$obj.vod_name} {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']} 在线播放</textarea> 
+  </ul>
+  </div>
+  <div id="ecqx" onclick="jsCopy()" class="ec-playsssitesqx">复制链接</div>
+</div> 
+<span style="display:none" class="mac_ulog_set" alt="设置视频播放记录" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+<span style="display:none" class="mac_history_set" alt="设置视频历史记录" data-name="[{$obj.type.type_name}]{$obj.vod_name}" data-pic="{$obj.vod_pic|mac_url_img}"></span>
+<div class="mac_history" style="display:none;"></div>
+{include file="public/foot"}
+</body>
+</html>

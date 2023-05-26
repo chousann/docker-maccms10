@@ -1,0 +1,1 @@
+document.write('<a target=\"_blank\" href=\"#\"><img style=\"text-align: center;border:none;width:100%;height:100%;padding:0 2%;\" alt=\"\" src=\"/template/default_pc/html/style/images/15382154564658495ad11.png\"></a>');
