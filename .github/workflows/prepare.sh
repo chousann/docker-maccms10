@@ -9,6 +9,10 @@ if [ ! "$(command -v curl)" ]; then
   sudo apt -y install curl
 fi
 
+if [ ! "$(command -v lsof)" ]; then
+  sudo apt -y install lsof
+fi
+
 if [ ! "$(command -v docker)" ]; then
   curl -fsSL https://get.docker.com -o get-docker.sh
   sh get-docker.sh
