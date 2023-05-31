@@ -19,9 +19,9 @@ if [ ! "$(command -v docker)" ]; then
   mkdir -p /etc/docker
   mkdir -p /run/root/docker
   touch /etc/docker/daemon.json
-  echo -e "{" > daemon.json
-  echo -e "\t\"data-root\":\"/run/root/docker\"" >> daemon.json
-  echo -e "}" >> daemon.json
+  echo -e "{" > /etc/docker/daemon.json
+  echo -e "\t\"data-root\":\"/run/root/docker\"" >> /etc/docker/daemon.json
+  echo -e "}" >> /etc/docker/daemon.json
   systemctl restart docker
 fi
 
