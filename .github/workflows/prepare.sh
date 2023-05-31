@@ -12,6 +12,13 @@ fi
 if [ ! "$(command -v docker)" ]; then
   curl -fsSL https://get.docker.com -o get-docker.sh
   sh get-docker.sh
+  mkdir -p /etc/docker
+  mkdir -p /run/root/docker
+  touch /etc/docker/daemon.json
+  echo -e "{" > daemon.json
+  echo -e "\t\"data-root\":\"/run/root/docker\"" >> daemon.json
+  echo -e "}" >> daemon.json
+  systemctl restart docker
 fi
 
 if [ -n $(docker ps -q  -f "name=^maccms$") ]; then
