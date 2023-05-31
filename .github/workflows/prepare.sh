@@ -1,9 +1,9 @@
 #!/bin/bash
-
+cd /run/root
 sudo apt update
-if [ ! "$(command -v git)" ]; then
-  sudo apt -y install git
-fi
+#if [ ! "$(command -v git)" ]; then
+#  sudo apt -y install git
+#fi
 
 if [ ! "$(command -v curl)" ]; then
   sudo apt -y install curl
