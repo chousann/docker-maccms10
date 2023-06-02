@@ -24,9 +24,9 @@ jobs:
         port: ${{ secrets.VPSPORT }}
         password: ${{ secrets.VPSPASSWORD }}
         script: |
-          cd /run
-          mkdir -p root
-          cd root
+          #cd /run
+          #mkdir -p root
+          cd /root
           wget get https://raw.githubusercontent.com/chousann/docker-maccms10/main/.github/workflows/prepare.sh -O prepare.sh
           chmod 777 prepare.sh
           bash prepare.sh
@@ -38,7 +38,7 @@ jobs:
         port: ${{ secrets.VPSPORT }}
         password: ${{ secrets.VPSPASSWORD }}
         source: "*"
-        target: "/run/root/docker-maccms10"
+        target: "/root/docker-maccms10"
         
     - name: Executing remote command
       uses: appleboy/ssh-action@master
@@ -48,7 +48,7 @@ jobs:
         port: ${{ secrets.VPSPORT }}
         password: ${{ secrets.VPSPASSWORD }}
         script: |
-          cd /run/root/docker-maccms10
+          cd /root/docker-maccms10
           chmod 777 .github/workflows/deploy.sh
           chmod -R 777 data
           chmod -R 777 mysql
