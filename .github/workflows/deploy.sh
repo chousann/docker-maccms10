@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 定义要停止的端口号
-port=80
+port=8080
 
 # 获取占用端口的进程ID
 pid=$(sudo lsof -t -i:${port})
